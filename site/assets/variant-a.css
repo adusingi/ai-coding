@@ -1,0 +1,243 @@
+/* Variant A — Editorial / Essay.
+   Cream paper, serif headlines, generous whitespace, single column. */
+
+:root {
+  --paper:   #f0efe9;
+  --ink:     #1a1a1a;
+  --ink-2:   #3a3a36;
+  --muted:   #6b6b66;
+  --rule:    #cfcdc2;
+  --accent:  #6b3a1f; /* burnt sienna */
+  --card:    #e8e7df;
+  --maxw:    680px;
+}
+
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font: 18px/1.65 "Iowan Old Style", "Source Serif Pro", "Charter", Georgia, "Times New Roman", serif;
+}
+
+a { color: var(--ink); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; }
+a:hover { color: var(--accent); }
+
+.v-a {
+  max-width: var(--maxw);
+  margin: 0 auto;
+  padding: 56px 24px 0;
+}
+
+/* Top bar */
+.v-a__topbar {
+  display: flex; justify-content: space-between; align-items: baseline;
+  padding-bottom: 28px;
+  border-bottom: 1px solid var(--rule);
+  margin-bottom: 80px;
+}
+.v-a__brand {
+  font-family: "Iowan Old Style", Georgia, serif;
+  font-size: 17px; font-weight: 600; letter-spacing: 0.01em;
+  text-decoration: none;
+}
+.v-a__brand-sub {
+  font-size: 13px; color: var(--muted); font-style: italic;
+  margin-left: 8px;
+}
+.v-a__nav { display: flex; gap: 22px; font-size: 14px; }
+.v-a__nav a { text-decoration: none; color: var(--ink-2); }
+.v-a__nav a:hover { color: var(--accent); text-decoration: underline; }
+
+/* Hero / opening */
+.v-a__eyebrow {
+  font-family: -apple-system, system-ui, sans-serif;
+  font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--accent); margin: 0 0 18px;
+}
+.v-a__title {
+  font-size: clamp(34px, 5.5vw, 56px);
+  line-height: 1.08;
+  letter-spacing: -0.015em;
+  font-weight: 500;
+  margin: 0 0 28px;
+}
+.v-a__subtitle {
+  font-size: 21px; line-height: 1.55; color: var(--ink-2);
+  margin: 0 0 40px;
+}
+
+/* Drop cap for the first paragraph of the body */
+.v-a__opener::first-letter {
+  font-size: 4.4em; line-height: 0.86; float: left;
+  padding: 6px 10px 0 0; font-weight: 600; color: var(--accent);
+}
+
+.v-a__cta-row {
+  display: flex; gap: 14px; flex-wrap: wrap; margin: 36px 0 24px;
+}
+.v-a__cta {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 12px 20px; border-radius: 999px;
+  background: var(--ink); color: var(--paper);
+  text-decoration: none;
+  font-family: -apple-system, system-ui, sans-serif;
+  font-size: 15px; font-weight: 500;
+}
+.v-a__cta:hover { background: var(--accent); color: var(--paper); }
+.v-a__cta--ghost { background: transparent; color: var(--ink); border: 1px solid var(--ink); }
+.v-a__cta--ghost:hover { background: var(--ink); color: var(--paper); }
+
+.v-a__proof {
+  font-family: -apple-system, system-ui, sans-serif;
+  font-size: 13px; color: var(--muted);
+  margin: 8px 0 0;
+}
+
+/* Section structure */
+.v-a__section { padding: 84px 0 24px; }
+.v-a__section + .v-a__section { border-top: 1px solid var(--rule); margin-top: 24px; }
+.v-a__section-label {
+  font-family: -apple-system, system-ui, sans-serif;
+  font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--muted); margin: 0 0 16px;
+}
+.v-a__section-title {
+  font-size: clamp(26px, 3.6vw, 36px); line-height: 1.15;
+  font-weight: 500; letter-spacing: -0.01em;
+  margin: 0 0 18px;
+}
+.v-a__section-subtitle {
+  font-size: 18px; color: var(--ink-2); margin: 0 0 28px;
+}
+
+.v-a__section p { margin: 0 0 18px; }
+.v-a__section p + p { text-indent: 1.6em; }
+
+/* Method as numbered list */
+.v-a__steps { list-style: none; padding: 0; margin: 0; counter-reset: step; }
+.v-a__step { position: relative; padding: 24px 0 24px 60px; border-top: 1px dashed var(--rule); }
+.v-a__step:first-child { border-top: 0; padding-top: 8px; }
+.v-a__step::before {
+  counter-increment: step;
+  content: counter(step, decimal-leading-zero);
+  position: absolute; left: 0; top: 28px;
+  font-family: -apple-system, system-ui, sans-serif;
+  font-size: 13px; font-weight: 600; color: var(--accent);
+  letter-spacing: 0.04em;
+}
+.v-a__step:first-child::before { top: 12px; }
+.v-a__step-head {
+  display: flex; flex-wrap: wrap; gap: 8px 14px; align-items: baseline;
+  margin: 0 0 8px;
+}
+.v-a__step-label {
+  font-family: -apple-system, system-ui, sans-serif;
+  font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--muted);
+}
+.v-a__step-title { font-size: 22px; font-weight: 500; margin: 0; line-height: 1.25; }
+.v-a__step-duration { font-size: 13px; color: var(--muted); font-style: italic; }
+.v-a__step-body { color: var(--ink-2); }
+
+/* Patterns / Deliverables as definition-list-ish blocks */
+.v-a__items { display: grid; gap: 28px; padding: 0; margin: 0; list-style: none; }
+.v-a__item-title { font-size: 19px; font-weight: 600; margin: 0 0 6px; }
+.v-a__item-body  { color: var(--ink-2); margin: 0; }
+
+/* Projects */
+.v-a__projects { list-style: none; padding: 0; margin: 0; counter-reset: proj; }
+.v-a__project { padding: 28px 0; border-top: 1px solid var(--rule); position: relative; }
+.v-a__project:first-child { border-top: 0; padding-top: 8px; }
+.v-a__project::before {
+  counter-increment: proj;
+  content: "No. " counter(proj);
+  display: block;
+  font-family: -apple-system, system-ui, sans-serif;
+  font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--accent); margin-bottom: 6px;
+}
+.v-a__project-name {
+  font-size: 26px; font-weight: 500; margin: 0 0 4px; letter-spacing: -0.005em;
+}
+.v-a__project-tagline { font-style: italic; color: var(--ink-2); margin: 0 0 10px; }
+.v-a__project-meta {
+  font-family: -apple-system, system-ui, sans-serif;
+  font-size: 13px; color: var(--muted); margin: 0 0 12px;
+}
+.v-a__project-meta span + span::before { content: " · "; }
+.v-a__project-body { color: var(--ink-2); margin: 0; }
+
+/* Who-this-is-for as a two-column list */
+.v-a__fit { display: grid; gap: 32px; margin-top: 12px; }
+@media (min-width: 640px) { .v-a__fit { grid-template-columns: 1fr 1fr; } }
+.v-a__fit h3 {
+  font-family: -apple-system, system-ui, sans-serif;
+  font-size: 13px; letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--muted); margin: 0 0 12px;
+}
+.v-a__fit ul { padding-left: 18px; margin: 0; color: var(--ink-2); }
+.v-a__fit li + li { margin-top: 8px; }
+
+/* Pricing as a clean ledger */
+.v-a__tiers { list-style: none; padding: 0; margin: 0; }
+.v-a__tier { padding: 24px 0; border-top: 1px solid var(--rule); }
+.v-a__tier:first-child { border-top: 0; padding-top: 8px; }
+.v-a__tier-head {
+  display: flex; justify-content: space-between; align-items: baseline; gap: 16px;
+  flex-wrap: wrap;
+}
+.v-a__tier-name { font-size: 22px; font-weight: 500; margin: 0; }
+.v-a__tier-for { font-size: 13px; color: var(--muted); font-style: italic; }
+.v-a__tier-price { font-size: 22px; font-weight: 600; color: var(--accent); margin: 0; }
+.v-a__tier-unit { font-size: 13px; color: var(--muted); }
+.v-a__tier-body { color: var(--ink-2); margin: 10px 0 12px; }
+.v-a__tier-cta {
+  display: inline-block;
+  font-family: -apple-system, system-ui, sans-serif;
+  font-size: 14px; font-weight: 500;
+  text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 4px;
+  color: var(--accent);
+}
+
+/* FAQ */
+.v-a__faq { list-style: none; padding: 0; margin: 0; }
+.v-a__faq details {
+  padding: 18px 0; border-top: 1px solid var(--rule);
+}
+.v-a__faq details:first-child { border-top: 0; }
+.v-a__faq summary {
+  cursor: pointer; list-style: none;
+  font-size: 19px; font-weight: 500;
+  display: flex; justify-content: space-between; align-items: baseline; gap: 16px;
+}
+.v-a__faq summary::-webkit-details-marker { display: none; }
+.v-a__faq summary::after {
+  content: "+"; color: var(--accent); font-size: 22px; line-height: 1;
+  transition: transform .2s ease;
+}
+.v-a__faq details[open] summary::after { transform: rotate(45deg); }
+.v-a__faq-a { color: var(--ink-2); margin: 12px 0 0; }
+
+/* Closing CTA */
+.v-a__close {
+  margin: 24px 0 96px;
+  padding: 48px 32px;
+  background: var(--card);
+  border-radius: 18px;
+  text-align: center;
+}
+.v-a__close .v-a__section-title { margin-top: 0; }
+.v-a__close-email {
+  display: block;
+  font-family: -apple-system, system-ui, sans-serif;
+  font-size: 13px; color: var(--muted); margin-top: 16px;
+}
+
+/* Footer */
+.v-a__footer {
+  border-top: 1px solid var(--rule);
+  padding: 32px 0 24px;
+  font-family: -apple-system, system-ui, sans-serif;
+  font-size: 13px; color: var(--muted);
+  display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px;
+}
+.v-a__footer a { color: var(--muted); }
