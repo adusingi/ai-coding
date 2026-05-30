@@ -9,242 +9,274 @@
   <meta property="og:description" data-i18n-attr="content" data-i18n="meta.description" content="">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://ai-coding.adusingi.com/">
-  <link rel="canonical" href="https://ai-coding.adusingi.com/">
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text x='50%' y='62%' text-anchor='middle' font-size='80' font-family='Georgia,serif' fill='%236b3a1f'>A</text></svg>">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='18' fill='%230d1117'/><text x='14' y='66' font-family='monospace' font-size='52' font-weight='700' fill='%23a6e22e'>›_</text></svg>">
   <link rel="stylesheet" href="assets/shared.css">
-  <link rel="stylesheet" href="assets/variant-a.css">
+  <link rel="stylesheet" href="assets/style.css">
   <script src="i18n/en.js"></script>
   <script src="i18n/fr.js"></script>
   <script src="js/i18n.js"></script>
 </head>
 <body>
-  <main class="v-a">
-
-    <header class="v-a__topbar">
-      <a href="/" class="v-a__brand">
-        <span data-i18n="nav.brand">Aimable Dusingi</span><span class="v-a__brand-sub" data-i18n="nav.brand_sub">AI-Assisted Engineering</span>
+  <header class="v-c__bar">
+    <div class="v-c__bar-inner">
+      <a class="v-c__brand mono" href="/">
+        <span class="dim">~/</span><span data-i18n="nav.brand"></span><span class="slash">/</span><span class="file">ai-coding</span>
       </a>
-      <nav class="v-a__nav" aria-label="Primary">
-        <a href="#work" data-i18n="nav.work">Work</a>
-        <a href="#method" data-i18n="nav.method">Method</a>
-        <a href="#pricing" data-i18n="nav.pricing">Pricing</a>
-        <a href="#contact" data-i18n="nav.contact">Book a call</a>
+      <nav class="v-c__nav mono" aria-label="Primary">
+        <a href="#work" data-i18n="nav.work"></a>
+        <a href="#method" data-i18n="nav.method"></a>
+        <a href="#pricing" data-i18n="nav.pricing"></a>
       </nav>
-    </header>
+      <a class="v-c__bar-cta mono" href="#contact">$ <span data-i18n="nav.contact"></span></a>
+    </div>
+  </header>
 
-    <section class="v-a__hero">
-      <p class="v-a__eyebrow" data-i18n="hero.eyebrow"></p>
-      <h1 class="v-a__title" data-i18n="hero.title_a"></h1>
-      <p class="v-a__subtitle v-a__opener" data-i18n="hero.subtitle_a"></p>
-      <div class="v-a__cta-row">
-        <a class="v-a__cta" href="#contact" data-i18n="hero.cta_primary"></a>
-        <a class="v-a__cta v-a__cta--ghost" href="#work" data-i18n="hero.cta_secondary"></a>
+  <main class="v-c">
+
+    <section class="v-c__hero">
+      <div class="v-c__terminal">
+        <div class="v-c__term-head">
+          <span class="v-c__term-dot v-c__term-dot--r"></span>
+          <span class="v-c__term-dot v-c__term-dot--y"></span>
+          <span class="v-c__term-dot v-c__term-dot--g"></span>
+          <span class="v-c__term-title">~/ai-coding — claude code</span>
+        </div>
+        <div class="v-c__term-body">
+          <div class="v-c__cmd-line"><span class="prompt">$</span> claude <span class="flag">--explain</span> <span class="arg">ai-coding.adusingi.com</span></div>
+          <div class="v-c__comment">› Reading PORTFOLIO_ANALYSIS.md, docs/en/*, skills/...</div>
+          <div class="v-c__comment">› 5 production projects detected. 8 AI integration patterns indexed.</div>
+          <div class="v-c__comment">› Methodology: audit → CLAUDE.md → architecture review.</div>
+          <div class="v-c__cmd-line"><span class="prompt">›</span> Ready. Ask me anything about your engineering team.</div>
+        </div>
       </div>
-      <p class="v-a__proof" data-i18n="hero.proof_line"></p>
+
+      <div class="v-c__hero-text">
+        <p class="v-c__eyebrow" data-i18n="hero.eyebrow"></p>
+        <h1 class="v-c__title" data-i18n="hero.title_c"></h1>
+        <p class="v-c__subtitle" data-i18n="hero.subtitle_c"></p>
+        <div class="v-c__cta-row">
+          <a class="v-c__cta mono" href="#contact" data-i18n="hero.cta_primary"></a>
+          <a class="v-c__cta v-c__cta--ghost mono" href="#work" data-i18n="hero.cta_secondary"></a>
+        </div>
+        <p class="v-c__proof" data-i18n="hero.proof_line"></p>
+      </div>
     </section>
 
-    <section class="v-a__section" id="problem">
-      <p class="v-a__section-label" data-i18n="problem.section_label"></p>
-      <h2 class="v-a__section-title" data-i18n="problem.title"></h2>
-      <p data-i18n="problem.body"></p>
+    <section class="v-c__section" id="work">
+      <p class="v-c__section-label" data-i18n="projects.section_label"></p>
+      <h2 class="v-c__section-title" data-i18n="projects.title"></h2>
+      <p class="v-c__section-subtitle" data-i18n="projects.subtitle"></p>
+      <div class="v-c__projects" id="projects-list"></div>
     </section>
 
-    <section class="v-a__section" id="method">
-      <p class="v-a__section-label" data-i18n="method.section_label"></p>
-      <h2 class="v-a__section-title" data-i18n="method.title"></h2>
-      <p class="v-a__section-subtitle" data-i18n="method.subtitle"></p>
+    <section class="v-c__section" id="patterns">
+      <p class="v-c__section-label" data-i18n="patterns.section_label"></p>
+      <h2 class="v-c__section-title" data-i18n="patterns.title"></h2>
+      <p class="v-c__section-subtitle" data-i18n="patterns.subtitle"></p>
+      <div class="v-c__patterns">
+        <article class="v-c__pattern">
+          <h3 class="v-c__pattern-title" data-i18n="patterns.p_1_title"></h3>
+          <p class="v-c__pattern-body" data-i18n="patterns.p_1_body"></p>
+        </article>
+        <article class="v-c__pattern">
+          <h3 class="v-c__pattern-title" data-i18n="patterns.p_2_title"></h3>
+          <p class="v-c__pattern-body" data-i18n="patterns.p_2_body"></p>
+        </article>
+        <article class="v-c__pattern">
+          <h3 class="v-c__pattern-title" data-i18n="patterns.p_3_title"></h3>
+          <p class="v-c__pattern-body" data-i18n="patterns.p_3_body"></p>
+        </article>
+        <article class="v-c__pattern">
+          <h3 class="v-c__pattern-title" data-i18n="patterns.p_4_title"></h3>
+          <p class="v-c__pattern-body" data-i18n="patterns.p_4_body"></p>
+        </article>
+        <article class="v-c__pattern">
+          <h3 class="v-c__pattern-title" data-i18n="patterns.p_5_title"></h3>
+          <p class="v-c__pattern-body" data-i18n="patterns.p_5_body"></p>
+        </article>
+        <article class="v-c__pattern">
+          <h3 class="v-c__pattern-title" data-i18n="patterns.p_6_title"></h3>
+          <p class="v-c__pattern-body" data-i18n="patterns.p_6_body"></p>
+        </article>
+        <article class="v-c__pattern">
+          <h3 class="v-c__pattern-title" data-i18n="patterns.p_7_title"></h3>
+          <p class="v-c__pattern-body" data-i18n="patterns.p_7_body"></p>
+        </article>
+        <article class="v-c__pattern">
+          <h3 class="v-c__pattern-title" data-i18n="patterns.p_8_title"></h3>
+          <p class="v-c__pattern-body" data-i18n="patterns.p_8_body"></p>
+        </article>
+      </div>
+    </section>
 
-      <ol class="v-a__steps" aria-label="The training methodology">
-        <li class="v-a__step">
-          <div class="v-a__step-head">
-            <span class="v-a__step-label" data-i18n="method.step_1_label"></span>
-            <h3 class="v-a__step-title" data-i18n="method.step_1_title"></h3>
-            <span class="v-a__step-duration" data-i18n="method.step_1_duration"></span>
+    <section class="v-c__section" id="method">
+      <p class="v-c__section-label" data-i18n="method.section_label"></p>
+      <h2 class="v-c__section-title" data-i18n="method.title"></h2>
+      <p class="v-c__section-subtitle" data-i18n="method.subtitle"></p>
+      <div class="v-c__steps">
+        <article class="v-c__step">
+          <div class="v-c__step-meta"><span class="label" data-i18n="method.step_1_label"></span><span data-i18n="method.step_1_duration"></span></div>
+          <h3 class="v-c__step-title" data-i18n="method.step_1_title"></h3>
+          <p class="v-c__step-body" data-i18n="method.step_1_body"></p>
+        </article>
+        <article class="v-c__step">
+          <div class="v-c__step-meta"><span class="label" data-i18n="method.step_2_label"></span><span data-i18n="method.step_2_duration"></span></div>
+          <h3 class="v-c__step-title" data-i18n="method.step_2_title"></h3>
+          <p class="v-c__step-body" data-i18n="method.step_2_body"></p>
+        </article>
+        <article class="v-c__step">
+          <div class="v-c__step-meta"><span class="label" data-i18n="method.step_3_label"></span><span data-i18n="method.step_3_duration"></span></div>
+          <h3 class="v-c__step-title" data-i18n="method.step_3_title"></h3>
+          <p class="v-c__step-body" data-i18n="method.step_3_body"></p>
+        </article>
+      </div>
+    </section>
+
+    <section class="v-c__section" id="deliverables">
+      <p class="v-c__section-label" data-i18n="deliverables.section_label"></p>
+      <h2 class="v-c__section-title" data-i18n="deliverables.title"></h2>
+      <p class="v-c__section-subtitle" data-i18n="deliverables.subtitle"></p>
+      <div class="v-c__deliv">
+        <div class="v-c__deliv-row">
+          <div class="v-c__deliv-key">CLAUDE.md</div>
+          <div class="v-c__deliv-val">
+            <strong data-i18n="deliverables.item_1_title"></strong>
+            <span data-i18n="deliverables.item_1_body"></span>
           </div>
-          <p class="v-a__step-body" data-i18n="method.step_1_body"></p>
-        </li>
-        <li class="v-a__step">
-          <div class="v-a__step-head">
-            <span class="v-a__step-label" data-i18n="method.step_2_label"></span>
-            <h3 class="v-a__step-title" data-i18n="method.step_2_title"></h3>
-            <span class="v-a__step-duration" data-i18n="method.step_2_duration"></span>
+        </div>
+        <div class="v-c__deliv-row">
+          <div class="v-c__deliv-key">ARCHITECTURE.md</div>
+          <div class="v-c__deliv-val">
+            <strong data-i18n="deliverables.item_2_title"></strong>
+            <span data-i18n="deliverables.item_2_body"></span>
           </div>
-          <p class="v-a__step-body" data-i18n="method.step_2_body"></p>
-        </li>
-        <li class="v-a__step">
-          <div class="v-a__step-head">
-            <span class="v-a__step-label" data-i18n="method.step_3_label"></span>
-            <h3 class="v-a__step-title" data-i18n="method.step_3_title"></h3>
-            <span class="v-a__step-duration" data-i18n="method.step_3_duration"></span>
+        </div>
+        <div class="v-c__deliv-row">
+          <div class="v-c__deliv-key">prompts/</div>
+          <div class="v-c__deliv-val">
+            <strong data-i18n="deliverables.item_3_title"></strong>
+            <span data-i18n="deliverables.item_3_body"></span>
           </div>
-          <p class="v-a__step-body" data-i18n="method.step_3_body"></p>
-        </li>
-      </ol>
+        </div>
+        <div class="v-c__deliv-row">
+          <div class="v-c__deliv-key">ROLLOUT_30d.md</div>
+          <div class="v-c__deliv-val">
+            <strong data-i18n="deliverables.item_4_title"></strong>
+            <span data-i18n="deliverables.item_4_body"></span>
+          </div>
+        </div>
+      </div>
     </section>
 
-    <section class="v-a__section" id="deliverables">
-      <p class="v-a__section-label" data-i18n="deliverables.section_label"></p>
-      <h2 class="v-a__section-title" data-i18n="deliverables.title"></h2>
-      <p class="v-a__section-subtitle" data-i18n="deliverables.subtitle"></p>
-      <ul class="v-a__items">
-        <li>
-          <h3 class="v-a__item-title" data-i18n="deliverables.item_1_title"></h3>
-          <p class="v-a__item-body" data-i18n="deliverables.item_1_body"></p>
-        </li>
-        <li>
-          <h3 class="v-a__item-title" data-i18n="deliverables.item_2_title"></h3>
-          <p class="v-a__item-body" data-i18n="deliverables.item_2_body"></p>
-        </li>
-        <li>
-          <h3 class="v-a__item-title" data-i18n="deliverables.item_3_title"></h3>
-          <p class="v-a__item-body" data-i18n="deliverables.item_3_body"></p>
-        </li>
-        <li>
-          <h3 class="v-a__item-title" data-i18n="deliverables.item_4_title"></h3>
-          <p class="v-a__item-body" data-i18n="deliverables.item_4_body"></p>
-        </li>
-      </ul>
-    </section>
-
-    <section class="v-a__section" id="patterns">
-      <p class="v-a__section-label" data-i18n="patterns.section_label"></p>
-      <h2 class="v-a__section-title" data-i18n="patterns.title"></h2>
-      <p class="v-a__section-subtitle" data-i18n="patterns.subtitle"></p>
-      <ul class="v-a__items">
-        <li><h3 class="v-a__item-title" data-i18n="patterns.p_1_title"></h3><p class="v-a__item-body" data-i18n="patterns.p_1_body"></p></li>
-        <li><h3 class="v-a__item-title" data-i18n="patterns.p_2_title"></h3><p class="v-a__item-body" data-i18n="patterns.p_2_body"></p></li>
-        <li><h3 class="v-a__item-title" data-i18n="patterns.p_3_title"></h3><p class="v-a__item-body" data-i18n="patterns.p_3_body"></p></li>
-        <li><h3 class="v-a__item-title" data-i18n="patterns.p_4_title"></h3><p class="v-a__item-body" data-i18n="patterns.p_4_body"></p></li>
-        <li><h3 class="v-a__item-title" data-i18n="patterns.p_5_title"></h3><p class="v-a__item-body" data-i18n="patterns.p_5_body"></p></li>
-        <li><h3 class="v-a__item-title" data-i18n="patterns.p_6_title"></h3><p class="v-a__item-body" data-i18n="patterns.p_6_body"></p></li>
-        <li><h3 class="v-a__item-title" data-i18n="patterns.p_7_title"></h3><p class="v-a__item-body" data-i18n="patterns.p_7_body"></p></li>
-        <li><h3 class="v-a__item-title" data-i18n="patterns.p_8_title"></h3><p class="v-a__item-body" data-i18n="patterns.p_8_body"></p></li>
-      </ul>
-    </section>
-
-    <section class="v-a__section" id="work">
-      <p class="v-a__section-label" data-i18n="projects.section_label"></p>
-      <h2 class="v-a__section-title" data-i18n="projects.title"></h2>
-      <p class="v-a__section-subtitle" data-i18n="projects.subtitle"></p>
-      <ol class="v-a__projects" id="projects-list" aria-label="Production projects"></ol>
-    </section>
-
-    <section class="v-a__section" id="fit">
-      <p class="v-a__section-label" data-i18n="who.section_label"></p>
-      <h2 class="v-a__section-title" data-i18n="who.title"></h2>
-      <div class="v-a__fit">
-        <div>
+    <section class="v-c__section" id="fit">
+      <p class="v-c__section-label" data-i18n="who.section_label"></p>
+      <h2 class="v-c__section-title" data-i18n="who.title"></h2>
+      <div class="v-c__fit">
+        <div class="v-c__fit-card">
           <h3 data-i18n="who.fit_title"></h3>
           <ul id="fit-list"></ul>
         </div>
-        <div>
+        <div class="v-c__fit-card bad">
           <h3 data-i18n="who.notfit_title"></h3>
           <ul id="notfit-list"></ul>
         </div>
       </div>
     </section>
 
-    <section class="v-a__section" id="pricing">
-      <p class="v-a__section-label" data-i18n="pricing.section_label"></p>
-      <h2 class="v-a__section-title" data-i18n="pricing.title"></h2>
-      <p class="v-a__section-subtitle" data-i18n="pricing.subtitle"></p>
-      <ul class="v-a__tiers">
-        <li class="v-a__tier">
-          <div class="v-a__tier-head">
-            <div>
-              <h3 class="v-a__tier-name" data-i18n="pricing.tier_1_name"></h3>
-              <span class="v-a__tier-for" data-i18n="pricing.tier_1_for"></span>
-            </div>
-            <div style="text-align:right">
-              <p class="v-a__tier-price" data-i18n="pricing.tier_1_price"></p>
-              <span class="v-a__tier-unit" data-i18n="pricing.tier_1_unit"></span>
-            </div>
+    <section class="v-c__section" id="pricing">
+      <p class="v-c__section-label" data-i18n="pricing.section_label"></p>
+      <h2 class="v-c__section-title" data-i18n="pricing.title"></h2>
+      <p class="v-c__section-subtitle" data-i18n="pricing.subtitle"></p>
+      <div class="v-c__pricing-table">
+        <div class="v-c__pricing-row">
+          <div>
+            <p class="v-c__pricing-name" data-i18n="pricing.tier_1_name"></p>
+            <p class="v-c__pricing-for"  data-i18n="pricing.tier_1_for"></p>
+            <p class="v-c__pricing-price" data-i18n="pricing.tier_1_price"></p>
+            <p class="v-c__pricing-unit"  data-i18n="pricing.tier_1_unit"></p>
           </div>
-          <p class="v-a__tier-body" data-i18n="pricing.tier_1_body"></p>
-          <a class="v-a__tier-cta" href="#contact" data-i18n="pricing.tier_1_cta"></a>
-        </li>
-        <li class="v-a__tier">
-          <div class="v-a__tier-head">
-            <div>
-              <h3 class="v-a__tier-name" data-i18n="pricing.tier_2_name"></h3>
-              <span class="v-a__tier-for" data-i18n="pricing.tier_2_for"></span>
-            </div>
-            <div style="text-align:right">
-              <p class="v-a__tier-price" data-i18n="pricing.tier_2_price"></p>
-              <span class="v-a__tier-unit" data-i18n="pricing.tier_2_unit"></span>
-            </div>
+          <div>
+            <p class="v-c__pricing-name" data-i18n="pricing.tier_2_name"></p>
+            <p class="v-c__pricing-for"  data-i18n="pricing.tier_2_for"></p>
+            <p class="v-c__pricing-price" data-i18n="pricing.tier_2_price"></p>
+            <p class="v-c__pricing-unit"  data-i18n="pricing.tier_2_unit"></p>
           </div>
-          <p class="v-a__tier-body" data-i18n="pricing.tier_2_body"></p>
-          <a class="v-a__tier-cta" href="#contact" data-i18n="pricing.tier_2_cta"></a>
-        </li>
-        <li class="v-a__tier">
-          <div class="v-a__tier-head">
-            <div>
-              <h3 class="v-a__tier-name" data-i18n="pricing.tier_3_name"></h3>
-              <span class="v-a__tier-for" data-i18n="pricing.tier_3_for"></span>
-            </div>
-            <div style="text-align:right">
-              <p class="v-a__tier-price" data-i18n="pricing.tier_3_price"></p>
-              <span class="v-a__tier-unit" data-i18n="pricing.tier_3_unit"></span>
-            </div>
+          <div>
+            <p class="v-c__pricing-name" data-i18n="pricing.tier_3_name"></p>
+            <p class="v-c__pricing-for"  data-i18n="pricing.tier_3_for"></p>
+            <p class="v-c__pricing-price" data-i18n="pricing.tier_3_price"></p>
+            <p class="v-c__pricing-unit"  data-i18n="pricing.tier_3_unit"></p>
           </div>
-          <p class="v-a__tier-body" data-i18n="pricing.tier_3_body"></p>
-          <a class="v-a__tier-cta" href="#contact" data-i18n="pricing.tier_3_cta"></a>
-        </li>
-      </ul>
+        </div>
+        <div class="v-c__pricing-row">
+          <div>
+            <p class="body" data-i18n="pricing.tier_1_body"></p>
+            <a href="#contact" data-i18n="pricing.tier_1_cta"></a>
+          </div>
+          <div class="feat">
+            <p class="body" data-i18n="pricing.tier_2_body"></p>
+            <a href="#contact" data-i18n="pricing.tier_2_cta"></a>
+          </div>
+          <div>
+            <p class="body" data-i18n="pricing.tier_3_body"></p>
+            <a href="#contact" data-i18n="pricing.tier_3_cta"></a>
+          </div>
+        </div>
+      </div>
     </section>
 
-    <section class="v-a__section" id="faq">
-      <p class="v-a__section-label" data-i18n="faq.section_label"></p>
-      <h2 class="v-a__section-title" data-i18n="faq.title"></h2>
-      <ul class="v-a__faq" id="faq-list"></ul>
+    <section class="v-c__section" id="faq">
+      <p class="v-c__section-label" data-i18n="faq.section_label"></p>
+      <h2 class="v-c__section-title" data-i18n="faq.title"></h2>
+      <div class="v-c__faq" id="faq-list"></div>
     </section>
 
-    <section class="v-a__close" id="contact">
-      <p class="v-a__section-label" data-i18n="cta.section_label"></p>
-      <h2 class="v-a__section-title" data-i18n="cta.title"></h2>
-      <p class="v-a__section-subtitle" data-i18n="cta.subtitle"></p>
-      <a class="v-a__cta" id="contact-cta" href="" data-i18n="cta.button"></a>
-      <span class="v-a__close-email">
+    <section class="v-c__close" id="contact">
+      <p class="v-c__section-label" data-i18n="cta.section_label"></p>
+      <h2 data-i18n="cta.title"></h2>
+      <p data-i18n="cta.subtitle"></p>
+      <a class="v-c__cta mono" id="contact-cta" href="" data-i18n="cta.button"></a>
+      <p style="margin-top:18px; font-family:'JetBrains Mono', monospace; font-size:12px; color:var(--muted);">
         <span data-i18n="cta.email_label"></span>: <a id="contact-email" href=""></a>
-      </span>
+      </p>
     </section>
 
-    <footer class="v-a__footer">
-      <span><span data-i18n="footer.author"></span> · <span data-i18n="footer.location"></span></span>
+    <footer class="v-c__footer">
+      <span class="prompt"><span data-i18n="footer.author"></span> · <span data-i18n="footer.location"></span></span>
       <a id="footer-site" href=""></a>
       <span data-i18n="footer.rights"></span>
     </footer>
 
   </main>
 
-  <script src="js/switcher.js"></script>
   <script>
-    // Render programmatic lists (projects, fit, faq) from i18n payload.
     document.addEventListener("DOMContentLoaded", () => {
       const projects = window.tList("projects.list");
-      const projWrap = document.getElementById("projects-list");
-      projWrap.innerHTML = projects.map((p) => `
-        <li class="v-a__project" id="proj-${p.slug}">
-          <h3 class="v-a__project-name">${p.name}</h3>
-          <p class="v-a__project-tagline">${p.tagline}</p>
-          <p class="v-a__project-meta"><span>${p.stack}</span><span>${p.ai_role}</span></p>
-          <p class="v-a__project-body">${p.body}</p>
-        </li>
+      document.getElementById("projects-list").innerHTML = projects.map((p, i) => `
+        <article class="v-c__proj">
+          <div class="v-c__proj-head">
+            <span class="dot"></span>
+            <span class="path"><span class="dim">portfolio/</span>${p.slug}<span class="dim">.json</span></span>
+            <span class="tag">${p.ai_role}</span>
+          </div>
+          <div class="v-c__proj-body">
+            <div class="v-c__proj-row"><span class="k">name</span><span class="v">"${p.name}"</span></div>
+            <div class="v-c__proj-row"><span class="k">domain</span><span class="v">"${p.tagline}"</span></div>
+            <div class="v-c__proj-row"><span class="k">stack</span><span class="v">"${p.stack}"</span></div>
+            <p class="v-c__proj-summary">${p.body}</p>
+          </div>
+        </article>
       `).join("");
 
-      const fitItems    = window.tList("who.fit_items");
-      const notFitItems = window.tList("who.notfit_items");
-      document.getElementById("fit-list").innerHTML    = fitItems.map(i => `<li>${i}</li>`).join("");
-      document.getElementById("notfit-list").innerHTML = notFitItems.map(i => `<li>${i}</li>`).join("");
+      document.getElementById("fit-list").innerHTML =
+        window.tList("who.fit_items").map((i) => `<li>${i}</li>`).join("");
+      document.getElementById("notfit-list").innerHTML =
+        window.tList("who.notfit_items").map((i) => `<li>${i}</li>`).join("");
 
-      const faq = window.tList("faq.items");
-      document.getElementById("faq-list").innerHTML = faq.map(({ q, a }) => `
-        <details>
-          <summary>${q}</summary>
-          <p class="v-a__faq-a">${a}</p>
-        </details>
-      `).join("");
+      document.getElementById("faq-list").innerHTML =
+        window.tList("faq.items").map(({ q, a }) => `
+          <details><summary>${q}</summary><p>${a}</p></details>
+        `).join("");
 
       const email = window.t("cta.email");
       const ctaBtn = document.getElementById("contact-cta");

@@ -2,74 +2,54 @@
 
 Marketing site for the AI-Assisted Engineering training package.
 
-Static HTML/CSS/JS. No build step. Deploy by uploading this folder to Cloudflare Pages (or any static host) and pointing the domain `ai-coding.adusingi.com` at it.
+Static HTML / CSS / vanilla JS. No build step.
 
-## How to view
+## Local preview
 
 ```bash
-# Anything that serves the directory works. Examples:
 cd site && python3 -m http.server 8080
 # then open http://localhost:8080
 ```
 
-Then open `http://localhost:8080/`.
-
-You can also open `index.html` directly with `file://` — all i18n strings load via local `<script>` tags, not `fetch()`, so it works offline too.
-
-## Variants — pick one
-
-This is a UI prototype following `skills/prototype/UI.md`. Three radically different design directions are live side-by-side. Flip between them with the floating black pill at the bottom-centre of the screen (or `←` / `→` keys):
-
-| Key | File              | Direction                                                                 |
-|-----|-------------------|---------------------------------------------------------------------------|
-| A   | `index.html`      | **Editorial / Essay.** Cream paper, serif, single column, long-form scroll. Voice-driven. |
-| B   | `variant-b.html`  | **SaaS landing.** Dark mode, dense grid, bento patterns, three pricing cards with a featured tier. Conversion-focused. |
-| C   | `variant-c.html`  | **Practitioner / Code-editor.** Slate background, monospace headers, terminal hero, projects rendered as JSON file panels. Technical credibility first. |
-
-Same content, same i18n keys, same deliverables — three radically different layouts. The interesting feedback is usually *"I want the hero from C with the pricing from B"* — capture that in `NOTES.md`.
-
-To preview the chosen variant clean (no switcher), append `?prod=1` to the URL.
+You can also open `index.html` directly with `file://` — all strings load via local `<script>` tags, not `fetch()`.
 
 ## i18n
 
-All copy lives in `i18n/en.js` (and a stub `i18n/fr.js` that currently mirrors English). To translate to French later:
+All copy lives in `i18n/en.js`. A stub `i18n/fr.js` currently mirrors English so the site renders without missing keys.
+
+To translate to French:
 
 1. Open `i18n/fr.js`.
-2. Replace the `JSON.parse(JSON.stringify(...))` line with a full literal object of the same shape as `window.I18N_EN`.
+2. Replace the one-line `JSON.parse(JSON.stringify(...))` body with a full literal object matching the shape of `window.I18N_EN`.
 3. Translate the string values only — keys must stay identical.
-4. Visit any variant with `?lang=fr` to preview.
+4. Visit `index.html?lang=fr` to preview.
 
-The selected language is persisted in `localStorage` under `ai-coding.lang`. Language detection: `?lang=…` → localStorage → browser `navigator.language` → default `en`.
+Language detection: `?lang=…` → `localStorage` (`ai-coding.lang`) → `navigator.language` → default `en`.
 
 ## File layout
 
 ```
 site/
-├── index.html          # Variant A (editorial)
-├── variant-b.html      # Variant B (SaaS landing)
-├── variant-c.html      # Variant C (practitioner)
+├── index.html          # The page
 ├── assets/
-│   ├── shared.css      # Minimal baseline only
-│   ├── variant-a.css
-│   ├── variant-b.css
-│   └── variant-c.css
+│   ├── shared.css      # Minimal baseline
+│   └── style.css       # Theme + layout
 ├── i18n/
-│   ├── en.js           # English strings — the source of truth
+│   ├── en.js           # English strings — source of truth
 │   └── fr.js           # Translation stub
-├── js/
-│   ├── i18n.js         # Applies strings to [data-i18n] elements
-│   └── switcher.js     # Floating prev/next variant switcher
-└── NOTES.md            # Capture the verdict here
+└── js/
+    └── i18n.js         # Applies strings to [data-i18n] elements
 ```
 
-## Deploying
+## Deploy
 
-Cloudflare Pages, Netlify, Vercel, GitHub Pages, or plain S3+CloudFront all work. Upload the contents of `site/` as the build output. There is no build step. The chosen variant should be promoted to `index.html` (or `index.html` left as variant A if A wins) and the switcher / unused variants deleted before going live — see `NOTES.md` for the cleanup checklist.
+Cloudflare Pages, Netlify, Vercel, GitHub Pages, or S3 + CloudFront all work. Upload the contents of `site/` as the build output and point `ai-coding.adusingi.com` at it. No build command needed.
 
-## Next steps
+## Still to do before launch
 
-1. **Open the three variants in a browser** and flip between them.
-2. **Capture the verdict** in `NOTES.md`: which variant wins, and which pieces (if any) get borrowed from the others.
-3. **Promote and clean up:** the winning variant becomes `index.html`, the others get deleted, the switcher gets removed.
-4. **Translate to French:** fill in `i18n/fr.js`, then add a small language toggle to the chosen layout.
-5. **Deploy** to Cloudflare Pages at `ai-coding.adusingi.com`.
+- Confirm the placeholder pricing for the 1-on-1 tier (`pricing.tier_1_price` in `i18n/en.js` — currently "From €200 / per session").
+- Confirm the contact email (`cta.email` in `i18n/en.js` — currently `aimable@adusingi.com`).
+- Decide whether the 1-on-1 tier should link to the existing `https://adusingi.com/ai-1on1.html` instead of being a tier here.
+- Translate `i18n/fr.js` and (optionally) add a header language toggle.
+- Add a real OpenGraph image at `assets/og.png` and reference it from `meta.og_image` in `i18n/en.js`.
+- Optional: add testimonials once the Saga workshop runs.
