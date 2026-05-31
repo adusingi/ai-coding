@@ -77,11 +77,23 @@
       padding-bottom: 20px;
     }
     .nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: white;
+    }
+    .nav-logo {
+      height: 28px;
+      width: auto;
+      background: white;
+      border-radius: 6px;
+      padding: 3px 8px;
+    }
+    .nav-name {
       font-size: 12px;
       font-weight: 600;
       letter-spacing: 0.14em;
       text-transform: uppercase;
-      color: white;
     }
     .nav-cta {
       background: rgba(255,255,255,0.12);
@@ -380,7 +392,10 @@
   <!-- Nav -->
   <nav class="nav">
     <div class="container">
-      <span class="nav-brand">Mobayilo AI Academy</span>
+      <span class="nav-brand">
+        <img src="logo.jpeg" alt="Mobayilo" class="nav-logo">
+        <span class="nav-name">Mobayilo AI Academy</span>
+      </span>
       <a href="#apply" class="nav-cta">Apply to Cohort 1</a>
     </div>
   </nav>
