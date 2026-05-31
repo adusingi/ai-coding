@@ -1,107 +1,193 @@
 # How Memory Works in AI Agents
 
-## ASCII Diagram
+## Diagram
 
-```text
-                                 HOW MEMORY WORKS IN AI AGENTS
-                                            ✦
+<div style="font-family: system-ui, -apple-system, sans-serif; max-width: 960px; padding: 1.5rem 1rem; background: linear-gradient(135deg, #eef2ff 0%, #f5f3ff 50%, #ecfeff 100%); border-radius: 14px; margin: 1rem 0;">
 
-    ┌─────────────┐         ┌─────────────┐         ┌─────────────────────────────┐
-    │  1. USER    │         │  2. AI      │         │  3. SHORT-TERM MEMORY       │
-    │    INPUT    ├────────►│ AGENT BRAIN ├────────►│      (WORKING MEMORY)       │
-    └─────────────┘         └──────┬──────┘         └─────────────────────────────┘
-                                   │                         │
-    Example:                       │  Understands request    │  Keeps current
-    "Plan my trip                  │  Thinks                 │  conversation context
-     to Tokyo                     │  Decides actions          ├─ User likes budget hotels
-     next month"                  │                           ├─ Traveling in June
-                                  │                           └─ Prefers vegetarian food
-                                  │
-                                  │                         ┌─────────────────────────────┐
-                                  │                         │  4. LONG-TERM MEMORY        │
-                                  └────────────────────────►│                             │
-                                                            │  Stores important info      │
-                                                            │  across sessions            │
-                                                            │                             │
-                                      ┌─────────────────────┼─┬──────────┬──────────────┤
-                                      │                     │ │          │              │
-                                      │   ┌─────────┐   ┌───┴───┐  ┌───┴────┐  ┌─────┴─────┐
-                                      │   │ Favorite│   │Previous│  │ User   │  │ Learned   │
-                                      │   │destinations│  │ trips  │  │preferences│  │  habits   │
-                                      │   └─────────┘   └───────┘  └────────┘  └─────────┘
-                                      │
-                                      │                    Vector Database
-                                      │
-                                      │                   ┌─────────────────────────────┐
-                                      │                   │  5. MEMORY RETRIEVAL        │
-                                      └──────────────────►│                             │
-                                                          │  Finds relevant             │
-                                                          │  past information           │
-                                                          │                             │
-                                                          │  ✓ Semantic Search          │
-                                                          │  ✓ Memory Ranking           │
-                                                          │  ✓ Context Matching         │
-                                                          └──────────────┬──────────────┘
-                                                                         │
-                                                                         ▼
-                                                          ┌─────────────────────────────┐
-                                                          │  6. REASONING ENGINE        │
-                                                          │                             │
-                                                          │   🧠 Context understanding  │
-                                                          │   ⚖️ Decision making        │
-                                                          │   ✅ Planning next step     │
-                                                          └──────────────┬──────────────┘
-                                                                         │
-                                                                         ▼
-                                                          ┌─────────────────────────────┐
-                                                          │  7. AGENT TOOLS & ACTIONS   │
-                                                          │                             │
-                                                          │   🌐 Browser                │
-                                                          │   📅 Calendar               │
-                                                          │   🗺️  Maps                  │
-                                                          │   🗄️  Database              │
-                                                          │   ✉️  Email                 │
-                                                          └──────────────┬──────────────┘
-                                                                         │
-                                                                         ▼
-                                                          ┌─────────────────────────────┐
-                                                          │  8. RESPONSE TO USER        │
-                                                          │                             │
-                                                          │   🤖 "Here's a 5-day        │
-                                                          │       Tokyo budget          │
-                                                          │       itinerary based       │
-                                                          │       on your previous      │
-                                                          │       preferences."         │
-                                                          │                        ✅   │
-                                                          └─────────────────────────────┘
+<!-- Title -->
+<p style="text-align:center; font-size: 1.25rem; font-weight: 900; color: #1e1b4b; letter-spacing: 0.06em; margin-bottom: 1.5rem;">✦ HOW MEMORY WORKS IN AI AGENTS ✦</p>
 
+<!-- Main pipeline: horizontal scroll on small screens -->
+<div style="display: flex; align-items: flex-start; gap: 6px; overflow-x: auto; padding-bottom: 6px;">
 
-    ╔═══════════════════════════════════════════════════════════════════════════════════════╗
-    ║                                  MEMORY LOOP                                          ║
-    ╚═══════════════════════════════════════════════════════════════════════════════════════╝
+  <!-- 1. User Input -->
+  <div style="flex-shrink: 0; display: flex; flex-direction: column; align-items: center; min-width: 90px;">
+    <div style="background: #1e1b4b; color: white; border-radius: 50%; width: 26px; height: 26px; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 0.75rem; margin-bottom: 5px;">1</div>
+    <div style="font-weight: 800; font-size: 0.65rem; color: #1e1b4b; letter-spacing: 0.06em; text-align: center; margin-bottom: 6px;">USER INPUT</div>
+    <div style="border: 2px solid #4338ca; padding: 10px 8px; background: white; border-radius: 10px; text-align: center; width: 100%;">
+      <div style="font-size: 1.6rem; margin-bottom: 4px;">👤</div>
+      <div style="font-size: 0.6rem; color: #374151; line-height: 1.55; font-style: italic;">Example:<br>"Plan my trip<br>to Tokyo<br>next month"</div>
+    </div>
+  </div>
 
-    ┌──────────────────┐      ┌──────────────────┐      ┌──────────────────┐      ┌──────────────────┐
-    │   1. EXPERIENCE  │      │ 2. STORE IMPORTANT│     │  3. RETRIEVE     │      │ 4. IMPROVE FUTURE│
-    │                  │      │       INFO        │      │     LATER        │      │    RESPONSES     │
-    │   New conversations      │  AI identifies and│     │  Relevant memories│     │ Better context leads│
-    │   and interactions│────►│  stores useful    │────►│  are retrieved   │────►│  to more personalized│
-    │   happen.        │      │  information      │      │  when needed in  │      │  and helpful        │
-    │                  │      │  in memory.       │      │  future conversations.     │  responses.         │
-    └────────┬─────────┘      └──────────────────┘      └──────────────────┘      └────────┬─────────┘
-             │                                                                              │
-             ▼                                                                              ▼
-    ┌──────────────────┐                                                          ┌──────────────────┐
-    │ Conversation     │                                                          │ Better Answers,  │
-    │ History          │                                                          │ More Relevant,   │
-    │                  │◄─────────────────────────────────────────────────────────│ More Helpful     │
-    │ All chats are    │                                                          │ Over Time        │
-    │ tracked to       │                                                          │                  │
-    │ maintain         │                                                          │        🎯        │
-    │ continuity.      │                                                          └──────────────────┘
-    │        🕐        │
-    └──────────────────┘
-                                    ◄──────────────── FEEDBACK LOOP ────────────────►
-```
+  <div style="display: flex; align-items: center; padding-top: 44px; color: #6b7280; font-size: 1rem; flex-shrink: 0;">→</div>
+
+  <!-- 2. AI Agent Brain -->
+  <div style="flex-shrink: 0; display: flex; flex-direction: column; align-items: center; min-width: 110px;">
+    <div style="background: #1e1b4b; color: white; border-radius: 50%; width: 26px; height: 26px; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 0.75rem; margin-bottom: 5px;">2</div>
+    <div style="font-weight: 800; font-size: 0.65rem; color: #1e1b4b; letter-spacing: 0.06em; text-align: center; margin-bottom: 6px;">AI AGENT BRAIN</div>
+    <div style="border: 2px solid #4338ca; padding: 10px 8px; background: white; border-radius: 10px; text-align: center; width: 100%;">
+      <div style="background: radial-gradient(circle at 40% 40%, #6366f1, #312e81); border-radius: 50%; width: 52px; height: 52px; margin: 0 auto 8px; display: flex; align-items: center; justify-content: center; color: white; font-size: 0.55rem; font-weight: 700; letter-spacing: 0.03em;">AI Agent</div>
+      <div style="font-size: 0.6rem; color: #4b5563; line-height: 1.7; text-align: left;">💬 Understands<br>💡 Thinks<br>🎯 Decides actions</div>
+    </div>
+  </div>
+
+  <div style="display: flex; align-items: center; padding-top: 44px; color: #6b7280; font-size: 1rem; flex-shrink: 0;">→</div>
+
+  <!-- 3 + 4 stacked -->
+  <div style="flex-shrink: 0; display: flex; flex-direction: column; gap: 8px; min-width: 170px;">
+
+    <!-- 3. Short-Term Memory -->
+    <div>
+      <div style="display: flex; align-items: center; gap: 5px; margin-bottom: 5px;">
+        <div style="background: #0e7490; color: white; border-radius: 50%; width: 20px; height: 20px; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 0.65rem; flex-shrink: 0;">3</div>
+        <div>
+          <div style="font-weight: 800; font-size: 0.62rem; color: #0e7490; letter-spacing: 0.04em;">SHORT-TERM MEMORY</div>
+          <div style="font-size: 0.58rem; color: #0891b2;">(WORKING MEMORY)</div>
+        </div>
+      </div>
+      <div style="border: 2px solid #06b6d4; background: #ecfeff; border-radius: 10px; padding: 8px;">
+        <div style="font-size: 0.6rem; color: #164e63; margin-bottom: 6px; font-weight: 600;">Keeps current conversation context</div>
+        <div style="display: flex; gap: 4px; flex-wrap: wrap;">
+          <span style="background: #cffafe; border: 1px solid #67e8f9; padding: 2px 6px; border-radius: 4px; font-size: 0.56rem; color: #0e7490;">User likes budget hotels</span>
+          <span style="background: #fef9c3; border: 1px solid #fde047; padding: 2px 6px; border-radius: 4px; font-size: 0.56rem; color: #854d0e;">Traveling in June</span>
+          <span style="background: #fce7f3; border: 1px solid #f9a8d4; padding: 2px 6px; border-radius: 4px; font-size: 0.56rem; color: #9d174d;">Prefers vegetarian food</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4. Long-Term Memory -->
+    <div>
+      <div style="display: flex; align-items: center; gap: 5px; margin-bottom: 5px;">
+        <div style="background: #7e22ce; color: white; border-radius: 50%; width: 20px; height: 20px; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 0.65rem; flex-shrink: 0;">4</div>
+        <div style="font-weight: 800; font-size: 0.62rem; color: #7e22ce; letter-spacing: 0.04em;">LONG-TERM MEMORY</div>
+      </div>
+      <div style="border: 2px solid #a855f7; background: #faf5ff; border-radius: 10px; padding: 8px;">
+        <div style="font-size: 0.6rem; color: #581c87; margin-bottom: 6px; font-weight: 600;">🗃️ Stores important information across sessions</div>
+        <div style="display: flex; gap: 4px; flex-wrap: wrap;">
+          <span style="background: white; border: 1px solid #d8b4fe; padding: 2px 6px; border-radius: 4px; font-size: 0.56rem; color: #7e22ce;">📍 Favorite destinations</span>
+          <span style="background: white; border: 1px solid #d8b4fe; padding: 2px 6px; border-radius: 4px; font-size: 0.56rem; color: #7e22ce;">🧳 Previous trips</span>
+          <span style="background: white; border: 1px solid #d8b4fe; padding: 2px 6px; border-radius: 4px; font-size: 0.56rem; color: #7e22ce;">👤 User preferences</span>
+          <span style="background: white; border: 1px solid #d8b4fe; padding: 2px 6px; border-radius: 4px; font-size: 0.56rem; color: #7e22ce;">🧠 Learned habits</span>
+        </div>
+        <div style="font-size: 0.56rem; color: #a855f7; margin-top: 5px; text-align: center; font-style: italic;">Vector Database</div>
+      </div>
+    </div>
+
+  </div>
+
+  <div style="display: flex; align-items: center; padding-top: 44px; color: #6b7280; font-size: 1rem; flex-shrink: 0;">→</div>
+
+  <!-- 5. Memory Retrieval -->
+  <div style="flex-shrink: 0; display: flex; flex-direction: column; align-items: center; min-width: 110px;">
+    <div style="background: #0f766e; color: white; border-radius: 50%; width: 26px; height: 26px; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 0.75rem; margin-bottom: 5px;">5</div>
+    <div style="font-weight: 800; font-size: 0.65rem; color: #0f766e; letter-spacing: 0.06em; text-align: center; margin-bottom: 6px;">MEMORY<br>RETRIEVAL</div>
+    <div style="border: 2px solid #14b8a6; background: #f0fdfa; border-radius: 10px; padding: 10px 8px; text-align: center; width: 100%;">
+      <div style="font-size: 1.5rem; margin-bottom: 6px;">🔍</div>
+      <div style="font-size: 0.58rem; color: #134e4a; margin-bottom: 8px;">Finds relevant past information</div>
+      <div style="font-size: 0.58rem; color: #0f766e; line-height: 1.9; text-align: left;">✓ Semantic Search<br>✓ Memory Ranking<br>✓ Context Matching</div>
+    </div>
+  </div>
+
+  <div style="display: flex; align-items: center; padding-top: 44px; color: #6b7280; font-size: 1rem; flex-shrink: 0;">→</div>
+
+  <!-- 6. Reasoning Engine -->
+  <div style="flex-shrink: 0; display: flex; flex-direction: column; align-items: center; min-width: 108px;">
+    <div style="background: #4c1d95; color: white; border-radius: 50%; width: 26px; height: 26px; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 0.75rem; margin-bottom: 5px;">6</div>
+    <div style="font-weight: 800; font-size: 0.65rem; color: #4c1d95; letter-spacing: 0.06em; text-align: center; margin-bottom: 6px;">REASONING<br>ENGINE</div>
+    <div style="border: 2px solid #7c3aed; background: #f5f3ff; border-radius: 10px; padding: 10px 8px; text-align: center; width: 100%;">
+      <div style="font-size: 1.5rem; margin-bottom: 6px;">🧠</div>
+      <div style="font-size: 0.58rem; color: #2e1065; line-height: 1.9; text-align: left;">🔮 Context understanding<br>⚖️ Decision making<br>📋 Planning next step</div>
+    </div>
+  </div>
+
+  <div style="display: flex; align-items: center; padding-top: 44px; color: #6b7280; font-size: 1rem; flex-shrink: 0;">→</div>
+
+  <!-- 7. Agent Tools -->
+  <div style="flex-shrink: 0; display: flex; flex-direction: column; align-items: center; min-width: 100px;">
+    <div style="background: #c2410c; color: white; border-radius: 50%; width: 26px; height: 26px; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 0.75rem; margin-bottom: 5px;">7</div>
+    <div style="font-weight: 800; font-size: 0.65rem; color: #c2410c; letter-spacing: 0.06em; text-align: center; margin-bottom: 6px;">AGENT TOOLS<br>& ACTIONS</div>
+    <div style="border: 2px solid #f97316; background: #fff7ed; border-radius: 10px; padding: 10px 8px; width: 100%;">
+      <div style="font-size: 0.6rem; color: #9a3412; line-height: 2.0; text-align: left;">🌐 Browser<br>📅 Calendar<br>🗺️ Maps<br>🗄️ Database<br>✉️ Email</div>
+    </div>
+  </div>
+
+  <div style="display: flex; align-items: center; padding-top: 44px; color: #6b7280; font-size: 1rem; flex-shrink: 0;">→</div>
+
+  <!-- 8. Response to User -->
+  <div style="flex-shrink: 0; display: flex; flex-direction: column; align-items: center; min-width: 110px;">
+    <div style="background: #1d4ed8; color: white; border-radius: 50%; width: 26px; height: 26px; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 0.75rem; margin-bottom: 5px;">8</div>
+    <div style="font-weight: 800; font-size: 0.65rem; color: #1d4ed8; letter-spacing: 0.06em; text-align: center; margin-bottom: 6px;">RESPONSE<br>TO USER</div>
+    <div style="border: 2px solid #3b82f6; background: #eff6ff; border-radius: 10px; padding: 10px 8px; text-align: center; width: 100%;">
+      <div style="font-size: 1.5rem; margin-bottom: 6px;">🤖</div>
+      <div style="font-size: 0.58rem; color: #1e3a8a; line-height: 1.55; font-style: italic;">"Here's a 5-day Tokyo budget itinerary based on your previous preferences." ✅</div>
+    </div>
+  </div>
+
+</div>
+
+<!-- Memory Loop -->
+<div style="margin-top: 1.5rem; border: 2px solid #1e1b4b; padding: 1rem; background: white; border-radius: 12px;">
+
+  <div style="font-weight: 900; text-align: center; letter-spacing: 0.15em; font-size: 0.82rem; color: #1e1b4b; margin-bottom: 1rem;">MEMORY LOOP</div>
+
+  <div style="display: flex; align-items: stretch; gap: 5px; overflow-x: auto;">
+
+    <!-- Conversation History -->
+    <div style="flex-shrink: 0; border: 1.5px solid #9ca3af; padding: 10px 8px; min-width: 88px; background: #f9fafb; border-radius: 8px; text-align: center;">
+      <div style="font-size: 1.2rem;">🕐</div>
+      <div style="font-weight: 700; font-size: 0.62rem; color: #374151; margin: 4px 0;">Conversation History</div>
+      <div style="font-size: 0.58rem; color: #6b7280; line-height: 1.45;">All chats are tracked to maintain continuity.</div>
+    </div>
+
+    <div style="display: flex; align-items: center; color: #9ca3af; font-size: 0.8rem; padding: 0 2px; flex-shrink: 0;">- - →</div>
+
+    <!-- 1. Experience -->
+    <div style="flex: 1; min-width: 95px; border: 2px solid #6366f1; padding: 10px; background: #eef2ff; border-radius: 8px;">
+      <div style="font-weight: 800; font-size: 0.62rem; color: #3730a3; margin-bottom: 4px;">1. EXPERIENCE</div>
+      <div style="font-size: 0.58rem; color: #4338ca; line-height: 1.5;">New conversations and interactions happen.</div>
+    </div>
+
+    <div style="display: flex; align-items: center; color: #6b7280; font-size: 0.9rem; padding: 0 2px; flex-shrink: 0;">→</div>
+
+    <!-- 2. Store -->
+    <div style="flex: 1; min-width: 95px; border: 2px solid #16a34a; padding: 10px; background: #f0fdf4; border-radius: 8px;">
+      <div style="font-weight: 800; font-size: 0.62rem; color: #15803d; margin-bottom: 4px;">2. STORE IMPORTANT INFO</div>
+      <div style="font-size: 0.58rem; color: #166534; line-height: 1.5;">AI identifies and stores useful information in memory.</div>
+    </div>
+
+    <div style="display: flex; align-items: center; color: #6b7280; font-size: 0.9rem; padding: 0 2px; flex-shrink: 0;">→</div>
+
+    <!-- 3. Retrieve -->
+    <div style="flex: 1; min-width: 95px; border: 2px solid #9333ea; padding: 10px; background: #faf5ff; border-radius: 8px;">
+      <div style="font-weight: 800; font-size: 0.62rem; color: #7e22ce; margin-bottom: 4px;">3. RETRIEVE LATER</div>
+      <div style="font-size: 0.58rem; color: #6b21a8; line-height: 1.5;">Relevant memories are retrieved when needed in future conversations.</div>
+    </div>
+
+    <div style="display: flex; align-items: center; color: #6b7280; font-size: 0.9rem; padding: 0 2px; flex-shrink: 0;">→</div>
+
+    <!-- 4. Improve -->
+    <div style="flex: 1; min-width: 95px; border: 2px solid #ea580c; padding: 10px; background: #fff7ed; border-radius: 8px;">
+      <div style="font-weight: 800; font-size: 0.62rem; color: #c2410c; margin-bottom: 4px;">4. IMPROVE FUTURE RESPONSES</div>
+      <div style="font-size: 0.58rem; color: #9a3412; line-height: 1.5;">Better context leads to more personalized and helpful responses.</div>
+    </div>
+
+    <div style="display: flex; align-items: center; color: #9ca3af; font-size: 0.8rem; padding: 0 2px; flex-shrink: 0;">- - →</div>
+
+    <!-- Better Answers -->
+    <div style="flex-shrink: 0; border: 1.5px solid #9ca3af; padding: 10px 8px; min-width: 88px; background: #f9fafb; border-radius: 8px; text-align: center;">
+      <div style="font-size: 1.2rem;">🎯</div>
+      <div style="font-weight: 700; font-size: 0.62rem; color: #374151; margin: 4px 0;">Better Answers</div>
+      <div style="font-size: 0.58rem; color: #6b7280; line-height: 1.45;">More Relevant,<br>More Helpful<br>Over Time</div>
+    </div>
+
+  </div>
+
+  <div style="text-align: center; font-size: 0.6rem; color: #9ca3af; margin-top: 8px; letter-spacing: 0.04em;">↩ feeds back into Experience</div>
+
+</div>
+
+</div>
 
 ---
 
