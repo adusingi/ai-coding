@@ -4,13 +4,10 @@
 
 <div style="font-family: system-ui, -apple-system, sans-serif; max-width: 960px; padding: 1.5rem 1rem; background: linear-gradient(135deg, #eef2ff 0%, #f5f3ff 50%, #ecfeff 100%); border-radius: 14px; margin: 1rem 0;">
 
-<!-- Title -->
 <p style="text-align:center; font-size: 1.25rem; font-weight: 900; color: #1e1b4b; letter-spacing: 0.06em; margin-bottom: 1.5rem;">✦ HOW MEMORY WORKS IN AI AGENTS ✦</p>
 
-<!-- Main pipeline: horizontal scroll on small screens -->
 <div style="display: flex; align-items: flex-start; gap: 6px; overflow-x: auto; padding-bottom: 6px;">
 
-  <!-- 1. User Input -->
   <div style="flex-shrink: 0; display: flex; flex-direction: column; align-items: center; min-width: 90px;">
     <div style="background: #1e1b4b; color: white; border-radius: 50%; width: 26px; height: 26px; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 0.75rem; margin-bottom: 5px;">1</div>
     <div style="font-weight: 800; font-size: 0.65rem; color: #1e1b4b; letter-spacing: 0.06em; text-align: center; margin-bottom: 6px;">USER INPUT</div>
@@ -22,7 +19,6 @@
 
   <div style="display: flex; align-items: center; padding-top: 44px; color: #6b7280; font-size: 1rem; flex-shrink: 0;">→</div>
 
-  <!-- 2. AI Agent Brain -->
   <div style="flex-shrink: 0; display: flex; flex-direction: column; align-items: center; min-width: 110px;">
     <div style="background: #1e1b4b; color: white; border-radius: 50%; width: 26px; height: 26px; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 0.75rem; margin-bottom: 5px;">2</div>
     <div style="font-weight: 800; font-size: 0.65rem; color: #1e1b4b; letter-spacing: 0.06em; text-align: center; margin-bottom: 6px;">AI AGENT BRAIN</div>
@@ -34,10 +30,8 @@
 
   <div style="display: flex; align-items: center; padding-top: 44px; color: #6b7280; font-size: 1rem; flex-shrink: 0;">→</div>
 
-  <!-- 3 + 4 stacked -->
   <div style="flex-shrink: 0; display: flex; flex-direction: column; gap: 8px; min-width: 170px;">
 
-    <!-- 3. Short-Term Memory -->
     <div>
       <div style="display: flex; align-items: center; gap: 5px; margin-bottom: 5px;">
         <div style="background: #0e7490; color: white; border-radius: 50%; width: 20px; height: 20px; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 0.65rem; flex-shrink: 0;">3</div>
@@ -56,7 +50,6 @@
       </div>
     </div>
 
-    <!-- 4. Long-Term Memory -->
     <div>
       <div style="display: flex; align-items: center; gap: 5px; margin-bottom: 5px;">
         <div style="background: #7e22ce; color: white; border-radius: 50%; width: 20px; height: 20px; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 0.65rem; flex-shrink: 0;">4</div>
@@ -78,7 +71,6 @@
 
   <div style="display: flex; align-items: center; padding-top: 44px; color: #6b7280; font-size: 1rem; flex-shrink: 0;">→</div>
 
-  <!-- 5. Memory Retrieval -->
   <div style="flex-shrink: 0; display: flex; flex-direction: column; align-items: center; min-width: 110px;">
     <div style="background: #0f766e; color: white; border-radius: 50%; width: 26px; height: 26px; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 0.75rem; margin-bottom: 5px;">5</div>
     <div style="font-weight: 800; font-size: 0.65rem; color: #0f766e; letter-spacing: 0.06em; text-align: center; margin-bottom: 6px;">MEMORY<br>RETRIEVAL</div>
@@ -91,7 +83,6 @@
 
   <div style="display: flex; align-items: center; padding-top: 44px; color: #6b7280; font-size: 1rem; flex-shrink: 0;">→</div>
 
-  <!-- 6. Reasoning Engine -->
   <div style="flex-shrink: 0; display: flex; flex-direction: column; align-items: center; min-width: 108px;">
     <div style="background: #4c1d95; color: white; border-radius: 50%; width: 26px; height: 26px; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 0.75rem; margin-bottom: 5px;">6</div>
     <div style="font-weight: 800; font-size: 0.65rem; color: #4c1d95; letter-spacing: 0.06em; text-align: center; margin-bottom: 6px;">REASONING<br>ENGINE</div>
@@ -103,7 +94,6 @@
 
   <div style="display: flex; align-items: center; padding-top: 44px; color: #6b7280; font-size: 1rem; flex-shrink: 0;">→</div>
 
-  <!-- 7. Agent Tools -->
   <div style="flex-shrink: 0; display: flex; flex-direction: column; align-items: center; min-width: 100px;">
     <div style="background: #c2410c; color: white; border-radius: 50%; width: 26px; height: 26px; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 0.75rem; margin-bottom: 5px;">7</div>
     <div style="font-weight: 800; font-size: 0.65rem; color: #c2410c; letter-spacing: 0.06em; text-align: center; margin-bottom: 6px;">AGENT TOOLS<br>& ACTIONS</div>
@@ -114,7 +104,6 @@
 
   <div style="display: flex; align-items: center; padding-top: 44px; color: #6b7280; font-size: 1rem; flex-shrink: 0;">→</div>
 
-  <!-- 8. Response to User -->
   <div style="flex-shrink: 0; display: flex; flex-direction: column; align-items: center; min-width: 110px;">
     <div style="background: #1d4ed8; color: white; border-radius: 50%; width: 26px; height: 26px; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 0.75rem; margin-bottom: 5px;">8</div>
     <div style="font-weight: 800; font-size: 0.65rem; color: #1d4ed8; letter-spacing: 0.06em; text-align: center; margin-bottom: 6px;">RESPONSE<br>TO USER</div>
@@ -126,14 +115,12 @@
 
 </div>
 
-<!-- Memory Loop -->
 <div style="margin-top: 1.5rem; border: 2px solid #1e1b4b; padding: 1rem; background: white; border-radius: 12px;">
 
   <div style="font-weight: 900; text-align: center; letter-spacing: 0.15em; font-size: 0.82rem; color: #1e1b4b; margin-bottom: 1rem;">MEMORY LOOP</div>
 
   <div style="display: flex; align-items: stretch; gap: 5px; overflow-x: auto;">
 
-    <!-- Conversation History -->
     <div style="flex-shrink: 0; border: 1.5px solid #9ca3af; padding: 10px 8px; min-width: 88px; background: #f9fafb; border-radius: 8px; text-align: center;">
       <div style="font-size: 1.2rem;">🕐</div>
       <div style="font-weight: 700; font-size: 0.62rem; color: #374151; margin: 4px 0;">Conversation History</div>
@@ -142,7 +129,6 @@
 
     <div style="display: flex; align-items: center; color: #9ca3af; font-size: 0.8rem; padding: 0 2px; flex-shrink: 0;">- - →</div>
 
-    <!-- 1. Experience -->
     <div style="flex: 1; min-width: 95px; border: 2px solid #6366f1; padding: 10px; background: #eef2ff; border-radius: 8px;">
       <div style="font-weight: 800; font-size: 0.62rem; color: #3730a3; margin-bottom: 4px;">1. EXPERIENCE</div>
       <div style="font-size: 0.58rem; color: #4338ca; line-height: 1.5;">New conversations and interactions happen.</div>
@@ -150,7 +136,6 @@
 
     <div style="display: flex; align-items: center; color: #6b7280; font-size: 0.9rem; padding: 0 2px; flex-shrink: 0;">→</div>
 
-    <!-- 2. Store -->
     <div style="flex: 1; min-width: 95px; border: 2px solid #16a34a; padding: 10px; background: #f0fdf4; border-radius: 8px;">
       <div style="font-weight: 800; font-size: 0.62rem; color: #15803d; margin-bottom: 4px;">2. STORE IMPORTANT INFO</div>
       <div style="font-size: 0.58rem; color: #166534; line-height: 1.5;">AI identifies and stores useful information in memory.</div>
@@ -158,7 +143,6 @@
 
     <div style="display: flex; align-items: center; color: #6b7280; font-size: 0.9rem; padding: 0 2px; flex-shrink: 0;">→</div>
 
-    <!-- 3. Retrieve -->
     <div style="flex: 1; min-width: 95px; border: 2px solid #9333ea; padding: 10px; background: #faf5ff; border-radius: 8px;">
       <div style="font-weight: 800; font-size: 0.62rem; color: #7e22ce; margin-bottom: 4px;">3. RETRIEVE LATER</div>
       <div style="font-size: 0.58rem; color: #6b21a8; line-height: 1.5;">Relevant memories are retrieved when needed in future conversations.</div>
@@ -166,7 +150,6 @@
 
     <div style="display: flex; align-items: center; color: #6b7280; font-size: 0.9rem; padding: 0 2px; flex-shrink: 0;">→</div>
 
-    <!-- 4. Improve -->
     <div style="flex: 1; min-width: 95px; border: 2px solid #ea580c; padding: 10px; background: #fff7ed; border-radius: 8px;">
       <div style="font-weight: 800; font-size: 0.62rem; color: #c2410c; margin-bottom: 4px;">4. IMPROVE FUTURE RESPONSES</div>
       <div style="font-size: 0.58rem; color: #9a3412; line-height: 1.5;">Better context leads to more personalized and helpful responses.</div>
@@ -174,7 +157,6 @@
 
     <div style="display: flex; align-items: center; color: #9ca3af; font-size: 0.8rem; padding: 0 2px; flex-shrink: 0;">- - →</div>
 
-    <!-- Better Answers -->
     <div style="flex-shrink: 0; border: 1.5px solid #9ca3af; padding: 10px 8px; min-width: 88px; background: #f9fafb; border-radius: 8px; text-align: center;">
       <div style="font-size: 1.2rem;">🎯</div>
       <div style="font-weight: 700; font-size: 0.62rem; color: #374151; margin: 4px 0;">Better Answers</div>
