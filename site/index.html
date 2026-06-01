@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mobayilo AI Academy — Cohort 1</title>
+  <meta name="description" content="Intensive AI-assisted engineering training for African engineers. 8 weeks of training, then a funded 3-month product phase for ideas that reach real users.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Inconsolata:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+
+    /* ── Reset ──────────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+    img { max-width: 100%; display: block; }
+    a { text-decoration: none; }
+    button { cursor: pointer; font-family: inherit; }
+
+    /* ── Tokens ─────────────────────────────────────────────── */
+    :root {
+      --bg:        #0f172a;
+      --bg-deep:   #020817;
+      --bg-card:   #1e293b;
+      --text:      #f0ede8;
+      --muted:     #94a3b8;
+      --border:    #1e293b;
+      --green:     #3ddc84;
+      --amber:     #f59e0b;
+      --amber-h:   #d97706;
+      --amber-cta: #fcd34d;
+    }
+
+    /* ── Base ───────────────────────────────────────────────── */
+    body {
+      font-family: 'Inconsolata', monospace;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+    }
+
+    h1, h2, h3, h4 {
+      font-family: 'Cormorant Garamond', serif;
+    }
+
+    /* ── Container ──────────────────────────────────────────── */
+    .container {
+      width: 100%;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+    @media (min-width: 640px) {
+      .container { padding: 0 40px; }
+    }
+    @media (min-width: 1024px) {
+      .container { padding: 0 64px; }
+    }
+
+    /* ── Label (section eyebrow) ────────────────────────────── */
+    .label {
+      display: inline-flex;
+      align-items: center;
+      font-family: 'Inconsolata', monospace;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--green);
+      background: rgba(61, 220, 132, 0.1);
+      border: 1px solid rgba(61, 220, 132, 0.25);
+      border-radius: 999px;
+      padding: 4px 12px;
+      margin-bottom: 20px;
+    }
+
+    /* ── Nav ────────────────────────────────────────────────── */
+    .nav {
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      z-index: 10;
+    }
+    .nav .container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 20px;
+      padding-bottom: 20px;
+    }
+    .nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: white;
+    }
+    .nav-logo {
+      height: 36px;
+      width: 36px;
+      border-radius: 50%;
+      object-fit: cover;
+      object-position: center;
+      flex-shrink: 0;
+    }
+    .nav-name {
+      font-family: 'Inconsolata', monospace;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+    .nav-cta {
+      background: var(--amber);
+      color: var(--bg-deep);
+      padding: 0 20px;
+      height: 38px;
+      border-radius: 999px;
+      font-family: 'Inconsolata', monospace;
+      font-size: 13px;
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      box-shadow: 0 4px 14px rgba(245, 158, 11, 0.35);
+      transition: all 0.25s;
+    }
+    .nav-cta:hover {
+      background: var(--amber-h);
+      transform: translateY(-1px);
+      box-shadow: 0 6px 20px rgba(245, 158, 11, 0.45);
+    }
+
+    /* ── Hero ───────────────────────────────────────────────── */
+    .hero {
+      position: relative;
+      min-height: 100svh;
+      display: flex;
+      align-items: flex-end;
+      overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background-image: url('../images/IMG_7347 2.jpg');
+      background-size: cover;
+      background-position: center 45%;
+    }
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to bottom,
+        rgba(2,8,23,0.2) 0%,
+        rgba(2,8,23,0.1) 40%,
+        rgba(2,8,23,0.92) 100%
+      );
+    }
+    .hero-content {
+      position: relative;
+      color: white;
+      padding-bottom: 64px;
+      padding-top: 40px;
+    }
+    .hero h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(52px, 12vw, 96px);
+      font-weight: 700;
+      line-height: 0.95;
+      letter-spacing: -0.01em;
+      margin-bottom: 20px;
+    }
+    .hero h1 span { color: var(--amber-cta); }
+    .hero p {
+      font-family: 'Inconsolata', monospace;
+      font-size: 16px;
+      line-height: 1.7;
+      color: rgba(255,255,255,0.78);
+      max-width: 420px;
+      margin-bottom: 36px;
+    }
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      background: var(--amber);
+      color: var(--bg-deep);
+      padding: 0 32px;
+      height: 52px;
+      border-radius: 999px;
+      font-family: 'Inconsolata', monospace;
+      font-size: 15px;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      box-shadow: 0 8px 24px rgba(245, 158, 11, 0.4);
+      transition: all 0.3s;
+    }
+    .btn-primary:hover {
+      background: var(--amber-h);
+      transform: translateY(-2px) scale(1.03);
+      box-shadow: 0 12px 32px rgba(245, 158, 11, 0.5);
+    }
+    .btn-primary:active {
+      transform: scale(0.97);
+    }
+    .scroll-hint {
+      display: block;
+      font-family: 'Inconsolata', monospace;
+      font-size: 12px;
+      color: rgba(255,255,255,0.35);
+      margin-top: 20px;
+      letter-spacing: 0.08em;
+    }
+
+    /* ── Section spacing ────────────────────────────────────── */
+    .section {
+      padding: 80px 0;
+    }
+    @media (min-width: 768px) {
+      .section { padding: 100px 0; }
+    }
+
+    /* ── Mission ────────────────────────────────────────────── */
+    .mission {
+      background: var(--bg);
+    }
+    .mission-quote {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(28px, 5vw, 44px);
+      font-weight: 700;
+      line-height: 1.18;
+      color: var(--text);
+      margin-bottom: 32px;
+    }
+    .mission-quote em { color: var(--amber); font-style: italic; }
+    .mission p {
+      font-family: 'Inconsolata', monospace;
+      font-size: 15px;
+      line-height: 1.85;
+      color: var(--muted);
+      margin-bottom: 16px;
+      max-width: 600px;
+    }
+    .mission p:last-child { margin-bottom: 0; }
+
+    /* ── Photo band ─────────────────────────────────────────── */
+    .photo-band {
+      position: relative;
+      height: 340px;
+      overflow: hidden;
+    }
+    .photo-band img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 55%;
+    }
+    .photo-band .overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(2,8,23,0.54);
+      display: flex;
+      align-items: center;
+    }
+    .photo-quote {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(26px, 5vw, 40px);
+      font-weight: 700;
+      color: white;
+      line-height: 1.18;
+      max-width: 480px;
+    }
+
+    /* ── Program ────────────────────────────────────────────── */
+    .program {
+      background: var(--bg);
+    }
+    .program h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(36px, 6vw, 56px);
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      line-height: 1.05;
+      margin-bottom: 52px;
+      max-width: 440px;
+    }
+    .phase-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 28px 32px;
+      margin-bottom: 16px;
+      transition: border-color 0.2s;
+    }
+    .phase-card:hover {
+      border-color: rgba(245, 158, 11, 0.3);
+    }
+    .phase-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      flex-wrap: wrap;
+      gap: 4px;
+      margin-bottom: 12px;
+    }
+    .phase-lbl {
+      font-family: 'Inconsolata', monospace;
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--green);
+      font-weight: 700;
+    }
+    .phase-dur {
+      font-family: 'Inconsolata', monospace;
+      font-size: 12px;
+      color: var(--muted);
+    }
+    .phase-card h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 10px;
+    }
+    .phase-card p {
+      font-family: 'Inconsolata', monospace;
+      font-size: 14px;
+      line-height: 1.8;
+      color: var(--muted);
+    }
+
+    /* ── Curriculum ─────────────────────────────────────────── */
+    .curriculum {
+      background: var(--bg-deep);
+    }
+    .curriculum h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(36px, 6vw, 56px);
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      margin-bottom: 10px;
+    }
+    .curriculum .sub {
+      font-family: 'Inconsolata', monospace;
+      font-size: 14px;
+      color: var(--muted);
+      margin-bottom: 48px;
+      max-width: 520px;
+      line-height: 1.75;
+    }
+    .step-row {
+      display: flex;
+      gap: 20px;
+      align-items: flex-start;
+      margin-bottom: 24px;
+      padding-bottom: 24px;
+      border-bottom: 1px solid var(--border);
+    }
+    .step-row:last-child {
+      margin-bottom: 0;
+      padding-bottom: 0;
+      border-bottom: none;
+    }
+    .step-arrow {
+      font-size: 16px;
+      color: var(--amber);
+      padding-top: 3px;
+      flex-shrink: 0;
+    }
+    .step-row h4 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 4px;
+    }
+    .step-row p {
+      font-family: 'Inconsolata', monospace;
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    /* ── Apply ──────────────────────────────────────────────── */
+    .apply {
+      background: var(--bg);
+    }
+    .apply h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(36px, 6vw, 56px);
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      margin-bottom: 20px;
+    }
+    .framing {
+      background: var(--bg-card);
+      border-left: 3px solid var(--amber);
+      padding: 20px 24px;
+      border-radius: 0 10px 10px 0;
+      font-family: 'Inconsolata', monospace;
+      font-size: 14px;
+      line-height: 1.85;
+      color: var(--amber-cta);
+      margin-bottom: 44px;
+    }
+
+    /* ── Footer ─────────────────────────────────────────────── */
+    footer {
+      background: var(--bg-deep);
+      padding: 48px 0 40px;
+    }
+    footer .container {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 20px;
+      align-items: flex-start;
+    }
+    .footer-brand {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 6px;
+    }
+    .footer-tag {
+      font-family: 'Inconsolata', monospace;
+      font-size: 12px;
+      color: var(--muted);
+    }
+    .footer-contact {
+      font-family: 'Inconsolata', monospace;
+      font-size: 12px;
+      color: var(--muted);
+      line-height: 1.7;
+      text-align: right;
+    }
+    @media (max-width: 480px) {
+      .footer-contact { text-align: left; }
+    }
+
+  </style>
+</head>
+<body>
+
+  <!-- Nav -->
+  <nav class="nav">
+    <div class="container">
+      <span class="nav-brand">
+        <img src="logo.jpeg" alt="Mobayilo" class="nav-logo">
+        <span class="nav-name">Mobayilo AI Academy</span>
+      </span>
+      <a href="#apply" class="nav-cta">Apply to Cohort 1</a>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-overlay"></div>
+    <div class="hero-content container">
+      <h1>Build something<br><span>Africa</span><br>needs.</h1>
+      <p>8 weeks of AI engineering training, then a funded 3-month product phase for ideas that reach real users.</p>
+      <a href="#apply" class="btn-primary">Apply to Cohort 1</a>
+      <span class="scroll-hint">Scroll to learn more ↓</span>
+    </div>
+  </section>
+
+  <!-- Mission -->
+  <section class="mission section">
+    <div class="container">
+      <div class="label">Why Mobayilo</div>
+      <div class="mission-quote">
+        "The user must exist<br>before <em>the product does</em>."
+      </div>
+      <p>Young engineers in Rwanda can write code. The missing piece is the discipline of shipping something real to a real person who needed it.</p>
+      <p>Mobayilo AI Academy trains engineers to build with AI across the full software development lifecycle, then selects the strongest ideas for a funded product phase.</p>
+      <p>Rwanda's smartphone penetration has reached rural areas. Products built here must solve the Kinyarwanda language gap — voice, USSD, SMS, or Kinyarwanda interfaces. Not as afterthoughts. By design.</p>
+    </div>
+  </section>
+
+  <!-- Photo pull — green hills -->
+  <div class="photo-band">
+    <img src="../images/IMG_7414 2.jpg" alt="East African highlands">
+    <div class="overlay">
+      <div class="container">
+        <div class="photo-quote">Train in Rwanda.<br>Build for<br>the continent.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Program -->
+  <section class="program section">
+    <div class="container">
+      <div class="label">The program arc</div>
+      <h2>From training<br>to a working product.</h2>
+
+      <div class="phase-card">
+        <div class="phase-header">
+          <div class="phase-lbl">Phase 1 — Training</div>
+          <div class="phase-dur">Weeks 1–8 · Remote · English</div>
+        </div>
+        <h3>Intensive AI-Assisted Engineering</h3>
+        <p>The full SDLC with AI: Prototype → Design → Build → Deploy → Support. Using Claude Code on a real project from day one. You will not finish this phase without something that runs.</p>
+      </div>
+
+      <div class="phase-card">
+        <div class="phase-header">
+          <div class="phase-lbl">Gate — Selection</div>
+          <div class="phase-dur">End of week 8</div>
+        </div>
+        <h3>A Real User, a Real Problem</h3>
+        <p>Submit a field visit report. Show one real conversation with a future user. Ideas that solve real problems — especially for rural, Kinyarwanda-speaking users — move forward. This is not a quota. It is a filter for evidence.</p>
+      </div>
+
+      <div class="phase-card">
+        <div class="phase-header">
+          <div class="phase-lbl">Phase 2 — Product</div>
+          <div class="phase-dur">3 months · $20/month Claude Pro</div>
+        </div>
+        <h3>Build Beyond MVP</h3>
+        <p>3 months of Claude Pro to build a working product with real users. Products enter the Mobayilo portfolio, promoted to investors, NGOs, and government programs. Graduates become mentors for the next cohort.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Curriculum -->
+  <section class="curriculum section">
+    <div class="container">
+      <div class="label">What we teach</div>
+      <h2>The full SDLC with AI.</h2>
+      <p class="sub">Not prompt tips — the engineering discipline behind shipping production software with AI as a core tool.</p>
+
+      <div class="step-row">
+        <div class="step-arrow">→</div>
+        <div>
+          <h4>Prototype</h4>
+          <p>Answer design questions fast with throwaway code. Learn what to keep and what to discard.</p>
+        </div>
+      </div>
+      <div class="step-row">
+        <div class="step-arrow">→</div>
+        <div>
+          <h4>Design</h4>
+          <p>Architecture decisions, agent contracts, CLAUDE.md as the source of truth for your AI.</p>
+        </div>
+      </div>
+      <div class="step-row">
+        <div class="step-arrow">→</div>
+        <div>
+          <h4>Build</h4>
+          <p>Production code with AI. Code reviews, tests, CI/CD. The AI is a tool, not a replacement for engineering judgment.</p>
+        </div>
+      </div>
+      <div class="step-row">
+        <div class="step-arrow">→</div>
+        <div>
+          <h4>Deploy</h4>
+          <p>Ship to a real domain. Real users. Real feedback within the first two months.</p>
+        </div>
+      </div>
+      <div class="step-row">
+        <div class="step-arrow">→</div>
+        <div>
+          <h4>Support</h4>
+          <p>Monitor, fix, respond. The discipline of owning what you ship, not just building it.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Photo pull — mountain -->
+  <div class="photo-band">
+    <img src="../images/IMG_9351 2.jpeg" alt="African mountain landscape">
+    <div class="overlay">
+      <div class="container">
+        <div class="photo-quote">Cohort 1.<br>5–8 engineers.<br>Applications open now.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Apply -->
+  <section class="apply section" id="apply">
+    <div class="container">
+      <div class="label">Apply</div>
+      <h2>Apply to Cohort 1</h2>
+      <div class="framing">
+        We are not looking for the right words. We are looking for real answers. The more detail and honesty you bring to these questions, the stronger your application. Nothing here eliminates you — everything here helps us understand you.
+      </div>
+
+      <!-- Replace PdkBeQ with your Tally form ID -->
+      <iframe data-tally-src="https://tally.so/embed/PdkBeQ?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1"
+        loading="lazy" width="100%" height="800" frameborder="0" marginheight="0" marginwidth="0"
+        title="Mobayilo AI Academy — Cohort 1 Application"></iframe>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div>
+        <div class="footer-brand">Mobayilo AI Academy</div>
+        <div class="footer-tag">AI coding training for African engineers · academy.mobayilo.com</div>
+      </div>
+      <div class="footer-contact">
+        <div>Aimable Dusingizimana</div>
+        <div>aimabled@gmail.com</div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Tally embed loader — replace PdkBeQ above with your form ID -->
+  <script>
+    var d=document,w="https://tally.so/widgets/embed.js",
+    v=function(){"undefined"!=typeof Tally?Tally.loadEmbeds():d.querySelectorAll("iframe[data-tally-src]:not([src])").forEach(function(e){e.src=e.dataset.tallySrc})};
+    if("undefined"!=typeof Tally)v();
+    else if(d.querySelector('script[src="'+w+'"]')==null){var s=d.createElement("script");s.src=w;s.onload=v;s.onerror=v;d.body.appendChild(s);}
+  </script>
+
+</body>
+</html>
