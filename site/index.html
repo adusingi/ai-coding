@@ -4,13 +4,24 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Mobayilo Academy - Cohort 1</title>
-  <meta name="description" content="Mobayilo Academy trains Rwandan engineers to build real products with telecom context, AI tools, real users, and builder discipline.">
+  <meta name="description" content="Mobayilo Academy trains Rwandan engineers to build useful software with user context, Rwanda context, AI tools, and builder discipline.">
+  <link rel="canonical" href="https://academy.mobayilo.com/">
+  <meta property="og:title" content="Mobayilo Academy - Cohort 1">
+  <meta property="og:description" content="Training Rwandan builders to ship useful software with user context, Rwanda context, AI tools, and field evidence.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://academy.mobayilo.com/">
+  <meta name="twitter:card" content="summary">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%23080b0f'/%3E%3Cpath d='M14 16h36v32H14z' fill='%230d1318' stroke='%2338505b'/%3E%3Ctext x='19' y='39' font-family='monospace' font-size='18' font-weight='700' fill='%239cff6e'%3EM_%3C/text%3E%3C/svg%3E">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; }
-    html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 78px;
+      -webkit-text-size-adjust: 100%;
+    }
     body, h1, h2, h3, h4, p, ul { margin: 0; }
     body {
       min-height: 100vh;
@@ -461,51 +472,56 @@
       align-items: start;
     }
     @media (min-width: 980px) {
-      .apply-grid { grid-template-columns: 0.62fr 1.18fr; }
+      .apply-grid { grid-template-columns: minmax(0, 1.12fr) minmax(360px, 0.78fr); }
     }
-    .apply-card,
-    .application-board {
+    .form-shell,
+    .application-guide {
       border: 1px solid var(--line-bright);
       background: var(--panel);
+    }
+    .form-shell {
+      padding: 8px;
+      background: #626a62;
+      box-shadow: inset 0 0 0 1px rgba(156, 255, 110, 0.06);
+    }
+    .form-shell iframe {
+      display: block;
+      width: 100%;
+      min-height: 820px;
+      border: 0;
+      background: transparent;
+      filter: brightness(0.78) contrast(1.08) saturate(0.88);
+    }
+    .application-guide {
       padding: 20px;
     }
-    .apply-card h3,
-    .application-board h3 {
+    .application-guide h3 {
       font-size: 17px;
       margin-bottom: 12px;
     }
-    .apply-card p,
-    .application-board p {
+    .application-guide p {
       color: var(--muted);
       font-size: 13px;
+      margin-bottom: 14px;
     }
-    .questions {
+    .criteria-list {
       display: grid;
       gap: 10px;
       list-style: none;
       padding: 0;
       margin-top: 18px;
     }
-    .questions li {
+    .criteria-list li {
       border: 1px solid var(--line);
       padding: 12px;
       color: var(--soft);
       font-size: 12px;
       background: rgba(8, 11, 15, 0.45);
     }
-    .application-board {
-      padding: 0;
-      overflow: hidden;
-    }
-    .application-board__intro {
-      padding: 20px;
-      border-bottom: 1px solid var(--line);
-    }
-    .application-board__intro p {
-      max-width: 620px;
-    }
     .application-list {
       display: grid;
+      margin-top: 18px;
+      border-top: 1px solid var(--line);
     }
     .application-item {
       border-bottom: 1px solid var(--line);
@@ -519,8 +535,8 @@
       grid-template-columns: 1fr auto;
       gap: 18px;
       align-items: center;
-      min-height: 72px;
-      padding: 18px 20px;
+      min-height: 66px;
+      padding: 16px 0;
       color: var(--text);
       cursor: pointer;
       list-style: none;
@@ -541,10 +557,9 @@
       content: "-";
     }
     .application-item__body {
-      padding: 0 20px 22px;
+      padding: 0 0 18px;
       color: var(--muted);
       font-size: 13px;
-      max-width: 680px;
     }
     .application-item__body p {
       margin-bottom: 14px;
@@ -556,24 +571,6 @@
       padding: 14px;
       font-size: 12px;
     }
-    .application-action {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      align-items: center;
-      gap: 14px;
-      padding: 18px 20px;
-      border-top: 1px solid var(--line-bright);
-      background: rgba(17, 25, 34, 0.78);
-    }
-    .application-action span {
-      color: var(--muted);
-      font-size: 12px;
-    }
-    .application-action .btn {
-      min-height: 42px;
-    }
-
     footer {
       padding: 38px 0 48px;
       color: var(--muted);
@@ -628,10 +625,10 @@
     <section class="hero">
       <div class="wrap hero-grid">
         <div>
-          <div class="kicker">Builder school for telecom and AI tools</div>
+          <div class="kicker">Builder school for software, context, and AI tools</div>
           <h1>Build for the user before the deck.</h1>
           <p class="hero-copy">
-            Mobayilo Academy trains Rwandan engineers to build useful software with telecom context, AI tools, and real user evidence, then backs the strongest field-tested ideas through a 3-month product phase.
+            Mobayilo Academy trains Rwandan engineers to build useful software with their users' context, Rwanda's context, AI tools, and field evidence, then backs the strongest ideas through a 3-month product phase.
           </p>
           <div class="hero-actions">
             <a class="btn primary" href="#apply">$ apply --cohort 1</a>
@@ -689,7 +686,7 @@
           <div class="eyebrow">Mission</div>
           <div>
             <h2>Rwanda needs builders, not certificate collectors.</h2>
-            <p class="lead">This is a small, demanding academy for engineers who can already code and now need the discipline to ship useful software, telecom products, and practical tools to real people.</p>
+            <p class="lead">This is an academy for builders, engineers, and autodidacts who are learning to code or already can code, and now need the discipline to ship useful software, products, and practical tools for students, families, small businesses, local services, and rural communities. One goal is to increase digital literacy in rural Rwanda.</p>
           </div>
         </div>
 
@@ -731,7 +728,7 @@
             <div>
               <div class="phase-num">01 / TRAINING</div>
               <h3>Product engineering with modern tools</h3>
-              <p>Prototype, design, build, deploy, and support with practical engineering habits, telecom awareness, and AI-assisted workflows where they create leverage. The work happens on real project ideas, not toy exercises.</p>
+              <p>Prototype, design, build, deploy, and support with practical engineering habits, user research, local context, and AI-assisted workflows where they create leverage. The work happens on real project ideas, not toy exercises.</p>
             </div>
             <div class="phase-foot">Weeks 1-8 · remote · English</div>
           </article>
@@ -802,7 +799,7 @@
           <div class="eyebrow">Positioning</div>
           <div>
             <h2>Not a generic bootcamp.</h2>
-            <p class="lead">Mobayilo is small, local in its standards, and serious about entrepreneurship.</p>
+            <p class="lead">Mobayilo is local in its standards, practical in its training, and serious about entrepreneurship.</p>
           </div>
         </div>
 
@@ -837,23 +834,15 @@
         </div>
 
         <div class="apply-grid">
-          <aside class="apply-card">
+          <aside class="application-guide">
             <h3>What the application is testing</h3>
             <p>We are not looking for perfect English or polished startup language. We are looking for real answers, evidence, and commitment.</p>
-            <ul class="questions">
-              <li>What problem have you personally observed in your community?</li>
-              <li>Who suffers from it? Describe one specific person.</li>
-              <li>What have you built that runs?</li>
-              <li>What are you willing to give up for 6-8 focused weeks?</li>
+            <ul class="criteria-list">
+              <li>Can you notice a specific situation in your community?</li>
+              <li>Can you describe one person affected by it?</li>
+              <li>Can you show something you have built that runs?</li>
+              <li>Can you make time for focused work?</li>
             </ul>
-          </aside>
-
-          <div class="application-board">
-            <div class="application-board__intro">
-              <h3>Application questions</h3>
-              <p>Open each question before you apply. Strong answers are concrete, honest, and tied to something you have seen or built.</p>
-            </div>
-
             <div class="application-list">
               <details class="application-item" open>
                 <summary>What problem have you personally observed in your community?</summary>
@@ -887,11 +876,12 @@
                 </div>
               </details>
             </div>
+          </aside>
 
-            <div class="application-action">
-              <span>Ready answers beat perfect wording.</span>
-              <a class="btn primary" href="https://tally.so/r/PdkBeQ" target="_blank" rel="noopener">Open application form</a>
-            </div>
+          <div class="form-shell">
+            <iframe data-tally-src="https://tally.so/embed/PdkBeQ?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1"
+              loading="lazy" width="100%" height="820" frameborder="0" marginheight="0" marginwidth="0"
+              title="Mobayilo Academy - Cohort 1 Application"></iframe>
           </div>
         </div>
       </div>
@@ -910,6 +900,27 @@
   </footer>
 
   <script>
+    var d = document;
+    var w = "https://tally.so/widgets/embed.js";
+    var v = function () {
+      if (typeof Tally !== "undefined") {
+        Tally.loadEmbeds();
+      } else {
+        d.querySelectorAll("iframe[data-tally-src]:not([src])").forEach(function (e) {
+          e.src = e.dataset.tallySrc;
+        });
+      }
+    };
+    if (typeof Tally !== "undefined") {
+      v();
+    } else if (d.querySelector('script[src="' + w + '"]') == null) {
+      var s = d.createElement("script");
+      s.src = w;
+      s.onload = v;
+      s.onerror = v;
+      d.body.appendChild(s);
+    }
+
     document.querySelectorAll(".application-item").forEach((item) => {
       item.addEventListener("toggle", () => {
         if (!item.open) return;
