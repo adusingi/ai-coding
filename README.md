@@ -1,6 +1,6 @@
-# AI Coding — Aimable Dusingizimana
+# Mobayilo Academy
 
-This repository holds three distinct projects. Each has its own directory.
+This repository holds the academy site plus related training and consulting material.
 
 ---
 
@@ -30,15 +30,17 @@ consulting/
 ---
 
 ## `academy/`
-Mobayilo AI Academy — `mobayilo.com`.
+Mobayilo Academy program brief.
 
-Training program for Rwandan engineers: 6–8 weeks of AI-assisted engineering, followed by a 3-month funded product development phase for selected ideas that solve real problems for real Rwandan users.
+Training program for Rwandan engineers: 6–8 weeks of product engineering with telecom context and AI tools, followed by a 3-month funded product development phase for selected ideas that solve real problems for real Rwandan users.
 
 ```
 academy/
-├── prd.md          # Full program PRD (synthesized 2026-05-31)
-└── site/           # Coming next — mobayilo.com static site
+└── prd.md          # Full program PRD (synthesized 2026-05-31)
 ```
+
+## `site/`
+Static website for `academy.mobayilo.com`.
 
 ---
 

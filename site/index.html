@@ -3,616 +3,822 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mobayilo AI Academy — Cohort 1</title>
-  <meta name="description" content="Intensive AI-assisted engineering training for African engineers. 8 weeks of training, then a funded 3-month product phase for ideas that reach real users.">
+  <title>Mobayilo Academy - Cohort 1</title>
+  <meta name="description" content="Mobayilo Academy trains Rwandan engineers to build real products with telecom context, AI tools, real users, and builder discipline.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Inconsolata:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
   <style>
-
-    /* ── Reset ──────────────────────────────────────────────── */
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    *, *::before, *::after { box-sizing: border-box; }
     html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
-    img { max-width: 100%; display: block; }
-    a { text-decoration: none; }
-    button { cursor: pointer; font-family: inherit; }
-
-    /* ── Tokens ─────────────────────────────────────────────── */
-    :root {
-      --bg:        #0f172a;
-      --bg-deep:   #020817;
-      --bg-card:   #1e293b;
-      --text:      #f0ede8;
-      --muted:     #94a3b8;
-      --border:    #1e293b;
-      --green:     #3ddc84;
-      --amber:     #f59e0b;
-      --amber-h:   #d97706;
-      --amber-cta: #fcd34d;
-    }
-
-    /* ── Base ───────────────────────────────────────────────── */
+    body, h1, h2, h3, h4, p, ul { margin: 0; }
     body {
-      font-family: 'Inconsolata', monospace;
-      background: var(--bg);
-      color: var(--text);
       min-height: 100vh;
+      background:
+        linear-gradient(90deg, rgba(155, 92, 42, 0.12) 1px, transparent 1px) 0 0 / 72px 72px,
+        linear-gradient(180deg, rgba(45, 212, 191, 0.08) 1px, transparent 1px) 0 0 / 72px 72px,
+        radial-gradient(circle at 76% 12%, rgba(255, 214, 102, 0.12), transparent 28rem),
+        #080b0f;
+      color: #f2efe6;
+      font-family: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      line-height: 1.6;
+    }
+    a { color: inherit; text-decoration: none; }
+    button { font: inherit; }
+
+    :root {
+      --bg: #080b0f;
+      --panel: #0d1318;
+      --panel-2: #111922;
+      --panel-3: #16202a;
+      --text: #f2efe6;
+      --muted: #9aa7a6;
+      --soft: #c9c1ac;
+      --line: #24313b;
+      --line-bright: #38505b;
+      --green: #9cff6e;
+      --teal: #45e6c7;
+      --amber: #ffd666;
+      --red: #ff6b5f;
+      --earth: #b66d3d;
+      --max: 1180px;
     }
 
-    h1, h2, h3, h4 {
-      font-family: 'Cormorant Garamond', serif;
-    }
-
-    /* ── Container ──────────────────────────────────────────── */
-    .container {
-      width: 100%;
-      max-width: 1100px;
+    .wrap {
+      width: min(var(--max), calc(100% - 32px));
       margin: 0 auto;
-      padding: 0 24px;
-    }
-    @media (min-width: 640px) {
-      .container { padding: 0 40px; }
-    }
-    @media (min-width: 1024px) {
-      .container { padding: 0 64px; }
     }
 
-    /* ── Label (section eyebrow) ────────────────────────────── */
-    .label {
-      display: inline-flex;
-      align-items: center;
-      font-family: 'Inconsolata', monospace;
-      font-size: 10px;
-      font-weight: 700;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      color: var(--green);
-      background: rgba(61, 220, 132, 0.1);
-      border: 1px solid rgba(61, 220, 132, 0.25);
-      border-radius: 999px;
-      padding: 4px 12px;
-      margin-bottom: 20px;
-    }
+    .mono { font-family: "IBM Plex Mono", ui-monospace, monospace; }
+    .serif { font-family: "Instrument Serif", Georgia, serif; }
+    .muted { color: var(--muted); }
+    .green { color: var(--green); }
+    .teal { color: var(--teal); }
+    .amber { color: var(--amber); }
 
-    /* ── Nav ────────────────────────────────────────────────── */
-    .nav {
-      position: absolute;
-      top: 0; left: 0; right: 0;
-      z-index: 10;
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      border-bottom: 1px solid rgba(56, 80, 91, 0.75);
+      background: rgba(8, 11, 15, 0.88);
+      backdrop-filter: blur(18px);
     }
-    .nav .container {
+    .topbar .wrap {
       display: flex;
+      align-items: center;
       justify-content: space-between;
-      align-items: center;
-      padding-top: 20px;
-      padding-bottom: 20px;
+      min-height: 58px;
+      gap: 18px;
     }
-    .nav-brand {
-      display: flex;
+    .brand {
+      display: inline-flex;
       align-items: center;
       gap: 10px;
-      color: white;
-    }
-    .nav-logo {
-      height: 36px;
-      width: 36px;
-      border-radius: 50%;
-      object-fit: cover;
-      object-position: center;
-      flex-shrink: 0;
-    }
-    .nav-name {
-      font-family: 'Inconsolata', monospace;
-      font-size: 12px;
-      font-weight: 600;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-    }
-    .nav-cta {
-      background: var(--amber);
-      color: var(--bg-deep);
-      padding: 0 20px;
-      height: 38px;
-      border-radius: 999px;
-      font-family: 'Inconsolata', monospace;
+      min-width: 0;
+      color: var(--text);
       font-size: 13px;
-      font-weight: 700;
-      display: inline-flex;
-      align-items: center;
-      box-shadow: 0 4px 14px rgba(245, 158, 11, 0.35);
-      transition: all 0.25s;
-    }
-    .nav-cta:hover {
-      background: var(--amber-h);
-      transform: translateY(-1px);
-      box-shadow: 0 6px 20px rgba(245, 158, 11, 0.45);
-    }
-
-    /* ── Hero ───────────────────────────────────────────────── */
-    .hero {
-      position: relative;
-      min-height: 100svh;
-      display: flex;
-      align-items: flex-end;
-      overflow: hidden;
-    }
-    .hero-bg {
-      position: absolute;
-      inset: 0;
-      background-image: url('../images/IMG_7347 2.jpg');
-      background-size: cover;
-      background-position: center 45%;
-    }
-    .hero-overlay {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(
-        to bottom,
-        rgba(2,8,23,0.2) 0%,
-        rgba(2,8,23,0.1) 40%,
-        rgba(2,8,23,0.92) 100%
-      );
-    }
-    .hero-content {
-      position: relative;
-      color: white;
-      padding-bottom: 64px;
-      padding-top: 40px;
-    }
-    .hero h1 {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(52px, 12vw, 96px);
-      font-weight: 700;
-      line-height: 0.95;
-      letter-spacing: -0.01em;
-      margin-bottom: 20px;
-    }
-    .hero h1 span { color: var(--amber-cta); }
-    .hero p {
-      font-family: 'Inconsolata', monospace;
-      font-size: 16px;
-      line-height: 1.7;
-      color: rgba(255,255,255,0.78);
-      max-width: 420px;
-      margin-bottom: 36px;
-    }
-    .btn-primary {
-      display: inline-flex;
-      align-items: center;
-      background: var(--amber);
-      color: var(--bg-deep);
-      padding: 0 32px;
-      height: 52px;
-      border-radius: 999px;
-      font-family: 'Inconsolata', monospace;
-      font-size: 15px;
       font-weight: 700;
       letter-spacing: 0.02em;
-      box-shadow: 0 8px 24px rgba(245, 158, 11, 0.4);
-      transition: all 0.3s;
     }
-    .btn-primary:hover {
-      background: var(--amber-h);
-      transform: translateY(-2px) scale(1.03);
-      box-shadow: 0 12px 32px rgba(245, 158, 11, 0.5);
+    .mark {
+      display: grid;
+      place-items: center;
+      width: 30px;
+      height: 30px;
+      border: 1px solid var(--line-bright);
+      background: #0b1115;
+      color: var(--green);
+      box-shadow: inset 0 0 0 1px rgba(156, 255, 110, 0.1);
+      flex: 0 0 auto;
     }
-    .btn-primary:active {
-      transform: scale(0.97);
-    }
-    .scroll-hint {
-      display: block;
-      font-family: 'Inconsolata', monospace;
-      font-size: 12px;
-      color: rgba(255,255,255,0.35);
-      margin-top: 20px;
-      letter-spacing: 0.08em;
-    }
-
-    /* ── Section spacing ────────────────────────────────────── */
-    .section {
-      padding: 80px 0;
-    }
-    @media (min-width: 768px) {
-      .section { padding: 100px 0; }
-    }
-
-    /* ── Mission ────────────────────────────────────────────── */
-    .mission {
-      background: var(--bg);
-    }
-    .mission-quote {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(28px, 5vw, 44px);
-      font-weight: 700;
-      line-height: 1.18;
-      color: var(--text);
-      margin-bottom: 32px;
-    }
-    .mission-quote em { color: var(--amber); font-style: italic; }
-    .mission p {
-      font-family: 'Inconsolata', monospace;
-      font-size: 15px;
-      line-height: 1.85;
+    .navlinks {
+      display: none;
+      align-items: center;
+      gap: 20px;
       color: var(--muted);
-      margin-bottom: 16px;
-      max-width: 600px;
+      font-size: 12px;
     }
-    .mission p:last-child { margin-bottom: 0; }
+    .navlinks a:hover { color: var(--teal); }
+    .navcta {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 36px;
+      padding: 0 14px;
+      border: 1px solid rgba(156, 255, 110, 0.5);
+      background: #d6ff5e;
+      color: #091006;
+      font-size: 12px;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+    .navcta:hover { background: var(--green); }
+    @media (min-width: 760px) {
+      .navlinks { display: flex; }
+    }
 
-    /* ── Photo band ─────────────────────────────────────────── */
-    .photo-band {
-      position: relative;
-      height: 340px;
-      overflow: hidden;
+    .hero {
+      padding: 54px 0 42px;
+      border-bottom: 1px solid var(--line);
     }
-    .photo-band img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center 55%;
+    .hero-grid {
+      display: grid;
+      gap: 28px;
+      align-items: end;
     }
-    .photo-band .overlay {
-      position: absolute;
-      inset: 0;
-      background: rgba(2,8,23,0.54);
+    @media (min-width: 940px) {
+      .hero-grid { grid-template-columns: minmax(0, 0.86fr) minmax(430px, 1.14fr); }
+      .hero { padding: 76px 0 56px; }
+    }
+    .kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--teal);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 22px;
+    }
+    .kicker::before {
+      content: "";
+      width: 36px;
+      height: 1px;
+      background: var(--teal);
+    }
+    h1 {
+      max-width: 760px;
+      font-family: "Instrument Serif", Georgia, serif;
+      font-size: clamp(58px, 12vw, 132px);
+      line-height: 0.82;
+      font-weight: 400;
+      letter-spacing: 0;
+    }
+    .hero-copy {
+      max-width: 580px;
+      margin-top: 26px;
+      color: var(--soft);
+      font-size: clamp(15px, 1.7vw, 18px);
+    }
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 30px;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 46px;
+      padding: 0 18px;
+      border: 1px solid var(--line-bright);
+      background: var(--panel-2);
+      color: var(--text);
+      font-size: 13px;
+      font-weight: 700;
+    }
+    .btn.primary {
+      background: var(--green);
+      border-color: var(--green);
+      color: #071005;
+    }
+    .btn:hover { transform: translateY(-1px); }
+
+    .terminal {
+      border: 1px solid var(--line-bright);
+      background: rgba(13, 19, 24, 0.94);
+      box-shadow: 0 28px 80px rgba(0, 0, 0, 0.45);
+    }
+    .term-head {
       display: flex;
       align-items: center;
+      gap: 9px;
+      min-height: 38px;
+      padding: 0 14px;
+      border-bottom: 1px solid var(--line);
+      background: var(--panel-3);
+      color: var(--muted);
+      font-size: 12px;
     }
-    .photo-quote {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(26px, 5vw, 40px);
-      font-weight: 700;
-      color: white;
-      line-height: 1.18;
-      max-width: 480px;
+    .dot { width: 10px; height: 10px; border-radius: 50%; background: var(--line-bright); }
+    .dot.red { background: var(--red); }
+    .dot.amber { background: var(--amber); }
+    .dot.green { background: var(--green); }
+    .term-title { margin-left: 6px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .term-body { padding: 18px; }
+    .shell {
+      color: var(--soft);
+      font-size: 13px;
+      border-bottom: 1px dashed var(--line-bright);
+      padding-bottom: 16px;
+      margin-bottom: 16px;
+      overflow-wrap: anywhere;
+    }
+    .prompt { color: var(--green); }
+    .flag { color: var(--amber); }
+    .path { color: var(--teal); }
+    .status-grid {
+      display: grid;
+      gap: 10px;
+    }
+    .status-row {
+      display: grid;
+      grid-template-columns: 74px 1fr auto;
+      gap: 10px;
+      align-items: center;
+      padding: 10px 12px;
+      border: 1px solid var(--line);
+      background: rgba(8, 11, 15, 0.5);
+      font-size: 12px;
+    }
+    .status-row strong { color: var(--text); font-size: 13px; }
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      min-height: 22px;
+      padding: 0 8px;
+      border: 1px solid rgba(69, 230, 199, 0.35);
+      color: var(--teal);
+      font-size: 11px;
+    }
+    .dash {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      margin-top: 16px;
+      border: 1px solid var(--line);
+    }
+    .dash div {
+      padding: 13px 12px;
+      border-left: 1px solid var(--line);
+      min-width: 0;
+    }
+    .dash div:first-child { border-left: 0; }
+    .dash b {
+      display: block;
+      color: var(--amber);
+      font-size: clamp(20px, 5vw, 31px);
+      line-height: 1;
+      margin-bottom: 8px;
+      font-family: "Instrument Serif", Georgia, serif;
+      font-weight: 400;
+    }
+    .dash span {
+      display: block;
+      color: var(--muted);
+      font-size: 11px;
+      line-height: 1.35;
     }
 
-    /* ── Program ────────────────────────────────────────────── */
-    .program {
-      background: var(--bg);
+    .section {
+      padding: 74px 0;
+      border-bottom: 1px solid var(--line);
     }
-    .program h2 {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(36px, 6vw, 56px);
+    .section-head {
+      display: grid;
+      gap: 14px;
+      margin-bottom: 34px;
+    }
+    @media (min-width: 820px) {
+      .section-head { grid-template-columns: 0.52fr 1fr; align-items: end; }
+    }
+    .eyebrow {
+      color: var(--green);
+      font-size: 12px;
       font-weight: 700;
-      letter-spacing: -0.01em;
-      line-height: 1.05;
-      margin-bottom: 52px;
-      max-width: 440px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
     }
-    .phase-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 28px 32px;
-      margin-bottom: 16px;
-      transition: border-color 0.2s;
+    h2 {
+      font-family: "Instrument Serif", Georgia, serif;
+      font-size: clamp(40px, 7vw, 76px);
+      line-height: 0.92;
+      font-weight: 400;
+      letter-spacing: 0;
     }
-    .phase-card:hover {
-      border-color: rgba(245, 158, 11, 0.3);
+    .lead {
+      color: var(--soft);
+      max-width: 680px;
+      font-size: 15px;
     }
-    .phase-header {
+
+    .principle {
+      display: grid;
+      gap: 18px;
+    }
+    @media (min-width: 860px) {
+      .principle { grid-template-columns: 1.1fr 0.9fr; }
+    }
+    .quote-panel {
+      border: 1px solid var(--line-bright);
+      background: var(--panel);
+      padding: clamp(22px, 5vw, 42px);
+    }
+    .quote-panel p {
+      font-family: "Instrument Serif", Georgia, serif;
+      font-size: clamp(38px, 7vw, 80px);
+      line-height: 0.92;
+    }
+    .quote-panel small {
+      display: block;
+      margin-top: 20px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+    .rule-stack {
+      display: grid;
+      gap: 12px;
+    }
+    .rule {
+      border: 1px solid var(--line);
+      background: rgba(17, 25, 34, 0.75);
+      padding: 18px;
+    }
+    .rule b {
+      display: block;
+      color: var(--teal);
+      margin-bottom: 8px;
+      font-size: 13px;
+    }
+    .rule p {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .phase-grid {
+      display: grid;
+      gap: 12px;
+    }
+    @media (min-width: 850px) {
+      .phase-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+    .phase {
+      border: 1px solid var(--line);
+      background: var(--panel);
+      min-height: 275px;
+      padding: 20px;
       display: flex;
+      flex-direction: column;
       justify-content: space-between;
-      align-items: baseline;
-      flex-wrap: wrap;
-      gap: 4px;
+    }
+    .phase-num {
+      color: var(--earth);
+      font-size: 12px;
+      font-weight: 700;
+      margin-bottom: 28px;
+    }
+    .phase h3 {
+      color: var(--text);
+      font-size: 22px;
+      line-height: 1.15;
       margin-bottom: 12px;
     }
-    .phase-lbl {
-      font-family: 'Inconsolata', monospace;
-      font-size: 10px;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--green);
-      font-weight: 700;
-    }
-    .phase-dur {
-      font-family: 'Inconsolata', monospace;
-      font-size: 12px;
+    .phase p {
       color: var(--muted);
-    }
-    .phase-card h3 {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 22px;
-      font-weight: 700;
-      color: var(--text);
-      margin-bottom: 10px;
-    }
-    .phase-card p {
-      font-family: 'Inconsolata', monospace;
-      font-size: 14px;
-      line-height: 1.8;
-      color: var(--muted);
-    }
-
-    /* ── Curriculum ─────────────────────────────────────────── */
-    .curriculum {
-      background: var(--bg-deep);
-    }
-    .curriculum h2 {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(36px, 6vw, 56px);
-      font-weight: 700;
-      letter-spacing: -0.01em;
-      margin-bottom: 10px;
-    }
-    .curriculum .sub {
-      font-family: 'Inconsolata', monospace;
-      font-size: 14px;
-      color: var(--muted);
-      margin-bottom: 48px;
-      max-width: 520px;
-      line-height: 1.75;
-    }
-    .step-row {
-      display: flex;
-      gap: 20px;
-      align-items: flex-start;
-      margin-bottom: 24px;
-      padding-bottom: 24px;
-      border-bottom: 1px solid var(--border);
-    }
-    .step-row:last-child {
-      margin-bottom: 0;
-      padding-bottom: 0;
-      border-bottom: none;
-    }
-    .step-arrow {
-      font-size: 16px;
-      color: var(--amber);
-      padding-top: 3px;
-      flex-shrink: 0;
-    }
-    .step-row h4 {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 18px;
-      font-weight: 700;
-      color: var(--text);
-      margin-bottom: 4px;
-    }
-    .step-row p {
-      font-family: 'Inconsolata', monospace;
       font-size: 13px;
-      color: var(--muted);
-      line-height: 1.7;
+    }
+    .phase-foot {
+      margin-top: 22px;
+      padding-top: 14px;
+      border-top: 1px dashed var(--line-bright);
+      color: var(--amber);
+      font-size: 12px;
     }
 
-    /* ── Apply ──────────────────────────────────────────────── */
-    .apply {
-      background: var(--bg);
+    .surface {
+      display: grid;
+      gap: 14px;
     }
-    .apply h2 {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(36px, 6vw, 56px);
-      font-weight: 700;
-      letter-spacing: -0.01em;
-      margin-bottom: 20px;
+    @media (min-width: 900px) {
+      .surface { grid-template-columns: 1fr 1fr; }
     }
-    .framing {
-      background: var(--bg-card);
-      border-left: 3px solid var(--amber);
-      padding: 20px 24px;
-      border-radius: 0 10px 10px 0;
-      font-family: 'Inconsolata', monospace;
-      font-size: 14px;
-      line-height: 1.85;
-      color: var(--amber-cta);
-      margin-bottom: 44px;
+    .pane {
+      border: 1px solid var(--line);
+      background: rgba(13, 19, 24, 0.9);
     }
-
-    /* ── Footer ─────────────────────────────────────────────── */
-    footer {
-      background: var(--bg-deep);
-      padding: 48px 0 40px;
-    }
-    footer .container {
+    .pane-head {
       display: flex;
       justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 20px;
-      align-items: flex-start;
-    }
-    .footer-brand {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 18px;
-      font-weight: 700;
-      color: var(--text);
-      margin-bottom: 6px;
-    }
-    .footer-tag {
-      font-family: 'Inconsolata', monospace;
-      font-size: 12px;
+      gap: 12px;
+      padding: 10px 14px;
+      border-bottom: 1px solid var(--line);
+      background: var(--panel-3);
       color: var(--muted);
-    }
-    .footer-contact {
-      font-family: 'Inconsolata', monospace;
       font-size: 12px;
-      color: var(--muted);
-      line-height: 1.7;
+    }
+    .pane-body {
+      display: grid;
+      gap: 12px;
+      padding: 16px;
+    }
+    .logline {
+      display: grid;
+      grid-template-columns: 28px 1fr;
+      gap: 12px;
+      align-items: start;
+      color: var(--soft);
+      font-size: 13px;
+    }
+    .logline span:first-child {
+      color: var(--green);
       text-align: right;
     }
-    @media (max-width: 480px) {
-      .footer-contact { text-align: left; }
+    .comparison {
+      display: grid;
+      border: 1px solid var(--line);
+      background: var(--panel);
+      overflow: hidden;
+    }
+    .comp-row {
+      display: grid;
+      grid-template-columns: 1fr;
+      border-top: 1px solid var(--line);
+    }
+    .comp-row:first-child { border-top: 0; }
+    .comp-cell {
+      padding: 15px 16px;
+      border-top: 1px dashed var(--line);
+      color: var(--muted);
+      font-size: 13px;
+    }
+    .comp-cell:first-child {
+      border-top: 0;
+      color: var(--text);
+      font-weight: 700;
+    }
+    @media (min-width: 720px) {
+      .comp-row { grid-template-columns: 0.9fr 1fr 1fr; }
+      .comp-cell { border-top: 0; border-left: 1px solid var(--line); }
+      .comp-cell:first-child { border-left: 0; }
     }
 
+    .apply-grid {
+      display: grid;
+      gap: 20px;
+      align-items: start;
+    }
+    @media (min-width: 980px) {
+      .apply-grid { grid-template-columns: 0.62fr 1fr; }
+    }
+    .apply-card {
+      border: 1px solid var(--line-bright);
+      background: var(--panel);
+      padding: 20px;
+    }
+    .apply-card h3 {
+      font-size: 17px;
+      margin-bottom: 12px;
+    }
+    .apply-card p {
+      color: var(--muted);
+      font-size: 13px;
+      margin-bottom: 14px;
+    }
+    .questions {
+      display: grid;
+      gap: 10px;
+      list-style: none;
+      padding: 0;
+      margin-top: 18px;
+    }
+    .questions li {
+      border: 1px solid var(--line);
+      padding: 12px;
+      color: var(--soft);
+      font-size: 12px;
+      background: rgba(8, 11, 15, 0.45);
+    }
+    .embed-shell {
+      border: 1px solid var(--line-bright);
+      background: #f6f1e5;
+      padding: 8px;
+    }
+    iframe {
+      display: block;
+      width: 100%;
+      min-height: 800px;
+      border: 0;
+      background: transparent;
+    }
+
+    footer {
+      padding: 38px 0 48px;
+      color: var(--muted);
+      font-size: 12px;
+    }
+    footer .wrap {
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+    .footer-brand {
+      color: var(--text);
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+
+    @media (max-width: 560px) {
+      .wrap { width: min(var(--max), calc(100% - 24px)); }
+      .topbar .wrap { min-height: 54px; }
+      .brand span:last-child { max-width: 145px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+      .navcta { padding: 0 10px; font-size: 11px; }
+      .hero { padding-top: 38px; }
+      .term-body { padding: 12px; }
+      .status-row { grid-template-columns: 1fr; }
+      .dash { grid-template-columns: 1fr; }
+      .dash div { border-left: 0; border-top: 1px solid var(--line); }
+      .dash div:first-child { border-top: 0; }
+      .section { padding: 58px 0; }
+      .quote-panel p { font-size: 42px; }
+    }
   </style>
 </head>
 <body>
-
-  <!-- Nav -->
-  <nav class="nav">
-    <div class="container">
-      <span class="nav-brand">
-        <img src="logo.jpeg" alt="Mobayilo" class="nav-logo">
-        <span class="nav-name">Mobayilo AI Academy</span>
-      </span>
-      <a href="#apply" class="nav-cta">Apply to Cohort 1</a>
+  <header class="topbar">
+    <div class="wrap">
+      <a class="brand" href="#top" aria-label="Mobayilo Academy home">
+        <span class="mark">M_</span>
+        <span>Mobayilo Academy</span>
+      </a>
+      <nav class="navlinks" aria-label="Primary">
+        <a href="#mission">mission</a>
+        <a href="#program">program</a>
+        <a href="#curriculum">curriculum</a>
+        <a href="#apply">apply</a>
+      </nav>
+      <a class="navcta" href="#apply">Apply to Cohort 1</a>
     </div>
-  </nav>
+  </header>
 
-  <!-- Hero -->
-  <section class="hero">
-    <div class="hero-bg"></div>
-    <div class="hero-overlay"></div>
-    <div class="hero-content container">
-      <h1>Build something<br><span>Africa</span><br>needs.</h1>
-      <p>8 weeks of AI engineering training, then a funded 3-month product phase for ideas that reach real users.</p>
-      <a href="#apply" class="btn-primary">Apply to Cohort 1</a>
-      <span class="scroll-hint">Scroll to learn more ↓</span>
-    </div>
-  </section>
-
-  <!-- Mission -->
-  <section class="mission section">
-    <div class="container">
-      <div class="label">Why Mobayilo</div>
-      <div class="mission-quote">
-        "The user must exist<br>before <em>the product does</em>."
-      </div>
-      <p>Young engineers in Rwanda can write code. The missing piece is the discipline of shipping something real to a real person who needed it.</p>
-      <p>Mobayilo AI Academy trains engineers to build with AI across the full software development lifecycle, then selects the strongest ideas for a funded product phase.</p>
-      <p>Rwanda's smartphone penetration has reached rural areas. Products built here must solve the Kinyarwanda language gap — voice, USSD, SMS, or Kinyarwanda interfaces. Not as afterthoughts. By design.</p>
-    </div>
-  </section>
-
-  <!-- Photo pull — green hills -->
-  <div class="photo-band">
-    <img src="../images/IMG_7414 2.jpg" alt="East African highlands">
-    <div class="overlay">
-      <div class="container">
-        <div class="photo-quote">Train in Rwanda.<br>Build for<br>the continent.</div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Program -->
-  <section class="program section">
-    <div class="container">
-      <div class="label">The program arc</div>
-      <h2>From training<br>to a working product.</h2>
-
-      <div class="phase-card">
-        <div class="phase-header">
-          <div class="phase-lbl">Phase 1 — Training</div>
-          <div class="phase-dur">Weeks 1–8 · Remote · English</div>
-        </div>
-        <h3>Intensive AI-Assisted Engineering</h3>
-        <p>The full SDLC with AI: Prototype → Design → Build → Deploy → Support. Using Claude Code on a real project from day one. You will not finish this phase without something that runs.</p>
-      </div>
-
-      <div class="phase-card">
-        <div class="phase-header">
-          <div class="phase-lbl">Gate — Selection</div>
-          <div class="phase-dur">End of week 8</div>
-        </div>
-        <h3>A Real User, a Real Problem</h3>
-        <p>Submit a field visit report. Show one real conversation with a future user. Ideas that solve real problems — especially for rural, Kinyarwanda-speaking users — move forward. This is not a quota. It is a filter for evidence.</p>
-      </div>
-
-      <div class="phase-card">
-        <div class="phase-header">
-          <div class="phase-lbl">Phase 2 — Product</div>
-          <div class="phase-dur">3 months · $20/month Claude Pro</div>
-        </div>
-        <h3>Build Beyond MVP</h3>
-        <p>3 months of Claude Pro to build a working product with real users. Products enter the Mobayilo portfolio, promoted to investors, NGOs, and government programs. Graduates become mentors for the next cohort.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- Curriculum -->
-  <section class="curriculum section">
-    <div class="container">
-      <div class="label">What we teach</div>
-      <h2>The full SDLC with AI.</h2>
-      <p class="sub">Not prompt tips — the engineering discipline behind shipping production software with AI as a core tool.</p>
-
-      <div class="step-row">
-        <div class="step-arrow">→</div>
+  <main id="top">
+    <section class="hero">
+      <div class="wrap hero-grid">
         <div>
-          <h4>Prototype</h4>
-          <p>Answer design questions fast with throwaway code. Learn what to keep and what to discard.</p>
+          <div class="kicker">Builder school for telecom and AI tools</div>
+          <h1>Build for the user before the deck.</h1>
+          <p class="hero-copy">
+            Mobayilo Academy trains Rwandan engineers to build useful software with telecom context, AI tools, and real user evidence, then backs the strongest field-tested ideas through a 3-month product phase.
+          </p>
+          <div class="hero-actions">
+            <a class="btn primary" href="#apply">$ apply --cohort 1</a>
+            <a class="btn" href="#program">view program arc</a>
+          </div>
         </div>
-      </div>
-      <div class="step-row">
-        <div class="step-arrow">→</div>
-        <div>
-          <h4>Design</h4>
-          <p>Architecture decisions, agent contracts, CLAUDE.md as the source of truth for your AI.</p>
-        </div>
-      </div>
-      <div class="step-row">
-        <div class="step-arrow">→</div>
-        <div>
-          <h4>Build</h4>
-          <p>Production code with AI. Code reviews, tests, CI/CD. The AI is a tool, not a replacement for engineering judgment.</p>
-        </div>
-      </div>
-      <div class="step-row">
-        <div class="step-arrow">→</div>
-        <div>
-          <h4>Deploy</h4>
-          <p>Ship to a real domain. Real users. Real feedback within the first two months.</p>
-        </div>
-      </div>
-      <div class="step-row">
-        <div class="step-arrow">→</div>
-        <div>
-          <h4>Support</h4>
-          <p>Monitor, fix, respond. The discipline of owning what you ship, not just building it.</p>
-        </div>
-      </div>
-    </div>
-  </section>
 
-  <!-- Photo pull — mountain -->
-  <div class="photo-band">
-    <img src="../images/IMG_9351 2.jpeg" alt="African mountain landscape">
-    <div class="overlay">
-      <div class="container">
-        <div class="photo-quote">Cohort 1.<br>5–8 engineers.<br>Applications open now.</div>
+        <aside class="terminal" aria-label="Academy cohort terminal preview">
+          <div class="term-head">
+            <span class="dot red"></span>
+            <span class="dot amber"></span>
+            <span class="dot green"></span>
+            <span class="term-title">~/mobayilo-academy/cohort-1</span>
+          </div>
+          <div class="term-body">
+            <div class="shell">
+              <span class="prompt">$</span> mobayilo cohort init <span class="flag">--rwanda</span> <span class="path">--user-first</span><br>
+              <span class="muted">checking inputs...</span><br>
+              <span class="green">ok</span> code runs, product not proven yet<br>
+              <span class="green">ok</span> applicant has a problem to investigate<br>
+              <span class="amber">next</span> talk to one real future user
+            </div>
+
+            <div class="status-grid">
+              <div class="status-row">
+                <span class="pill">phase 01</span>
+                <strong>product and tool training</strong>
+                <span class="muted">6-8 weeks</span>
+              </div>
+              <div class="status-row">
+                <span class="pill">gate</span>
+                <strong>field report + user conversation</strong>
+                <span class="muted">evidence</span>
+              </div>
+              <div class="status-row">
+                <span class="pill">phase 02</span>
+                <strong>build beyond MVP</strong>
+                <span class="muted">3 months</span>
+              </div>
+            </div>
+
+            <div class="dash" aria-label="Cohort facts">
+              <div><b>5-8</b><span>builders in cohort 1</span></div>
+              <div><b>$20</b><span>monthly builder tool support in product phase</span></div>
+              <div><b>1+</b><span>real user conversation before selection</span></div>
+            </div>
+          </div>
+        </aside>
       </div>
-    </div>
-  </div>
+    </section>
 
-  <!-- Apply -->
-  <section class="apply section" id="apply">
-    <div class="container">
-      <div class="label">Apply</div>
-      <h2>Apply to Cohort 1</h2>
-      <div class="framing">
-        We are not looking for the right words. We are looking for real answers. The more detail and honesty you bring to these questions, the stronger your application. Nothing here eliminates you — everything here helps us understand you.
+    <section class="section" id="mission">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="eyebrow">Mission</div>
+          <div>
+            <h2>Rwanda needs builders, not certificate collectors.</h2>
+            <p class="lead">This is a small, demanding academy for engineers who can already code and now need the discipline to ship useful software, telecom products, and practical tools to real people.</p>
+          </div>
+        </div>
+
+        <div class="principle">
+          <div class="quote-panel">
+            <p>The user must exist before the product does.</p>
+            <small>Every serious idea must survive contact with a real Rwandan user, not just a convincing pitch.</small>
+          </div>
+          <div class="rule-stack">
+            <div class="rule">
+              <b>Design for the device people already use</b>
+              <p>Smartphones, voice, SMS, USSD, and lightweight web flows matter more than shiny dashboards.</p>
+            </div>
+            <div class="rule">
+              <b>Kinyarwanda is a product requirement</b>
+              <p>Language access is part of the system design, especially for rural users.</p>
+            </div>
+            <div class="rule">
+              <b>Entrepreneurship is the output</b>
+              <p>The goal is a working product, a reachable user, and evidence that the problem is worth building for.</p>
+            </div>
+          </div>
+        </div>
       </div>
+    </section>
 
-      <!-- Replace PdkBeQ with your Tally form ID -->
-      <iframe data-tally-src="https://tally.so/embed/PdkBeQ?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1"
-        loading="lazy" width="100%" height="800" frameborder="0" marginheight="0" marginwidth="0"
-        title="Mobayilo AI Academy — Cohort 1 Application"></iframe>
-    </div>
-  </section>
+    <section class="section" id="program">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="eyebrow">Program arc</div>
+          <div>
+            <h2>Train, prove, build.</h2>
+            <p class="lead">The academy is structured like a product pipeline. You do not move forward because the course ended. You move forward because the evidence improved.</p>
+          </div>
+        </div>
 
-  <!-- Footer -->
+        <div class="phase-grid">
+          <article class="phase">
+            <div>
+              <div class="phase-num">01 / TRAINING</div>
+              <h3>Product engineering with modern tools</h3>
+              <p>Prototype, design, build, deploy, and support with practical engineering habits, telecom awareness, and AI-assisted workflows where they create leverage. The work happens on real project ideas, not toy exercises.</p>
+            </div>
+            <div class="phase-foot">Weeks 1-8 · remote · English</div>
+          </article>
+          <article class="phase">
+            <div>
+              <div class="phase-num">02 / GATE</div>
+              <h3>A user conversation, not a vibe</h3>
+              <p>Submit a field visit report and proof of one specific person affected by the problem. Mobayilo's local partner network evaluates the field signal, and the Academy reviews the product and technical path.</p>
+            </div>
+            <div class="phase-foot">Selection by evidence · no fixed quota</div>
+          </article>
+          <article class="phase">
+            <div>
+              <div class="phase-num">03 / PRODUCT</div>
+              <h3>Three months to make it real</h3>
+              <p>Selected builders receive tool support and continue toward deployed products, portfolio visibility, investor/NGO introductions, and future mentor responsibility.</p>
+            </div>
+            <div class="phase-foot">3 months · beyond MVP</div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="curriculum">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="eyebrow">Control surface</div>
+          <div>
+            <h2>The curriculum feels like working in a repo.</h2>
+            <p class="lead">Inspired by terminal-native tools: state is visible, work is inspectable, and every command should move the product closer to a real user.</p>
+          </div>
+        </div>
+
+        <div class="surface">
+          <article class="pane">
+            <div class="pane-head">
+              <span>pipeline.log</span>
+              <span class="green">running</span>
+            </div>
+            <div class="pane-body">
+              <div class="logline"><span>01</span><p><span class="teal">prototype</span> the smallest version that tests the risky assumption.</p></div>
+              <div class="logline"><span>02</span><p><span class="teal">design</span> with agent contracts, product constraints, and architecture notes.</p></div>
+              <div class="logline"><span>03</span><p><span class="teal">build</span> with reviews, tests, and the judgment to reject bad AI output.</p></div>
+              <div class="logline"><span>04</span><p><span class="teal">deploy</span> to a real URL or channel people can actually reach.</p></div>
+              <div class="logline"><span>05</span><p><span class="teal">support</span> with feedback, fixes, monitoring, and ownership after launch.</p></div>
+            </div>
+          </article>
+
+          <article class="pane">
+            <div class="pane-head">
+              <span>builder_state.json</span>
+              <span class="amber">watched</span>
+            </div>
+            <div class="pane-body">
+              <div class="logline"><span>{}</span><p><span class="amber">problem</span>: observed in a named community, not invented for a pitch.</p></div>
+              <div class="logline"><span>{}</span><p><span class="amber">person</span>: one future user with a real situation and a reachable context.</p></div>
+              <div class="logline"><span>{}</span><p><span class="amber">proof</span>: something that runs, even if it is rough.</p></div>
+              <div class="logline"><span>{}</span><p><span class="amber">commitment</span>: time traded honestly for 6-8 weeks of focused work.</p></div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="eyebrow">Positioning</div>
+          <div>
+            <h2>Not a generic bootcamp.</h2>
+            <p class="lead">Mobayilo is small, local in its standards, and serious about entrepreneurship.</p>
+          </div>
+        </div>
+
+        <div class="comparison" aria-label="Academy comparison">
+          <div class="comp-row">
+            <div class="comp-cell">Typical course</div>
+            <div class="comp-cell">Watch lessons, copy examples, collect a certificate.</div>
+            <div class="comp-cell">Success is attendance and completion.</div>
+          </div>
+          <div class="comp-row">
+            <div class="comp-cell">Mobayilo Academy</div>
+            <div class="comp-cell">Work in the repo, talk to users, ship a product path.</div>
+            <div class="comp-cell">Success is a deployed product reaching a real Rwandan user.</div>
+          </div>
+          <div class="comp-row">
+            <div class="comp-cell">Builder standard</div>
+            <div class="comp-cell">Use AI as leverage, not as an excuse to skip fundamentals.</div>
+            <div class="comp-cell">Every claim should have evidence: code, user, deployment, or feedback.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="apply">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="eyebrow">Apply</div>
+          <div>
+            <h2>Cohort 1 applications are open.</h2>
+            <p class="lead">There are no trick questions. More concrete answers make a stronger application.</p>
+          </div>
+        </div>
+
+        <div class="apply-grid">
+          <aside class="apply-card">
+            <h3>What the application is testing</h3>
+            <p>We are not looking for perfect English or polished startup language. We are looking for real answers, evidence, and commitment.</p>
+            <ul class="questions">
+              <li>What problem have you personally observed in your community?</li>
+              <li>Who suffers from it? Describe one specific person.</li>
+              <li>What have you built that runs?</li>
+              <li>What are you willing to give up for 6-8 focused weeks?</li>
+            </ul>
+          </aside>
+
+          <div class="embed-shell">
+            <iframe data-tally-src="https://tally.so/embed/PdkBeQ?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1"
+              loading="lazy" width="100%" height="800" frameborder="0" marginheight="0" marginwidth="0"
+              title="Mobayilo Academy - Cohort 1 Application"></iframe>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
   <footer>
-    <div class="container">
+    <div class="wrap">
       <div>
-        <div class="footer-brand">Mobayilo AI Academy</div>
-        <div class="footer-tag">AI coding training for African engineers · academy.mobayilo.com</div>
+        <div class="footer-brand">Mobayilo Academy</div>
       </div>
-      <div class="footer-contact">
-        <div>Aimable Dusingizimana</div>
-        <div>aimabled@gmail.com</div>
+      <div>
+        <a href="mailto:contact@mobayilo.com">contact@mobayilo.com</a>
       </div>
     </div>
   </footer>
 
-  <!-- Tally embed loader — replace PdkBeQ above with your form ID -->
   <script>
-    var d=document,w="https://tally.so/widgets/embed.js",
-    v=function(){"undefined"!=typeof Tally?Tally.loadEmbeds():d.querySelectorAll("iframe[data-tally-src]:not([src])").forEach(function(e){e.src=e.dataset.tallySrc})};
-    if("undefined"!=typeof Tally)v();
-    else if(d.querySelector('script[src="'+w+'"]')==null){var s=d.createElement("script");s.src=w;s.onload=v;s.onerror=v;d.body.appendChild(s);}
+    var d = document;
+    var w = "https://tally.so/widgets/embed.js";
+    var v = function () {
+      if (typeof Tally !== "undefined") {
+        Tally.loadEmbeds();
+      } else {
+        d.querySelectorAll("iframe[data-tally-src]:not([src])").forEach(function (e) {
+          e.src = e.dataset.tallySrc;
+        });
+      }
+    };
+    if (typeof Tally !== "undefined") {
+      v();
+    } else if (d.querySelector('script[src="' + w + '"]') == null) {
+      var s = d.createElement("script");
+      s.src = w;
+      s.onload = v;
+      s.onerror = v;
+      d.body.appendChild(s);
+    }
   </script>
-
 </body>
 </html>
