@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mobayilo AI Academy — Cohort 1</title>
+<meta name="description" content="An intensive remote training for Rwandan engineers who want to ship real products with AI. 8 weeks of training, then a funded 3-month product phase.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+  a{color:inherit;text-decoration:none}
+  button{cursor:pointer;font:inherit;color:inherit;background:none;border:none}
+
+  :root{
+    --bg:#0a0a0a;
+    --bg-soft:#111111;
+    --line:#1f1f1f;
+    --line-bright:#2a2a2a;
+    --text:#e8e8e8;
+    --muted:#7a7a7a;
+    --dim:#4a4a4a;
+    --accent:#7cf29c;          /* phosphor green */
+    --accent-dim:#3a7a4d;
+    --warm:#f5c97b;            /* builder amber */
+    --red:#ff6b6b;
+    --mono:'JetBrains Mono',ui-monospace,SFMono-Regular,Menlo,monospace;
+    --sans:'Inter',-apple-system,BlinkMacSystemFont,system-ui,sans-serif;
+  }
+
+  body{
+    font-family:var(--mono);
+    background:var(--bg);
+    color:var(--text);
+    line-height:1.55;
+    font-size:15px;
+    min-height:100vh;
+    overflow-x:hidden;
+    background-image:
+      radial-gradient(circle at 20% 0%, rgba(124,242,156,0.04), transparent 40%),
+      radial-gradient(circle at 80% 100%, rgba(245,201,123,0.03), transparent 50%);
+  }
+
+  /* subtle scanlines */
+  body::before{
+    content:"";
+    position:fixed;inset:0;
+    pointer-events:none;
+    background:repeating-linear-gradient(0deg,
+      rgba(255,255,255,0.012) 0,
+      rgba(255,255,255,0.012) 1px,
+      transparent 1px,
+      transparent 3px);
+    z-index:1;
+  }
+
+  .wrap{max-width:980px;margin:0 auto;padding:0 24px;position:relative;z-index:2}
+
+  /* ── Top bar ─────────────────────────────────────────── */
+  .topbar{
+    border-bottom:1px solid var(--line);
+    background:rgba(10,10,10,0.85);
+    backdrop-filter:blur(8px);
+    position:sticky;top:0;z-index:50;
+  }
+  .topbar-inner{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:14px 0;
+    font-size:13px;
+  }
+  .brand{
+    display:flex;align-items:center;gap:10px;
+    color:var(--text);font-weight:600;
+  }
+  .brand-dot{
+    width:8px;height:8px;border-radius:50%;
+    background:var(--accent);
+    box-shadow:0 0 8px var(--accent);
+    animation:pulse 2s ease-in-out infinite;
+  }
+  @keyframes pulse{
+    0%,100%{opacity:1}
+    50%{opacity:.4}
+  }
+  .brand-name{letter-spacing:.5px}
+  .brand-tag{color:var(--muted);margin-left:8px}
+  .top-nav{display:flex;gap:22px;color:var(--muted)}
+  .top-nav a:hover{color:var(--accent)}
+  @media(max-width:640px){.top-nav{display:none}}
+
+  /* ── Hero ────────────────────────────────────────────── */
+  .hero{padding:80px 0 60px;border-bottom:1px dashed var(--line)}
+  .kicker{
+    color:var(--accent);
+    font-size:12px;letter-spacing:2px;text-transform:uppercase;
+    margin-bottom:24px;
+    display:flex;align-items:center;gap:10px;
+  }
+  .kicker::before{content:"$";color:var(--dim)}
+
+  h1.title{
+    font-family:var(--sans);
+    font-size:clamp(40px,7vw,68px);
+    font-weight:800;
+    line-height:1.05;
+    letter-spacing:-1.5px;
+    margin-bottom:18px;
+  }
+  h1.title .blink{
+    display:inline-block;width:.5em;height:1em;
+    background:var(--accent);
+    vertical-align:-3px;margin-left:6px;
+    animation:blink 1s steps(2) infinite;
+  }
+  @keyframes blink{50%{opacity:0}}
+  h1 .grad{
+    background:linear-gradient(90deg,var(--accent),var(--warm));
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+  }
+  .lede{
+    max-width:640px;
+    color:var(--muted);
+    font-size:17px;line-height:1.65;
+    margin-bottom:36px;
+  }
+  .lede strong{color:var(--text);font-weight:500}
+
+  .cta-row{display:flex;gap:14px;flex-wrap:wrap;align-items:center}
+  .btn{
+    display:inline-flex;align-items:center;gap:10px;
+    padding:13px 20px;
+    font-family:var(--mono);font-size:14px;font-weight:500;
+    border:1px solid var(--line-bright);
+    background:var(--bg-soft);
+    color:var(--text);
+    transition:all .15s ease;
+  }
+  .btn:hover{border-color:var(--accent);color:var(--accent);transform:translateY(-1px)}
+  .btn-primary{
+    background:var(--accent);color:#0a0a0a;border-color:var(--accent);
+    font-weight:600;
+  }
+  .btn-primary:hover{
+    background:transparent;color:var(--accent);
+    box-shadow:0 0 24px rgba(124,242,156,0.25);
+  }
+  .btn .arrow{transition:transform .15s ease}
+  .btn:hover .arrow{transform:translateX(3px)}
+
+  .meta-strip{
+    margin-top:48px;
+    display:grid;grid-template-columns:repeat(4,1fr);gap:1px;
+    background:var(--line);
+    border:1px solid var(--line);
+  }
+  .meta-strip > div{
+    background:var(--bg);padding:18px 20px;
+  }
+  .meta-label{font-size:11px;color:var(--dim);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:6px}
+  .meta-value{font-size:15px;color:var(--text);font-weight:500}
+  @media(max-width:720px){
+    .meta-strip{grid-template-columns:repeat(2,1fr)}
+  }
+
+  /* ── Section header ──────────────────────────────────── */
+  section{padding:80px 0;border-bottom:1px dashed var(--line)}
+  .section-head{
+    display:flex;align-items:center;gap:14px;
+    margin-bottom:40px;
+    font-size:13px;color:var(--muted);
+  }
+  .section-num{color:var(--accent);font-weight:600}
+  .section-line{flex:1;height:1px;background:var(--line)}
+  h2{
+    font-family:var(--sans);
+    font-size:clamp(28px,4vw,40px);
+    font-weight:700;letter-spacing:-.8px;line-height:1.15;
+    margin-bottom:18px;
+  }
+  .section-intro{color:var(--muted);max-width:680px;font-size:16px;line-height:1.7;margin-bottom:40px}
+  .section-intro strong{color:var(--text);font-weight:500}
+
+  /* ── Mission / quote block ───────────────────────────── */
+  .pillars{
+    display:grid;grid-template-columns:repeat(3,1fr);gap:1px;
+    background:var(--line);border:1px solid var(--line);
+    margin-top:32px;
+  }
+  .pillar{background:var(--bg);padding:28px}
+  .pillar-mark{
+    font-family:var(--mono);font-size:12px;color:var(--accent);
+    margin-bottom:14px;letter-spacing:1px;
+  }
+  .pillar h3{
+    font-family:var(--sans);font-size:18px;font-weight:600;
+    margin-bottom:10px;color:var(--text);
+  }
+  .pillar p{color:var(--muted);font-size:14px;line-height:1.6}
+  @media(max-width:760px){.pillars{grid-template-columns:1fr}}
+
+  .quote{
+    margin:48px 0 0;
+    padding:24px 28px;
+    border-left:2px solid var(--accent);
+    background:var(--bg-soft);
+    font-family:var(--sans);
+    font-size:20px;line-height:1.45;
+    color:var(--text);
+    font-style:italic;
+  }
+  .quote-attr{
+    margin-top:14px;
+    font-family:var(--mono);font-size:12px;color:var(--muted);font-style:normal;
+  }
+
+  /* ── Program phases ──────────────────────────────────── */
+  .phases{display:flex;flex-direction:column;gap:0;border:1px solid var(--line)}
+  .phase{
+    display:grid;grid-template-columns:120px 1fr auto;
+    align-items:start;
+    padding:28px 28px;
+    border-bottom:1px solid var(--line);
+    transition:background .2s ease;
+  }
+  .phase:last-child{border-bottom:none}
+  .phase:hover{background:var(--bg-soft)}
+  .phase-id{
+    font-size:12px;color:var(--accent);letter-spacing:1.5px;
+    font-weight:600;padding-top:4px;
+  }
+  .phase-body h3{
+    font-family:var(--sans);font-size:20px;font-weight:600;
+    margin-bottom:8px;color:var(--text);
+  }
+  .phase-body p{color:var(--muted);font-size:14px;line-height:1.65;max-width:560px}
+  .phase-meta{
+    font-family:var(--mono);font-size:12px;color:var(--dim);
+    text-align:right;padding-top:4px;white-space:nowrap;
+  }
+  @media(max-width:720px){
+    .phase{grid-template-columns:1fr;gap:8px}
+    .phase-meta{text-align:left}
+  }
+
+  /* ── Curriculum / SDLC ───────────────────────────────── */
+  .sdlc{
+    margin-top:32px;
+    border:1px solid var(--line);
+    background:var(--bg-soft);
+    padding:28px;
+    font-family:var(--mono);
+  }
+  .sdlc-line{
+    font-size:13px;color:var(--muted);margin-bottom:6px;
+  }
+  .sdlc-prompt{color:var(--accent);user-select:none;margin-right:8px}
+  .sdlc-pipeline{
+    font-size:16px;color:var(--text);
+    margin:14px 0 22px;
+    line-height:1.7;
+    word-break:break-word;
+  }
+  .sdlc-pipeline span{color:var(--warm);font-weight:600}
+  .sdlc-pipeline .arr{color:var(--dim);margin:0 8px}
+  .sdlc-note{font-size:13px;color:var(--muted)}
+  .sdlc-note .c{color:var(--accent)}
+
+  /* ── Apply / form ────────────────────────────────────── */
+  .apply-intro{
+    border:1px solid var(--accent-dim);
+    background:rgba(124,242,156,0.04);
+    padding:22px 24px;
+    margin-bottom:36px;
+    font-size:14px;color:var(--text);line-height:1.65;
+  }
+  .apply-intro strong{color:var(--accent)}
+
+  form .q{
+    margin-bottom:32px;
+    padding-bottom:32px;
+    border-bottom:1px dashed var(--line);
+  }
+  form .q:last-of-type{border-bottom:none}
+  .q-label{
+    display:block;
+    font-family:var(--mono);font-size:13px;color:var(--accent);
+    margin-bottom:10px;letter-spacing:.5px;
+  }
+  .q-prompt{
+    font-family:var(--sans);font-size:18px;font-weight:600;
+    color:var(--text);margin-bottom:8px;line-height:1.4;
+  }
+  .q-hint{font-size:13px;color:var(--muted);margin-bottom:14px;font-style:italic}
+  input,textarea{
+    width:100%;
+    font-family:var(--mono);font-size:14px;
+    background:var(--bg-soft);
+    color:var(--text);
+    border:1px solid var(--line-bright);
+    padding:14px 16px;
+    border-radius:0;
+    transition:border-color .15s ease;
+    resize:vertical;
+  }
+  textarea{min-height:120px}
+  input:focus,textarea:focus{
+    outline:none;border-color:var(--accent);
+    box-shadow:0 0 0 3px rgba(124,242,156,0.08);
+  }
+  .field-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:32px}
+  @media(max-width:640px){.field-row{grid-template-columns:1fr}}
+
+  .submit-row{display:flex;gap:14px;align-items:center;flex-wrap:wrap;margin-top:8px}
+  .submit-row .btn-primary{padding:15px 28px;font-size:15px}
+  .submit-note{font-size:12px;color:var(--muted)}
+
+  /* ── Footer ──────────────────────────────────────────── */
+  footer{
+    padding:48px 0 60px;
+    color:var(--muted);font-size:13px;
+  }
+  .footer-grid{
+    display:grid;grid-template-columns:2fr 1fr 1fr;gap:32px;
+    margin-bottom:32px;
+  }
+  @media(max-width:640px){.footer-grid{grid-template-columns:1fr}}
+  footer h4{
+    font-family:var(--mono);font-size:11px;letter-spacing:2px;
+    text-transform:uppercase;color:var(--dim);margin-bottom:12px;
+  }
+  footer a:hover{color:var(--accent)}
+  .foot-bar{
+    padding-top:24px;border-top:1px solid var(--line);
+    display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;
+    font-size:12px;color:var(--dim);
+  }
+
+  /* utility */
+  .accent{color:var(--accent)}
+  .warm{color:var(--warm)}
+  .dim{color:var(--dim)}
+  .ascii{
+    font-family:var(--mono);font-size:12px;line-height:1.2;
+    color:var(--dim);white-space:pre;overflow-x:auto;
+    margin-bottom:24px;
+  }
+  @media(max-width:520px){.ascii{font-size:9px}}
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="wrap topbar-inner">
+    <a class="brand" href="#top">
+      <span class="brand-dot"></span>
+      <span class="brand-name">mobayilo<span class="accent">_</span>academy</span>
+      <span class="brand-tag">// cohort 01</span>
+    </a>
+    <nav class="top-nav">
+      <a href="#mission">mission</a>
+      <a href="#program">program</a>
+      <a href="#teach">curriculum</a>
+      <a href="#apply">apply</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- ── Hero ─────────────────────────────────────────── -->
+  <section class="hero">
+    <div class="wrap">
+      <div class="kicker">remote · english · self-financed · 5–8 seats</div>
+
+      <pre class="ascii">┌─────────────────────────────────────────────────────────┐
+│  mobayilo /mo·ba·yi·lo/  n.  mobile telephone  [kinyarwanda]│
+└─────────────────────────────────────────────────────────┘</pre>
+
+      <h1 class="title">
+        Build software<br>
+        <span class="grad">for Rwandans</span>,<br>
+        with AI.<span class="blink"></span>
+      </h1>
+
+      <p class="lede">
+        An 8-week intensive for Rwandan engineers who can code but have <strong>never shipped a product to a real user</strong>. We train you across the full SDLC with AI — then fund the strongest projects for 3 months of real product work.
+      </p>
+
+      <div class="cta-row">
+        <a class="btn btn-primary" href="#apply">
+          apply to cohort 01 <span class="arrow">→</span>
+        </a>
+        <a class="btn" href="#program">
+          read the program
+        </a>
+      </div>
+
+      <div class="meta-strip">
+        <div>
+          <div class="meta-label">duration</div>
+          <div class="meta-value">8 weeks + 3 months</div>
+        </div>
+        <div>
+          <div class="meta-label">format</div>
+          <div class="meta-value">remote · english</div>
+        </div>
+        <div>
+          <div class="meta-label">cohort size</div>
+          <div class="meta-value">5–8 engineers</div>
+        </div>
+        <div>
+          <div class="meta-label">launches</div>
+          <div class="meta-value">when ready</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Mission ──────────────────────────────────────── -->
+  <section id="mission">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="section-num">// 01</span>
+        <span>mission</span>
+        <span class="section-line"></span>
+      </div>
+
+      <h2>The user must exist <span class="accent">before</span> the product does.</h2>
+      <p class="section-intro">
+        Smartphone penetration is now widespread across Rwanda, including rural areas. The opportunity to build digital solutions for Rwandan problems — designed with Rwanda's market, culture, and language in mind — is larger than it has ever been. We are not comparing Rwanda to anywhere else. <strong>Rwandan engineers solving Rwandan problems on their own terms.</strong>
+      </p>
+
+      <div class="pillars">
+        <div class="pillar">
+          <div class="pillar-mark">[01]</div>
+          <h3>Africa-first</h3>
+          <p>Not a generic AI bootcamp translated. The brief is local: a user you've actually met, a problem you've actually seen.</p>
+        </div>
+        <div class="pillar">
+          <div class="pillar-mark">[02]</div>
+          <h3>Kinyarwanda by design</h3>
+          <p>Voice, USSD, SMS, Kinyarwanda interfaces — the language gap is a design challenge to be proud of, not an afterthought.</p>
+        </div>
+        <div class="pillar">
+          <div class="pillar-mark">[03]</div>
+          <h3>Ship or it didn't happen</h3>
+          <p>The work speaks for itself. You progress by shipping something a real Rwandan user can open on their phone today.</p>
+        </div>
+      </div>
+
+      <blockquote class="quote">
+        “Train engineers to build with AI, hold them accountable to a real Rwandan user, and let the work speak for itself.”
+        <div class="quote-attr">— Aimable Dusingizimana, founder</div>
+      </blockquote>
+    </div>
+  </section>
+
+  <!-- ── Program ──────────────────────────────────────── -->
+  <section id="program">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="section-num">// 02</span>
+        <span>program arc</span>
+        <span class="section-line"></span>
+      </div>
+
+      <h2>Three phases. One outcome: <span class="warm">a shipped product</span>.</h2>
+      <p class="section-intro">
+        Selection is fluid. Idea quality and evidence determine who passes the gate — not a fixed quota.
+      </p>
+
+      <div class="phases">
+        <div class="phase">
+          <div class="phase-id">PHASE 01</div>
+          <div class="phase-body">
+            <h3>Training</h3>
+            <p>Intensive remote training in AI-assisted engineering. Claude Code and the full SDLC — Prototype → Design → Build → Deploy → Support. English instruction. Live sessions, not a self-serve LMS.</p>
+          </div>
+          <div class="phase-meta">8 weeks</div>
+        </div>
+
+        <div class="phase">
+          <div class="phase-id">GATE</div>
+          <div class="phase-body">
+            <h3>Project selection</h3>
+            <p>Submit a field visit report and proof of <em>at least one real conversation</em> with a future user. The Kigali-based partner evaluates ideas. Aimable confirms. The user must exist.</p>
+          </div>
+          <div class="phase-meta">checkpoint</div>
+        </div>
+
+        <div class="phase">
+          <div class="phase-id">PHASE 02</div>
+          <div class="phase-body">
+            <h3>Product phase</h3>
+            <p>Selected participants receive a $20/month Claude or Codex Pro subscription for 3 months to build a working product beyond a basic MVP — and deploy it to the user you named at the gate.</p>
+          </div>
+          <div class="phase-meta">3 months</div>
+        </div>
+
+        <div class="phase">
+          <div class="phase-id">AFTER</div>
+          <div class="phase-body">
+            <h3>Portfolio &amp; mentorship</h3>
+            <p>Products enter the Academy portfolio — promoted to investors, NGOs, and government programs. Graduates become mentors for the next cohort. The flywheel turns.</p>
+          </div>
+          <div class="phase-meta">ongoing</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── What we teach ────────────────────────────────── -->
+  <section id="teach">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="section-num">// 03</span>
+        <span>what we teach</span>
+        <span class="section-line"></span>
+      </div>
+
+      <h2>The full SDLC, <span class="accent">with AI</span> — not prompt tricks.</h2>
+      <p class="section-intro">
+        Engineering discipline applied to AI-assisted work. You'll leave knowing how to drive a product from a half-formed idea to a thing your user can hold in their hand.
+      </p>
+
+      <div class="sdlc">
+        <div class="sdlc-line"><span class="sdlc-prompt">$</span>curriculum --show pipeline</div>
+
+        <div class="sdlc-pipeline">
+          <span>prototype</span><span class="arr">→</span><span>design</span><span class="arr">→</span><span>build</span><span class="arr">→</span><span>deploy</span><span class="arr">→</span><span>support</span>
+        </div>
+
+        <div class="sdlc-note">
+          <span class="c">›</span> every stage with AI as a collaborator. every stage with a user at the other end. no certificates — only working software.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Apply ────────────────────────────────────────── -->
+  <section id="apply">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="section-num">// 04</span>
+        <span>apply</span>
+        <span class="section-line"></span>
+      </div>
+
+      <h2>Four questions. <span class="accent">No trick questions.</span></h2>
+
+      <div class="apply-intro">
+        <strong>›</strong> We are not looking for the right words. We are looking for real answers. The more detail and honesty you bring, the stronger your application. <strong>Nothing here eliminates you — everything here helps us understand you.</strong>
+      </div>
+
+      <form action="https://formspree.io/f/REPLACE_ME" method="POST" id="applyForm">
+        <div class="field-row">
+          <div>
+            <label class="q-label" for="name">// your name</label>
+            <input type="text" id="name" name="name" required placeholder="e.g. Aimable Dusingizimana">
+          </div>
+          <div>
+            <label class="q-label" for="email">// email</label>
+            <input type="email" id="email" name="email" required placeholder="you@somewhere.rw">
+          </div>
+        </div>
+
+        <div class="q">
+          <span class="q-label">// question 01 — the problem</span>
+          <div class="q-prompt">What problem have you personally observed in your community that technology hasn't solved yet?</div>
+          <div class="q-hint">Be specific. Name the place, the situation, the people affected.</div>
+          <textarea name="q1_problem" required placeholder="The cooperative I visited in Musanze still tracks deliveries with a paper ledger..."></textarea>
+        </div>
+
+        <div class="q">
+          <span class="q-label">// question 02 — the person</span>
+          <div class="q-prompt">Who suffers from this problem? Describe one specific person — not a category of people.</div>
+          <div class="q-hint">A name, an age, a situation. If you've met them, tell us.</div>
+          <textarea name="q2_person" required placeholder="Jeanne, 47, runs a small kiosk in Kibungo. She..."></textarea>
+        </div>
+
+        <div class="q">
+          <span class="q-label">// question 03 — something you've built</span>
+          <div class="q-prompt">Share something you've built — a GitHub repo, a deployed project, anything that runs.</div>
+          <div class="q-hint">We're not evaluating code quality. We want proof you can ship something that works.</div>
+          <textarea name="q3_built" required placeholder="https://github.com/... and a sentence about what it does"></textarea>
+        </div>
+
+        <div class="q">
+          <span class="q-label">// question 04 — the commitment</span>
+          <div class="q-prompt">What are you willing to give up for 6–8 weeks to focus on this program?</div>
+          <div class="q-hint">Be honest. We want to know you've thought about the real cost.</div>
+          <textarea name="q4_commitment" required placeholder="I currently work part-time at... I would..."></textarea>
+        </div>
+
+        <div class="submit-row">
+          <button type="submit" class="btn btn-primary">
+            submit application <span class="arrow">→</span>
+          </button>
+          <span class="submit-note">your answers go directly to Aimable.</span>
+        </div>
+      </form>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <h4>// mobayilo academy</h4>
+        <p style="color:var(--text);line-height:1.6;max-width:380px">
+          A program by <a href="https://mobayilo.com" class="accent">Aimable Dusingizimana</a>. Built remote from Tokyo, rooted in Kigali, aimed at the user who can't be reached from either.
+        </p>
+      </div>
+      <div>
+        <h4>// site</h4>
+        <p><a href="#mission">mission</a></p>
+        <p><a href="#program">program</a></p>
+        <p><a href="#teach">curriculum</a></p>
+        <p><a href="#apply">apply</a></p>
+      </div>
+      <div>
+        <h4>// contact</h4>
+        <p><a href="mailto:hello@mobayilo.com">hello@mobayilo.com</a></p>
+        <p><a href="https://mobayilo.com">mobayilo.com</a></p>
+      </div>
+    </div>
+    <div class="foot-bar">
+      <span>© 2026 mobayilo academy</span>
+      <span>built with <span class="accent">claude code</span> · the user came first</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // soft typing reveal for the hero kicker
+  const k = document.querySelector('.kicker');
+  if(k){
+    const t = k.textContent;
+    k.textContent = '';
+    let i = 0;
+    const tick = () => {
+      if(i <= t.length){
+        k.textContent = t.slice(0,i);
+        i++;
+        setTimeout(tick, 22);
+      }
+    };
+    setTimeout(tick, 300);
+  }
+</script>
+
+</body>
+</html>
