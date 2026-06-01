@@ -7,7 +7,7 @@
   <meta name="description" content="Intensive AI-assisted engineering training for African engineers. 8 weeks of training, then a funded 3-month product phase for ideas that reach real users.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Inconsolata:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
 
     /* ── Reset ──────────────────────────────────────────────── */
@@ -33,10 +33,14 @@
 
     /* ── Base ───────────────────────────────────────────────── */
     body {
-      font-family: 'Inter', system-ui, sans-serif;
+      font-family: 'Inconsolata', monospace;
       background: var(--bg);
       color: var(--text);
       min-height: 100vh;
+    }
+
+    h1, h2, h3, h4 {
+      font-family: 'Cormorant Garamond', serif;
     }
 
     /* ── Container ──────────────────────────────────────────── */
@@ -55,11 +59,18 @@
 
     /* ── Label (section eyebrow) ────────────────────────────── */
     .label {
+      display: inline-flex;
+      align-items: center;
+      font-family: 'Inconsolata', monospace;
       font-size: 10px;
       font-weight: 700;
       letter-spacing: 0.22em;
       text-transform: uppercase;
       color: var(--green);
+      background: rgba(61, 220, 132, 0.1);
+      border: 1px solid rgba(61, 220, 132, 0.25);
+      border-radius: 999px;
+      padding: 4px 12px;
       margin-bottom: 20px;
     }
 
@@ -91,23 +102,31 @@
       flex-shrink: 0;
     }
     .nav-name {
+      font-family: 'Inconsolata', monospace;
       font-size: 12px;
       font-weight: 600;
       letter-spacing: 0.14em;
       text-transform: uppercase;
     }
     .nav-cta {
-      background: rgba(255,255,255,0.12);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border: 1px solid rgba(255,255,255,0.25);
-      color: white;
-      padding: 8px 18px;
-      border-radius: 99px;
+      background: var(--amber);
+      color: var(--bg-deep);
+      padding: 0 20px;
+      height: 38px;
+      border-radius: 999px;
+      font-family: 'Inconsolata', monospace;
       font-size: 13px;
-      font-weight: 600;
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      box-shadow: 0 4px 14px rgba(245, 158, 11, 0.35);
+      transition: all 0.25s;
     }
-    .nav-cta:hover { background: rgba(255,255,255,0.2); }
+    .nav-cta:hover {
+      background: var(--amber-h);
+      transform: translateY(-1px);
+      box-shadow: 0 6px 20px rgba(245, 158, 11, 0.45);
+    }
 
     /* ── Hero ───────────────────────────────────────────────── */
     .hero {
@@ -140,44 +159,53 @@
       padding-bottom: 64px;
       padding-top: 40px;
     }
-    .hero-kw {
-      font-size: 11px;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      color: rgba(255,255,255,0.6);
-      margin-bottom: 20px;
-    }
     .hero h1 {
-      font-size: clamp(40px, 10vw, 80px);
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(52px, 12vw, 96px);
       font-weight: 700;
-      line-height: 1.0;
-      letter-spacing: -0.025em;
+      line-height: 0.95;
+      letter-spacing: -0.01em;
       margin-bottom: 20px;
     }
     .hero h1 span { color: var(--amber-cta); }
     .hero p {
-      font-size: 17px;
-      line-height: 1.65;
+      font-family: 'Inconsolata', monospace;
+      font-size: 16px;
+      line-height: 1.7;
       color: rgba(255,255,255,0.78);
       max-width: 420px;
       margin-bottom: 36px;
     }
     .btn-primary {
-      display: inline-block;
+      display: inline-flex;
+      align-items: center;
       background: var(--amber);
       color: var(--bg-deep);
-      padding: 14px 28px;
-      border-radius: 99px;
+      padding: 0 32px;
+      height: 52px;
+      border-radius: 999px;
+      font-family: 'Inconsolata', monospace;
       font-size: 15px;
       font-weight: 700;
-      letter-spacing: 0.01em;
+      letter-spacing: 0.02em;
+      box-shadow: 0 8px 24px rgba(245, 158, 11, 0.4);
+      transition: all 0.3s;
     }
-    .btn-primary:hover { background: var(--amber-h); }
+    .btn-primary:hover {
+      background: var(--amber-h);
+      transform: translateY(-2px) scale(1.03);
+      box-shadow: 0 12px 32px rgba(245, 158, 11, 0.5);
+    }
+    .btn-primary:active {
+      transform: scale(0.97);
+    }
     .scroll-hint {
       display: block;
+      font-family: 'Inconsolata', monospace;
       font-size: 12px;
       color: rgba(255,255,255,0.35);
       margin-top: 20px;
+      letter-spacing: 0.08em;
     }
 
     /* ── Section spacing ────────────────────────────────────── */
@@ -193,16 +221,18 @@
       background: var(--bg);
     }
     .mission-quote {
-      font-size: clamp(22px, 5vw, 34px);
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(28px, 5vw, 44px);
       font-weight: 700;
-      line-height: 1.22;
+      line-height: 1.18;
       color: var(--text);
       margin-bottom: 32px;
     }
-    .mission-quote em { color: var(--amber); font-style: normal; }
+    .mission-quote em { color: var(--amber); font-style: italic; }
     .mission p {
-      font-size: 16px;
-      line-height: 1.82;
+      font-family: 'Inconsolata', monospace;
+      font-size: 15px;
+      line-height: 1.85;
       color: var(--muted);
       margin-bottom: 16px;
       max-width: 600px;
@@ -229,10 +259,11 @@
       align-items: center;
     }
     .photo-quote {
-      font-size: clamp(20px, 5vw, 30px);
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(26px, 5vw, 40px);
       font-weight: 700;
       color: white;
-      line-height: 1.22;
+      line-height: 1.18;
       max-width: 480px;
     }
 
@@ -241,19 +272,24 @@
       background: var(--bg);
     }
     .program h2 {
-      font-size: clamp(28px, 6vw, 44px);
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(36px, 6vw, 56px);
       font-weight: 700;
-      letter-spacing: -0.025em;
-      line-height: 1.08;
+      letter-spacing: -0.01em;
+      line-height: 1.05;
       margin-bottom: 52px;
       max-width: 440px;
     }
     .phase-card {
-      border-top: 1px solid var(--border);
-      padding: 32px 0;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 28px 32px;
+      margin-bottom: 16px;
+      transition: border-color 0.2s;
     }
-    .phase-card:last-child {
-      border-bottom: 1px solid var(--border);
+    .phase-card:hover {
+      border-color: rgba(245, 158, 11, 0.3);
     }
     .phase-header {
       display: flex;
@@ -264,6 +300,7 @@
       margin-bottom: 12px;
     }
     .phase-lbl {
+      font-family: 'Inconsolata', monospace;
       font-size: 10px;
       letter-spacing: 0.18em;
       text-transform: uppercase;
@@ -271,18 +308,21 @@
       font-weight: 700;
     }
     .phase-dur {
+      font-family: 'Inconsolata', monospace;
       font-size: 12px;
       color: var(--muted);
     }
     .phase-card h3 {
-      font-size: 19px;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 22px;
       font-weight: 700;
       color: var(--text);
       margin-bottom: 10px;
     }
     .phase-card p {
-      font-size: 15px;
-      line-height: 1.78;
+      font-family: 'Inconsolata', monospace;
+      font-size: 14px;
+      line-height: 1.8;
       color: var(--muted);
     }
 
@@ -291,16 +331,19 @@
       background: var(--bg-deep);
     }
     .curriculum h2 {
-      font-size: clamp(28px, 6vw, 44px);
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(36px, 6vw, 56px);
       font-weight: 700;
-      letter-spacing: -0.025em;
+      letter-spacing: -0.01em;
       margin-bottom: 10px;
     }
     .curriculum .sub {
-      font-size: 15px;
+      font-family: 'Inconsolata', monospace;
+      font-size: 14px;
       color: var(--muted);
       margin-bottom: 48px;
       max-width: 520px;
+      line-height: 1.75;
     }
     .step-row {
       display: flex;
@@ -322,15 +365,17 @@
       flex-shrink: 0;
     }
     .step-row h4 {
-      font-size: 15px;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 18px;
       font-weight: 700;
       color: var(--text);
       margin-bottom: 4px;
     }
     .step-row p {
-      font-size: 14px;
+      font-family: 'Inconsolata', monospace;
+      font-size: 13px;
       color: var(--muted);
-      line-height: 1.65;
+      line-height: 1.7;
     }
 
     /* ── Apply ──────────────────────────────────────────────── */
@@ -338,18 +383,20 @@
       background: var(--bg);
     }
     .apply h2 {
-      font-size: clamp(28px, 6vw, 44px);
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(36px, 6vw, 56px);
       font-weight: 700;
-      letter-spacing: -0.025em;
+      letter-spacing: -0.01em;
       margin-bottom: 20px;
     }
     .framing {
       background: var(--bg-card);
       border-left: 3px solid var(--amber);
-      padding: 18px 22px;
-      border-radius: 0 6px 6px 0;
+      padding: 20px 24px;
+      border-radius: 0 10px 10px 0;
+      font-family: 'Inconsolata', monospace;
       font-size: 14px;
-      line-height: 1.8;
+      line-height: 1.85;
       color: var(--amber-cta);
       margin-bottom: 44px;
     }
@@ -367,17 +414,20 @@
       align-items: flex-start;
     }
     .footer-brand {
-      font-size: 14px;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 18px;
       font-weight: 700;
       color: var(--text);
       margin-bottom: 6px;
     }
     .footer-tag {
-      font-size: 13px;
+      font-family: 'Inconsolata', monospace;
+      font-size: 12px;
       color: var(--muted);
     }
     .footer-contact {
-      font-size: 13px;
+      font-family: 'Inconsolata', monospace;
+      font-size: 12px;
       color: var(--muted);
       line-height: 1.7;
       text-align: right;
@@ -406,7 +456,6 @@
     <div class="hero-bg"></div>
     <div class="hero-overlay"></div>
     <div class="hero-content container">
-      <div class="hero-kw">Mo·ba·yi·lo — mobile telephone in Kinyarwanda</div>
       <h1>Build something<br><span>Africa</span><br>needs.</h1>
       <p>8 weeks of AI engineering training, then a funded 3-month product phase for ideas that reach real users.</p>
       <a href="#apply" class="btn-primary">Apply to Cohort 1</a>
