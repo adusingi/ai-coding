@@ -1,0 +1,451 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Mobayilo Academy — Manifesto</title>
+<meta name="description" content="Mobayilo AI Academy. Rwandan engineers building real software for real Rwandan users, with AI.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,800;1,9..144,500&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#faf7f0; --bg-2:#f1ece0; --ink:#0d0f0c; --ink-soft:#1f231d;
+    --paper:#fffcf3; --rule:#e2dccb;
+    --accent:#0d0f0c;       /* high-contrast black */
+    --hot:#ff5b1f;          /* builder orange */
+    --money:#0c8f5b;        /* dollar green */
+    --kbd:#0d0f0c;
+  }
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--bg);
+    color:var(--ink);
+    font: 500 18px/1.6 'Fraunces', Georgia, 'Times New Roman', serif;
+    font-optical-sizing:auto;
+    min-height:100vh;
+    background-image:
+      radial-gradient(900px 500px at 80% -10%, rgba(255,91,31,.07), transparent 70%),
+      radial-gradient(700px 400px at -10% 110%, rgba(12,143,91,.06), transparent 70%);
+  }
+  a{color:var(--ink); text-decoration:underline; text-decoration-thickness:1.5px; text-underline-offset:4px; text-decoration-color:var(--hot)}
+  a:hover{ background:var(--hot); color:var(--paper); text-decoration:none }
+  .mono{ font-family:'JetBrains Mono', ui-monospace, Menlo, monospace; font-weight:500 }
+
+  .container{ max-width:1100px; margin:0 auto; padding:0 24px }
+  @media(min-width:900px){ .container{ padding:0 48px } }
+
+  /* nav */
+  nav.top{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:22px 0 18px; border-bottom:1px solid var(--rule);
+  }
+  .brand{ display:flex; align-items:center; gap:12px; font-weight:700; letter-spacing:.02em }
+  .brand .mark{
+    width:34px;height:34px;border-radius:50%;background:var(--ink);
+    display:grid;place-items:center; color:var(--bg); font-family:'JetBrains Mono', monospace; font-weight:700;
+  }
+  .brand b{ font-family:'JetBrains Mono', monospace; font-size:13px; text-transform:uppercase; letter-spacing:.18em }
+  .nav-links{ display:none; gap:24px; font: 500 13px/1 'JetBrains Mono', monospace; text-transform:uppercase; letter-spacing:.14em }
+  .nav-links a{ text-decoration:none; color:var(--ink-soft) }
+  .nav-links a:hover{ background:transparent; color:var(--hot) }
+  @media(min-width:760px){ .nav-links{ display:flex } }
+  .cta{
+    display:inline-flex; align-items:center; gap:8px;
+    background:var(--ink); color:var(--bg);
+    padding:10px 18px; border-radius:999px;
+    font: 700 13px/1 'JetBrains Mono', monospace;
+    text-transform:uppercase; letter-spacing:.12em;
+    text-decoration:none;
+  }
+  .cta:hover{ background:var(--hot); color:var(--paper) }
+  .cta::after{ content:"↗"; font-size:14px }
+
+  /* hero — manifesto */
+  .hero{
+    padding: 80px 0 60px;
+    display:grid; grid-template-columns:1fr; gap:48px;
+  }
+  @media(min-width:900px){ .hero{ grid-template-columns:7fr 5fr; gap:80px } }
+
+  .eyebrow{
+    display:inline-flex; align-items:center; gap:10px;
+    font: 700 12px/1 'JetBrains Mono', monospace;
+    text-transform:uppercase; letter-spacing:.22em;
+    color:var(--ink-soft);
+    padding:8px 14px; border:1.5px solid var(--ink); border-radius:999px;
+    background:var(--paper);
+    margin-bottom:28px;
+  }
+  .eyebrow .dot{ width:7px; height:7px; border-radius:50%; background:var(--hot); box-shadow:0 0 0 4px rgba(255,91,31,.18) }
+
+  h1.hero-h{
+    font: 800 clamp(48px, 9vw, 104px)/0.92 'Fraunces', serif;
+    letter-spacing:-.025em; color:var(--ink);
+    margin-bottom:24px;
+  }
+  h1.hero-h em{ font-style:italic; color:var(--hot); font-weight:500 }
+  h1.hero-h .u{ text-decoration:underline; text-decoration-thickness:3px; text-decoration-color:var(--hot); text-underline-offset:8px }
+
+  .lede{
+    font: 500 20px/1.5 'Fraunces', serif;
+    color:var(--ink-soft); max-width:42ch; margin-bottom:34px;
+  }
+
+  .cta-row{ display:flex; flex-wrap:wrap; align-items:center; gap:14px 22px }
+  .cta-big{
+    display:inline-flex; align-items:center; gap:10px;
+    background:var(--ink); color:var(--paper);
+    padding:18px 28px; border-radius:999px;
+    font: 700 15px/1 'JetBrains Mono', monospace;
+    letter-spacing:.06em; text-transform:uppercase;
+    text-decoration:none;
+    box-shadow: 0 10px 0 -4px var(--hot);
+    transition:transform .15s ease, box-shadow .15s ease;
+  }
+  .cta-big:hover{ background:var(--hot); color:var(--paper); transform:translate(-2px,-2px); box-shadow: 0 14px 0 -4px var(--ink) }
+  .cta-big::after{ content:"→"; font-size:18px }
+  .cta-row .small{ font-family:'JetBrains Mono', monospace; font-size:12px; color:var(--ink-soft); letter-spacing:.08em; text-transform:uppercase }
+
+  /* side card — technical specs */
+  .spec-card{
+    background:var(--paper);
+    border:1.5px solid var(--ink);
+    border-radius:18px;
+    padding:24px;
+    box-shadow: 8px 8px 0 0 var(--ink);
+    font-family:'JetBrains Mono', monospace;
+    font-size:13px;
+    color:var(--ink-soft);
+    align-self:start;
+  }
+  .spec-card .head{
+    display:flex; justify-content:space-between; align-items:center;
+    border-bottom:1.5px dashed var(--rule); padding-bottom:10px; margin-bottom:14px;
+    text-transform:uppercase; letter-spacing:.14em; font-weight:700; color:var(--ink); font-size:11px;
+  }
+  .spec-card .head .live{ color:var(--money) }
+  .spec-row{ display:flex; justify-content:space-between; padding:7px 0; border-bottom:1px dotted var(--rule) }
+  .spec-row:last-child{ border-bottom:0 }
+  .spec-row span{ color:var(--ink-soft) }
+  .spec-row b{ color:var(--ink); font-weight:700 }
+  .spec-card .footer{ margin-top:14px; padding-top:12px; border-top:1.5px dashed var(--rule); font-size:11px; color:var(--ink-soft) }
+  .spec-card .footer .kbd{ display:inline-block; background:var(--ink); color:var(--bg); border-radius:4px; padding:2px 6px; font-size:10px }
+
+  /* huge numbers strip */
+  .numbers{
+    border-top:1.5px solid var(--ink); border-bottom:1.5px solid var(--ink);
+    padding:32px 0; margin: 24px 0 0;
+    display:grid; grid-template-columns:repeat(2,1fr); gap:18px;
+    background:var(--bg-2);
+  }
+  @media(min-width:760px){ .numbers{ grid-template-columns:repeat(4,1fr); gap:0 } }
+  .num{ padding:0 24px; border-right:1px solid var(--rule) }
+  .num:last-child{ border-right:0 }
+  .num b{ display:block; font: 800 clamp(44px,6vw,72px)/0.95 'Fraunces', serif; letter-spacing:-.03em; color:var(--ink) }
+  .num span{ font: 600 11px/1 'JetBrains Mono', monospace; text-transform:uppercase; letter-spacing:.18em; color:var(--ink-soft); display:block; margin-top:10px }
+  .num em{ font-style:normal; color:var(--hot) }
+
+  /* sections */
+  section{ padding: 80px 0; border-top:1.5px solid var(--ink) }
+  .lead-row{ display:grid; grid-template-columns:1fr; gap:24px; margin-bottom:36px }
+  @media(min-width:900px){ .lead-row{ grid-template-columns:1fr 2fr; gap:60px } }
+  .lead-row .label{
+    font: 700 12px/1 'JetBrains Mono', monospace; text-transform:uppercase; letter-spacing:.22em;
+    color:var(--ink-soft);
+  }
+  .lead-row .label::before{ content:"§ "; color:var(--hot); margin-right:6px }
+  h2{ font: 700 clamp(34px,4.5vw,52px)/1.05 'Fraunces', serif; letter-spacing:-.02em }
+  h2 em{ font-style:italic; color:var(--hot); font-weight:500 }
+  .lead-row p{ font-size:18px; color:var(--ink-soft) }
+
+  /* manifesto axioms */
+  .axioms{ display:grid; grid-template-columns:1fr; gap:0; border-top:1px solid var(--rule) }
+  .axiom{
+    border-bottom:1px solid var(--rule);
+    padding: 24px 0;
+    display:grid; grid-template-columns:auto 1fr; gap:18px 32px; align-items:baseline;
+  }
+  .axiom .n{ font:700 14px/1 'JetBrains Mono', monospace; color:var(--hot); letter-spacing:.06em }
+  .axiom .t{ font: 600 22px/1.3 'Fraunces', serif; color:var(--ink) }
+  .axiom .t em{ font-style:italic; color:var(--ink-soft); font-weight:500 }
+
+  /* phases */
+  .phases{ display:grid; grid-template-columns:1fr; gap:18px }
+  @media(min-width:760px){ .phases{ grid-template-columns:repeat(3,1fr) } }
+  .phase{
+    background:var(--paper); border:1.5px solid var(--ink); border-radius:18px;
+    padding:24px; box-shadow:6px 6px 0 0 var(--ink);
+    display:flex; flex-direction:column; gap:8px;
+  }
+  .phase .tag{
+    font: 700 11px/1 'JetBrains Mono', monospace; text-transform:uppercase; letter-spacing:.18em;
+    color:var(--bg); background:var(--ink); padding:5px 10px; border-radius:999px; align-self:flex-start;
+  }
+  .phase.hot .tag{ background:var(--hot) }
+  .phase.money .tag{ background:var(--money) }
+  .phase h3{ font: 700 24px/1.2 'Fraunces', serif; margin:6px 0 0 }
+  .phase p{ color:var(--ink-soft); font-size:16px }
+  .phase .small{ font: 500 12px/1.4 'JetBrains Mono', monospace; color:var(--ink-soft); text-transform:uppercase; letter-spacing:.12em; margin-top:auto }
+
+  /* curriculum — vertical list */
+  ol.curr{ list-style:none; padding:0; counter-reset:c }
+  ol.curr li{
+    counter-increment:c;
+    padding:22px 0; border-bottom:1px solid var(--rule);
+    display:grid; grid-template-columns:auto 1fr; gap:24px; align-items:baseline;
+  }
+  ol.curr li::before{
+    content: "0" counter(c);
+    font: 800 32px/1 'Fraunces', serif; color:var(--ink); min-width:54px;
+  }
+  ol.curr li b{ display:block; font:600 22px/1.2 'Fraunces', serif; color:var(--ink); margin-bottom:4px }
+  ol.curr li span{ color:var(--ink-soft); font-size:16px }
+  ol.curr li.hot::before{ color:var(--hot) }
+
+  /* pull-quote */
+  blockquote{
+    margin: 36px 0;
+    padding: 32px 0 28px;
+    border-top: 2px solid var(--ink);
+    border-bottom: 2px solid var(--ink);
+    font: 500 italic clamp(24px,3.6vw,38px)/1.25 'Fraunces', serif;
+    color: var(--ink);
+    text-align:center;
+  }
+  blockquote::before{ content:"❝"; display:block; font: 800 48px/0.6 'Fraunces', serif; color:var(--hot); margin-bottom:14px }
+  blockquote .who{ display:block; margin-top:18px; font: 500 12px/1 'JetBrains Mono', monospace; text-transform:uppercase; letter-spacing:.22em; color:var(--ink-soft); font-style:normal }
+
+  /* application form */
+  .apply-wrap{
+    background:var(--paper); border:1.5px solid var(--ink); border-radius:18px;
+    padding:36px 24px; box-shadow:8px 8px 0 0 var(--ink);
+  }
+  @media(min-width:760px){ .apply-wrap{ padding:48px } }
+  .apply-wrap .note{
+    background: rgba(255,91,31,.08);
+    border-left: 4px solid var(--hot);
+    padding:16px 20px; border-radius:4px;
+    font: 500 16px/1.5 'Fraunces', serif;
+    color:var(--ink-soft);
+    margin-bottom:28px;
+  }
+  form{ display:grid; gap:22px }
+  .field label{ display:block; font: 700 14px/1 'JetBrains Mono', monospace; text-transform:uppercase; letter-spacing:.14em; color:var(--ink); margin-bottom:6px }
+  .field .qbig{ font: 600 22px/1.25 'Fraunces', serif; color:var(--ink); margin:6px 0 6px }
+  .field .hint{ color:var(--ink-soft); font-size:14px; margin-bottom:10px; font-style:italic }
+  .field input, .field textarea{
+    width:100%; background:var(--bg); color:var(--ink);
+    border:1.5px solid var(--ink); border-radius:10px;
+    padding:14px 16px; font: 500 16px/1.5 'Fraunces', serif; outline:none; resize:vertical;
+  }
+  .field input:focus, .field textarea:focus{ box-shadow: 4px 4px 0 0 var(--hot) }
+  textarea{ min-height:120px }
+  .submit{
+    background:var(--ink); color:var(--paper); border:0; padding:18px 28px;
+    border-radius:999px; font:700 15px/1 'JetBrains Mono', monospace; cursor:pointer;
+    letter-spacing:.08em; text-transform:uppercase;
+    box-shadow: 6px 6px 0 0 var(--hot);
+    width:fit-content;
+  }
+  .submit:hover{ background:var(--hot); box-shadow: 6px 6px 0 0 var(--ink) }
+  .submit::after{ content:" →" }
+
+  footer{ padding:48px 0; border-top:1.5px solid var(--ink); display:flex; flex-wrap:wrap; gap:14px 26px; align-items:center; justify-content:space-between; font: 500 13px/1.5 'JetBrains Mono', monospace; color:var(--ink-soft) }
+  footer .who b{ color:var(--ink) }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <nav class="top">
+    <div class="brand">
+      <span class="mark">M</span>
+      <b>Mobayilo · Academy</b>
+    </div>
+    <div class="nav-links">
+      <a href="#manifesto">Manifesto</a>
+      <a href="#program">Program</a>
+      <a href="#teach">Teach</a>
+      <a href="#apply">Apply</a>
+    </div>
+    <a href="#apply" class="cta">Apply · C1</a>
+  </nav>
+
+  <section class="hero" style="border-top:0; padding-top:80px">
+    <div>
+      <div class="eyebrow"><span class="dot"></span> Cohort 01 · Open · Remote · Rwanda</div>
+      <h1 class="hero-h">
+        Train engineers who <em>ship</em> —<br>
+        not engineers who <span class="u">finish a course</span>.
+      </h1>
+      <p class="lede">
+        An 8-week intensive in AI-assisted engineering for Rwandan engineers, followed by a funded
+        3-month product phase. The bar is one real user, using something you built.
+      </p>
+      <div class="cta-row">
+        <a href="#apply" class="cta-big">Apply to Cohort 1</a>
+        <span class="small">5–8 seats · self-financed · english</span>
+      </div>
+    </div>
+
+    <aside class="spec-card" aria-label="cohort spec">
+      <div class="head"><span>cohort_01.spec</span><span class="live">● live</span></div>
+      <div class="spec-row"><span>$ status</span><b>open</b></div>
+      <div class="spec-row"><span>$ location</span><b>remote / rwanda</b></div>
+      <div class="spec-row"><span>$ training</span><b>8 weeks</b></div>
+      <div class="spec-row"><span>$ gate</span><b>1 real user</b></div>
+      <div class="spec-row"><span>$ build</span><b>3 months · funded</b></div>
+      <div class="spec-row"><span>$ stack</span><b>AI · SDLC · kinyarwanda</b></div>
+      <div class="spec-row"><span>$ director</span><b>aimable d.</b></div>
+      <div class="footer">
+        press <span class="kbd">←</span> <span class="kbd">→</span> to switch design variants.
+      </div>
+    </aside>
+  </section>
+
+  <div class="numbers">
+    <div class="num"><b>8</b><span>weeks <em>train</em></span></div>
+    <div class="num"><b>1</b><span>real <em>user</em></span></div>
+    <div class="num"><b>3</b><span>months <em>build</em></span></div>
+    <div class="num"><b>5–8</b><span>seats <em>c1</em></span></div>
+  </div>
+
+  <section id="manifesto">
+    <div class="lead-row">
+      <div class="label">The premise</div>
+      <h2>Rwandan engineers solving <em>Rwandan</em> problems —<br>on their own terms.</h2>
+    </div>
+    <div class="axioms">
+      <div class="axiom">
+        <div class="n">01</div>
+        <div class="t">The user must exist <em>before the product does.</em></div>
+      </div>
+      <div class="axiom">
+        <div class="n">02</div>
+        <div class="t">If your user lives in a village, <em>your product speaks Kinyarwanda</em> — voice, USSD, SMS, by design.</div>
+      </div>
+      <div class="axiom">
+        <div class="n">03</div>
+        <div class="t">Progress is measured against your last commit — <em>not someone else's stack.</em></div>
+      </div>
+      <div class="axiom">
+        <div class="n">04</div>
+        <div class="t">"Mobayilo" means mobile telephone in Kinyarwanda. <em>The phone in the pocket is the market.</em></div>
+      </div>
+      <div class="axiom">
+        <div class="n">05</div>
+        <div class="t">No certificate. The portfolio <em>is</em> the credential.</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="program">
+    <div class="lead-row">
+      <div class="label">The program</div>
+      <h2>Three phases. <em>Each one gated.</em></h2>
+    </div>
+    <div class="phases">
+      <div class="phase">
+        <span class="tag">Phase 01 · Train</span>
+        <h3>8 weeks · AI-assisted engineering</h3>
+        <p>Prototype → Design → Build → Deploy → Support. The full SDLC with AI in every step. Remote. English. Real artifacts every week.</p>
+        <span class="small">weeks 1–8</span>
+      </div>
+      <div class="phase hot">
+        <span class="tag">Phase 02 · Select</span>
+        <h3>The gate · one real user</h3>
+        <p>Submit a field-visit report and proof of one real conversation with a future user. The Kigali partner evaluates. Aimable confirms. No quota — evidence decides.</p>
+        <span class="small">end of week 8</span>
+      </div>
+      <div class="phase money">
+        <span class="tag">Phase 03 · Build · Funded</span>
+        <h3>3 months · ship a product</h3>
+        <p>$20/mo Claude or Codex Pro subscription, 3 months. Build past MVP. Ship to a real Rwandan user. Enter the Academy portfolio. Mentor cohort 2.</p>
+        <span class="small">months 1–3 post-gate</span>
+      </div>
+    </div>
+  </section>
+
+  <section id="teach">
+    <div class="lead-row">
+      <div class="label">What we teach</div>
+      <h2>Engineering discipline. <em>Not prompt tricks.</em></h2>
+    </div>
+    <ol class="curr">
+      <li class="hot"><div><b>Prototype</b><span>State the question. Build the smallest thing that answers it. If you can't write down what you're answering, you're decorating, not prototyping.</span></div></li>
+      <li><div><b>Design</b><span>Data shape, user shape, failure shape. The data model is the contract; the interface is the hypothesis.</span></div></li>
+      <li><div><b>Build</b><span>AI-assisted, but you own every line. Claude writes; you read, edit, decide. Velocity is a side-effect of judgment.</span></div></li>
+      <li><div><b>Deploy</b><span>To one user, not to staging. "Live" means a person outside your laptop is using it. Anything less is rehearsal.</span></div></li>
+      <li><div><b>Support</b><span>The product isn't done until someone keeps using it. Retention is the only metric that doesn't lie.</span></div></li>
+    </ol>
+
+    <blockquote>
+      We're not training engineers to pass interviews.<br>
+      We're training engineers who can <em>look one user in the eye</em> and ship what they need.
+      <span class="who">— Aimable Dusingizimana, Director</span>
+    </blockquote>
+  </section>
+
+  <section id="apply">
+    <div class="lead-row">
+      <div class="label">Apply</div>
+      <h2>Cohort 1 — <em>concrete answers win.</em></h2>
+    </div>
+
+    <div class="apply-wrap">
+      <div class="note">
+        We are not looking for the right words. We are looking for real answers. The more detail
+        and honesty you bring, the stronger your application. Nothing here eliminates you;
+        everything here helps us understand you.
+      </div>
+
+      <form action="mailto:apply@mobayilo.com" method="post" enctype="text/plain">
+        <div class="field">
+          <label>Name</label>
+          <input type="text" name="name" required>
+        </div>
+        <div class="field">
+          <label>Email</label>
+          <input type="email" name="email" required>
+        </div>
+        <div class="field">
+          <label>Question 01 — the problem</label>
+          <div class="qbig">What problem have you personally observed in your community that technology hasn't solved yet?</div>
+          <div class="hint">Be specific. Name the place, the situation, the people affected.</div>
+          <textarea name="problem" required></textarea>
+        </div>
+        <div class="field">
+          <label>Question 02 — the person</label>
+          <div class="qbig">Who suffers from this problem? Describe one specific person — not a category.</div>
+          <div class="hint">A name, an age, a situation. If you've met them, tell us.</div>
+          <textarea name="person" required></textarea>
+        </div>
+        <div class="field">
+          <label>Question 03 — something you've built</label>
+          <div class="qbig">Share something you've built — a repo, a deployed project, anything that runs.</div>
+          <div class="hint">We are not evaluating code quality. We want proof you can ship something that works.</div>
+          <textarea name="built" required></textarea>
+        </div>
+        <div class="field">
+          <label>Question 04 — the commitment</label>
+          <div class="qbig">What are you willing to give up for 6–8 weeks to focus on this program?</div>
+          <div class="hint">Be honest. We want to know you've thought about the real cost.</div>
+          <textarea name="commitment" required></textarea>
+        </div>
+        <button class="submit" type="submit">Send application</button>
+      </form>
+    </div>
+  </section>
+
+  <footer>
+    <div class="who"><b>Mobayilo Academy</b> · cohort 1 · <a href="https://mobayilo.com" style="color:var(--ink-soft)">mobayilo.com</a></div>
+    <div>aimable dusingizimana · director</div>
+  </footer>
+</div>
+
+<script>window.__variant='C';</script>
+<script src="_switcher.js"></script>
+</body>
+</html>

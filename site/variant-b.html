@@ -1,0 +1,329 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>mobayilo / academy — builder's logbook</title>
+<meta name="description" content="Mobayilo AI Academy. Intensive AI-assisted engineering for Rwandan engineers who ship.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Newsreader:ital,wght@0,500;0,700;1,500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0f1117; --panel:#161922; --line:#262b3a; --line-soft:#1d212c;
+    --fg:#e6e8ee; --dim:#8a92a6; --mute:#5b6479;
+    --accent:#7ee787;   /* github-ish green */
+    --add:#3fb950; --add-bg:rgba(63,185,80,.12);
+    --del:#ff7b72; --del-bg:rgba(248,81,73,.10);
+    --amber:#fcd34d;
+    --link:#79c0ff;
+  }
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--bg); color:var(--fg);
+    font: 400 15px/1.65 'JetBrains Mono', ui-monospace, Menlo, monospace;
+    min-height:100vh;
+  }
+  a{color:var(--link); text-decoration:none}
+  a:hover{text-decoration:underline; text-underline-offset:3px}
+  .container{max-width:880px; margin:0 auto; padding:0 20px 160px}
+
+  /* repo header */
+  .repo-head{
+    border-bottom:1px solid var(--line);
+    padding:20px 0 14px;
+    display:flex; align-items:center; gap:10px; flex-wrap:wrap;
+  }
+  .repo-head .breadcrumb{ color:var(--dim); font-size:14px }
+  .repo-head .breadcrumb b{ color:var(--fg); font-weight:700 }
+  .repo-head .breadcrumb .slash{ color:var(--mute); margin:0 6px }
+  .badge{ font-size:11px; padding:2px 8px; border-radius:999px; border:1px solid var(--line); color:var(--dim) }
+  .badge.live{ color:var(--add); border-color:rgba(63,185,80,.4); background:var(--add-bg) }
+  .star{ margin-left:auto; font-size:12px; color:var(--dim); border:1px solid var(--line); padding:5px 12px; border-radius:6px; background:var(--panel) }
+  .star b{ color:var(--fg) }
+
+  /* tabs */
+  .tabs{ display:flex; gap:4px; margin:12px -8px 0; padding:0 0 0 0; overflow-x:auto; border-bottom:1px solid var(--line) }
+  .tabs a{ color:var(--dim); padding:10px 12px; border-bottom:2px solid transparent; font-size:13px; white-space:nowrap }
+  .tabs a.active{ color:var(--fg); border-bottom-color:var(--amber); font-weight:700 }
+  .tabs a:hover{ text-decoration:none; color:var(--fg) }
+
+  /* readme card */
+  .card{
+    border:1px solid var(--line);
+    background:var(--panel);
+    border-radius:8px;
+    margin-top:28px;
+    overflow:hidden;
+  }
+  .card-head{
+    padding:10px 16px; border-bottom:1px solid var(--line);
+    background:#1a1e29; color:var(--dim); font-size:13px;
+    display:flex; align-items:center; gap:10px;
+  }
+  .card-head .file{ color:var(--fg) }
+  .card-head .right{ margin-left:auto; color:var(--mute); font-size:12px }
+  .card-body{ padding:28px 22px }
+  @media(min-width:720px){ .card-body{ padding:40px 36px } }
+
+  /* hero */
+  .eyebrow{ color:var(--accent); font-size:12px; letter-spacing:.18em; text-transform:uppercase; margin-bottom:18px }
+  .eyebrow::before{ content:"// "; color:var(--mute) }
+  h1{
+    font: 700 clamp(34px,5.5vw,52px)/1.05 'Newsreader', Georgia, serif;
+    color:var(--fg); letter-spacing:-.015em; margin-bottom:14px;
+  }
+  h1 em{ font-style:italic; color:var(--amber); font-weight:500 }
+  .lede{ font-size:17px; color:var(--dim); max-width:60ch; margin-bottom:24px }
+
+  .meta-row{ display:flex; flex-wrap:wrap; gap:18px 26px; color:var(--dim); font-size:13px; margin-top:10px; border-top:1px dashed var(--line); padding-top:18px }
+  .meta-row span b{ color:var(--fg); font-weight:700 }
+
+  /* section */
+  section{ padding:48px 0 8px; border-top:1px solid var(--line-soft); margin-top:48px }
+  h2{ font: 700 22px/1.3 'Newsreader', Georgia, serif; color:var(--fg); margin:0 0 6px }
+  h2 .hash{ color:var(--accent); margin-right:8px; font-family:'JetBrains Mono', monospace; font-size:18px }
+  .sub{ color:var(--dim); font-size:13px; margin-bottom:18px }
+  p{ margin:10px 0; color:var(--fg) }
+  p.dim{ color:var(--dim) }
+
+  /* diff block — mission */
+  .diff{ border:1px solid var(--line); border-radius:6px; overflow:hidden; margin:14px 0; font-size:14px }
+  .diff .row{ padding:6px 14px; white-space:pre-wrap; border-bottom:1px solid var(--line-soft) }
+  .diff .row:last-child{ border-bottom:0 }
+  .diff .del{ background:var(--del-bg); color:var(--del) }
+  .diff .del::before{ content:"− "; color:var(--del); font-weight:700 }
+  .diff .add{ background:var(--add-bg); color:var(--add) }
+  .diff .add::before{ content:"+ "; color:var(--add); font-weight:700 }
+  .diff .ctx{ color:var(--dim) }
+  .diff .ctx::before{ content:"  "; }
+
+  /* commit-log timeline */
+  .commits{ margin:14px 0 6px; border-left:2px solid var(--line); padding-left:0 }
+  .commit{ position:relative; padding:14px 0 14px 26px; border-bottom:1px dashed var(--line-soft) }
+  .commit:last-child{ border-bottom:0 }
+  .commit::before{
+    content:""; position:absolute; left:-7px; top:20px;
+    width:12px; height:12px; border-radius:50%;
+    background:var(--bg); border:2px solid var(--accent);
+  }
+  .commit .sha{ color:var(--accent); font-size:12px }
+  .commit .title{ font: 700 16px/1.4 'Newsreader', serif; color:var(--fg); margin:2px 0 4px }
+  .commit .body{ color:var(--dim); font-size:14px }
+  .commit .tag{ display:inline-block; font-size:10px; padding:2px 7px; border-radius:3px; background:rgba(126,231,135,.1); color:var(--accent); border:1px solid rgba(126,231,135,.25); margin-left:6px; letter-spacing:.1em; text-transform:uppercase }
+
+  /* checklist for curriculum */
+  ul.check{ list-style:none; margin:10px 0; padding:0 }
+  ul.check li{ padding:8px 0 8px 28px; position:relative; color:var(--fg); border-bottom:1px dashed var(--line-soft) }
+  ul.check li::before{
+    content:"✓"; position:absolute; left:0; top:8px;
+    color:var(--accent); font-weight:700;
+  }
+  ul.check li b{ color:var(--amber); font-weight:700 }
+  ul.check li span{ color:var(--dim); display:block; font-size:13px; margin-top:2px }
+
+  /* stat tiles */
+  .stats{ display:grid; grid-template-columns:1fr 1fr; gap:10px; margin:14px 0 }
+  @media(min-width:600px){ .stats{ grid-template-columns:repeat(4,1fr) } }
+  .stat{ background:#1a1e29; border:1px solid var(--line); border-radius:6px; padding:14px }
+  .stat b{ display:block; font: 700 26px/1 'Newsreader', serif; color:var(--amber) }
+  .stat span{ color:var(--dim); font-size:11px; letter-spacing:.12em; text-transform:uppercase; display:block; margin-top:6px }
+
+  /* form */
+  form{ display:grid; gap:18px; margin-top:18px }
+  .field label{ color:var(--fg); font-weight:700; font-size:14px; display:block; margin-bottom:4px }
+  .field label .req{ color:var(--del); margin-left:4px }
+  .field .hint{ color:var(--dim); font-size:12px; margin-bottom:8px }
+  .field input, .field textarea{
+    width:100%; background:#0c0e14; color:var(--fg);
+    border:1px solid var(--line); border-radius:6px;
+    padding:12px 14px; font:inherit; font-size:14px; outline:none; resize:vertical;
+  }
+  .field input:focus, .field textarea:focus{ border-color:var(--accent); box-shadow:0 0 0 3px rgba(126,231,135,.15) }
+  textarea{ min-height:110px }
+  .submit{
+    background:var(--accent); color:#0a0a0a; border:0; padding:12px 22px;
+    border-radius:6px; font:700 14px/1 'JetBrains Mono', monospace; cursor:pointer;
+    width:fit-content;
+  }
+  .submit:hover{ filter:brightness(1.08) }
+  .submit::after{ content:" →" }
+
+  footer{ color:var(--mute); font-size:12px; padding:36px 0 0; text-align:center }
+  footer a{ color:var(--dim) }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <div class="repo-head">
+    <div class="breadcrumb">
+      <b>mobayilo</b><span class="slash">/</span><b>academy</b>
+      <span class="badge">public</span>
+      <span class="badge live">● cohort-1 / open</span>
+    </div>
+    <div class="star">★ <b>watch</b> · cohort 1</div>
+  </div>
+
+  <nav class="tabs">
+    <a href="#readme" class="active">⌬ readme</a>
+    <a href="#program">📜 program</a>
+    <a href="#curriculum">⚙ curriculum</a>
+    <a href="#log">≡ logbook</a>
+    <a href="#apply">⏎ apply</a>
+  </nav>
+
+  <article class="card" id="readme">
+    <div class="card-head">
+      <span>📄</span><span class="file">README.md</span>
+      <span class="right">last commit · field-report · 2 days ago</span>
+    </div>
+    <div class="card-body">
+
+      <div class="eyebrow">cohort 01 · rwanda · remote-first</div>
+      <h1>Engineers who ship to <em>one real user</em> — not engineers with a certificate.</h1>
+      <p class="lede">Mobayilo AI Academy is an 8-week intensive in AI-assisted engineering for Rwandan engineers, followed by a funded 3-month product phase for the ideas that find a real user.</p>
+
+      <p class="dim"># <em style="color:var(--amber);font-style:normal">mobayilo</em> · Kinyarwanda for <em style="color:var(--fg);font-style:normal">mobile telephone</em>. The device <b style="color:var(--fg)">is</b> the market — design the product for the phone in the pocket of the user who actually exists.</p>
+
+      <div class="meta-row">
+        <span>cohort · <b>1</b></span>
+        <span>seats · <b>5–8</b></span>
+        <span>language · <b>English</b></span>
+        <span>cost · <b>self-financed</b></span>
+        <span>director · <b>Aimable Dusingizimana</b></span>
+      </div>
+    </div>
+  </article>
+
+  <section>
+    <h2><span class="hash">##</span>The premise</h2>
+    <p class="sub">An architectural decision, not a slogan.</p>
+
+    <div class="diff">
+      <div class="row del">Compare Rwanda to the rest of the world. Measure up.</div>
+      <div class="row add">Rwandan engineers solving Rwandan problems on their own terms.</div>
+      <div class="row ctx">Progress measured against your last commit — not someone else's stack.</div>
+    </div>
+
+    <div class="diff" style="margin-top:18px">
+      <div class="row del">Build first, find users later.</div>
+      <div class="row add">The user must exist before the product does.</div>
+      <div class="row ctx">Field visit. One name. One conversation. Then we talk code.</div>
+    </div>
+
+    <div class="diff" style="margin-top:18px">
+      <div class="row del">English-only app, translate later.</div>
+      <div class="row add">If your user lives in a village, your product speaks Kinyarwanda.</div>
+      <div class="row ctx">Voice / USSD / SMS / Kinyarwanda UI — designed in, not bolted on.</div>
+    </div>
+  </section>
+
+  <section id="program">
+    <h2><span class="hash">##</span>Program · 3 phases</h2>
+    <p class="sub">Each phase has an explicit gate. No participation trophies.</p>
+
+    <div class="commits">
+      <div class="commit">
+        <div class="sha">a1b2c3d · weeks 1–8</div>
+        <div class="title">phase 1 — training <span class="tag">remote</span><span class="tag">english</span></div>
+        <div class="body">Intensive AI-assisted engineering across the full SDLC: Prototype → Design → Build → Deploy → Support. Claude Code. Real artifacts every week.</div>
+      </div>
+      <div class="commit">
+        <div class="sha">d4e5f6a · gate</div>
+        <div class="title">phase 2 — selection <span class="tag" style="background:rgba(252,211,77,.1);color:var(--amber);border-color:rgba(252,211,77,.3)">evidence-gated</span></div>
+        <div class="body">Submit a field visit report + proof of one real conversation with a future user. The Kigali partner evaluates. Aimable confirms. No quota — the work decides.</div>
+      </div>
+      <div class="commit">
+        <div class="sha">7b8c9d0 · months 1–3</div>
+        <div class="title">phase 3 — product <span class="tag">funded</span></div>
+        <div class="body">A $20/mo Claude or Codex Pro subscription for 3 months. Build past MVP. Ship to a real Rwandan user. Then: portfolio, investors, NGOs, and you mentor cohort 2.</div>
+      </div>
+    </div>
+
+    <div class="stats">
+      <div class="stat"><b>8</b><span>weeks training</span></div>
+      <div class="stat"><b>1</b><span>real user</span></div>
+      <div class="stat"><b>3</b><span>months funded</span></div>
+      <div class="stat"><b>5–8</b><span>seats / cohort 1</span></div>
+    </div>
+  </section>
+
+  <section id="curriculum">
+    <h2><span class="hash">##</span>What we teach</h2>
+    <p class="sub">Engineering discipline with AI. Not prompt tricks.</p>
+
+    <ul class="check">
+      <li><b>Prototype</b> — state the question; build the smallest thing that answers it.
+        <span>If you can't write down what you're answering, you're not prototyping — you're decorating.</span></li>
+      <li><b>Design</b> — data shape, user shape, failure shape.
+        <span>The interface is a hypothesis. The data model is the contract.</span></li>
+      <li><b>Build</b> — AI-assisted, but you own every line.
+        <span>Claude writes; you read, edit, decide. Velocity is a side-effect of judgment.</span></li>
+      <li><b>Deploy</b> — to one user, not to staging.
+        <span>"Live" means someone outside your laptop is using it. Anything less is rehearsal.</span></li>
+      <li><b>Support</b> — the product isn't done until someone keeps using it.
+        <span>Retention is the only metric that doesn't lie. Talk to the user, fix the thing, repeat.</span></li>
+    </ul>
+  </section>
+
+  <section id="log">
+    <h2><span class="hash">##</span>Logbook · what changed this week</h2>
+    <p class="sub">Public commits from the academy build itself. Dogfooding the discipline.</p>
+    <div class="commits">
+      <div class="commit"><div class="sha">site/v1 · today</div><div class="title">site: cohort-1 application live</div><div class="body">Four questions. No word limit. Detail wins.</div></div>
+      <div class="commit"><div class="sha">partner/kigali · this week</div><div class="title">partner: in-person evaluator confirming</div><div class="body">Local credibility for project selection. Talks ongoing.</div></div>
+      <div class="commit"><div class="sha">grants/next · pending</div><div class="title">grants: OpenAI &amp; Anthropic education programs queued</div><div class="body">Cohort 1 evidence is the application.</div></div>
+    </div>
+  </section>
+
+  <section id="apply">
+    <h2><span class="hash">##</span>Apply · cohort 1</h2>
+    <p class="sub">No trick questions. Concrete answers win.</p>
+    <p class="dim" style="background:#1a1e29;border:1px solid var(--line);padding:14px 16px;border-radius:6px;margin:14px 0">
+      <em style="color:var(--amber);font-style:normal">note</em> — We are not looking for the right words. We are looking for real answers. Nothing here eliminates you; everything here helps us understand you.
+    </p>
+
+    <form action="mailto:apply@mobayilo.com" method="post" enctype="text/plain">
+      <div class="field">
+        <label>Name <span class="req">*</span></label>
+        <input type="text" name="name" required>
+      </div>
+      <div class="field">
+        <label>Email <span class="req">*</span></label>
+        <input type="email" name="email" required>
+      </div>
+      <div class="field">
+        <label>1. The problem <span class="req">*</span></label>
+        <div class="hint">What problem have you personally observed in your community that technology hasn't solved? Name the place, the situation, the people.</div>
+        <textarea name="problem" required></textarea>
+      </div>
+      <div class="field">
+        <label>2. The person <span class="req">*</span></label>
+        <div class="hint">One specific person — not a category. A name, an age, a situation. If you've met them, tell us.</div>
+        <textarea name="person" required></textarea>
+      </div>
+      <div class="field">
+        <label>3. Something you've built <span class="req">*</span></label>
+        <div class="hint">A GitHub repo, a deployed project, anything that runs. We want proof you ship.</div>
+        <textarea name="built" required></textarea>
+      </div>
+      <div class="field">
+        <label>4. The commitment <span class="req">*</span></label>
+        <div class="hint">What are you willing to give up for 6–8 weeks? Be honest about the cost.</div>
+        <textarea name="commitment" required></textarea>
+      </div>
+      <button class="submit" type="submit">Submit application</button>
+    </form>
+  </section>
+
+  <footer>
+    aimable dusingizimana · <a href="https://mobayilo.com">mobayilo.com</a> · cohort 1
+  </footer>
+</div>
+
+<script>window.__variant='B';</script>
+<script src="_switcher.js"></script>
+</body>
+</html>
