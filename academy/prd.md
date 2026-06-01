@@ -25,7 +25,7 @@ Mobayilo AI Academy exists because Aimable believes in this: train engineers to 
 **Program arc:**
 1. **Weeks 1–8 (Training):** Intensive remote training in AI-assisted engineering — Prototype → Design → Build → Deploy → Support — using Claude Code and the full SDLC with AI. English instruction.
 2. **Gate (Project Selection):** Participants submit a field visit report and proof of at least one real conversation with a future user. The Kigali-based partner evaluates ideas; Aimable confirms. Selection is fluid — idea quality and evidence determine who passes, not a fixed quota.
-3. **Months 1–3 (Product Phase):** Selected participants receive a $20/month Claude or Codex Pro subscription for 3 months to build a working product beyond a basic MVP.
+3. **Months 1–3 (Product Phase):** Selected participants receive training valued at $500, plus a $20/month Claude or Codex Pro subscription for 3 months to access AI tools while building a working product beyond a basic MVP.
 4. **After:** Products enter the Academy portfolio, promoted to investors, NGOs, and government programs. Graduates become mentors for the next cohort.
 
 **Key design constraints baked into the program:**
