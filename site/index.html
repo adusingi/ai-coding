@@ -173,6 +173,19 @@
       color: var(--soft);
       font-size: clamp(15px, 1.7vw, 18px);
     }
+    .hero-saying {
+      margin-top: 12px;
+      color: var(--muted);
+      font-size: 10px;
+      line-height: 1.4;
+    }
+    .hero-saying em {
+      display: block;
+      font-style: italic;
+    }
+    @media (max-width: 640px) {
+      .hero-saying { font-size: 9px; }
+    }
     .hero-actions {
       display: flex;
       flex-wrap: wrap;
@@ -628,6 +641,10 @@
           <h1>Build for the user before the deck.</h1>
           <p class="hero-copy">
             Mobayilo Academy trains Rwandan engineers to build useful software with their users' context, Rwanda's context, AI tools, and field evidence, then backs the strongest ideas through a 3-month product phase.
+          </p>
+          <p class="hero-saying">
+            <em>Sa andi a anda a anda.</em>
+            If you know you don't know, you will know.
           </p>
           <div class="hero-actions">
             <a class="btn primary" href="#apply">$ apply --cohort 1</a>
