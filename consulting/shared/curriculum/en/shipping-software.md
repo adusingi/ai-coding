@@ -7,22 +7,77 @@ This document outlines the end-to-end process of shipping software, from product
 ## Diagram 1: The Full Team Handoff Flow
 
 <style>
-  .ss-container {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    background: #f0efe9;
-    padding: 40px 20px;
-    border-radius: 12px;
+  .ss-container, .design-container, .build-container, .orch-container, .sec-container, .support-container, .sum-container {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    background: #080b0f;
+    border: 1px solid #24313b;
+    padding: 40px 30px;
     margin: 20px 0;
     overflow-x: auto;
   }
   .ss-title {
+    font-family: Georgia, serif;
     font-size: 2.2rem;
-    font-weight: 600;
-    color: #1a1a1a;
+    font-weight: 400;
+    color: #f2efe6;
     margin-bottom: 60px;
     letter-spacing: -0.02em;
   }
+  .design-title, .build-title, .orch-title, .sec-title, .support-title, .sum-title {
+    font-family: Georgia, serif;
+    font-size: 2rem;
+    font-weight: 400;
+    color: #f2efe6;
+    margin-bottom: 8px;
+    letter-spacing: -0.02em;
+  }
+  .design-subtitle, .build-subtitle, .orch-subtitle, .sec-subtitle, .support-subtitle, .sum-subtitle {
+    font-size: 1.1rem;
+    color: #9aa7a6;
+    margin-bottom: 50px;
+  }
   .ss-flow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+    min-width: 900px;
+  }
+  .design-wrap {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+    min-width: 800px;
+  }
+  .build-flow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+    min-width: 800px;
+  }
+  .orch-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 700px;
+  }
+  .sec-flow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+    min-width: 900px;
+  }
+  .support-flow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+    min-width: 800px;
+  }
+  .sum-flow {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -32,14 +87,15 @@ This document outlines the end-to-end process of shipping software, from product
   .ss-box {
     width: 160px;
     height: 200px;
-    border-radius: 20px;
+    border-radius: 16px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     padding: 20px;
     text-align: center;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    background: #111922;
+    border: 1px solid #24313b;
   }
   .ss-box .icon {
     font-size: 2.2rem;
@@ -48,15 +104,20 @@ This document outlines the end-to-end process of shipping software, from product
   .ss-box .label {
     font-size: 1.05rem;
     font-weight: 600;
-    color: #1a1a1a;
+    color: #f2efe6;
     line-height: 1.3;
   }
+  .bg-sage  { background: #111922; border: 1px solid #c9c1ac; }
+  .bg-grey  { background: #111922; border: 1px solid #9aa7a6; }
+  .bg-peach { background: #111922; border: 1px solid #b66d3d; }
+  .bg-teal  { background: #111922; border: 1px solid #45e6c7; }
+  .bg-lav   { background: #111922; border: 1px solid #c8c8d8; }
   .ss-arrow {
     display: flex;
     flex-direction: column;
     align-items: center;
     margin: 0 10px;
-    color: #888;
+    color: #9aa7a6;
     font-size: 0.75rem;
     font-weight: 500;
     letter-spacing: 0.05em;
@@ -64,40 +125,38 @@ This document outlines the end-to-end process of shipping software, from product
   .ss-arrow .arr {
     font-size: 1.4rem;
     margin-top: 4px;
-    color: #999;
+    color: #38505b;
   }
-  .bg-sage  { background: #d6d9d0; }
-  .bg-grey  { background: #a8aca4; }
-  .bg-peach { background: #e8d5cf; }
-  .bg-teal  { background: #c5d5cf; }
-  .bg-lav   { background: #c8c8d8; }
-
-  .design-container {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    background: #f0efe9;
-    padding: 40px 30px;
-    border-radius: 12px;
-    margin: 20px 0;
-    overflow-x: auto;
+  .build-arrow, .support-arrow, .sum-arrow, .sec-arrow {
+    font-size: 1.6rem;
+    color: #38505b;
+    padding: 0 18px;
   }
-  .design-title {
-    font-size: 2rem;
-    font-weight: 600;
-    color: #1a1a1a;
-    margin-bottom: 8px;
-    letter-spacing: -0.02em;
+  .d-arrow-h {
+    font-size: 1.6rem;
+    color: #38505b;
+    padding: 0 12px;
   }
-  .design-subtitle {
-    font-size: 1.1rem;
-    color: #888;
-    margin-bottom: 50px;
-  }
-  .design-wrap {
+  .d-arrow-v {
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 0;
-    min-width: 800px;
+    color: #9aa7a6;
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    margin: 16px 0;
+  }
+  .d-arrow-v .v {
+    font-size: 1.2rem;
+    line-height: 1;
+    color: #38505b;
+  }
+  .orch-arrow-down, .sec-arrow-down {
+    font-size: 1.4rem;
+    color: #38505b;
+    margin: 10px 0;
   }
   .design-col {
     display: flex;
@@ -118,32 +177,37 @@ This document outlines the end-to-end process of shipping software, from product
     gap: 12px;
   }
   .d-box {
-    border-radius: 16px;
+    border-radius: 12px;
     padding: 18px 24px;
     text-align: center;
     font-size: 0.95rem;
     font-weight: 500;
-    color: #1a1a1a;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+    background: #111922;
+    border: 1px solid #24313b;
+    color: #f2efe6;
     white-space: nowrap;
   }
-  .d-box.light { background: #d6d9d0; }
-  .d-box.dark  { background: #1a1a1a; color: #fff; font-weight: 600; font-size: 1.1rem; }
-  .d-box.white { background: #fff; border: 1px solid #ddd; }
-  .d-box.small { padding: 14px 20px; font-size: 0.9rem; }
-  .d-arrow-h { font-size: 1.6rem; color: #777; padding: 0 12px; }
-  .d-arrow-v {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    color: #999;
-    font-size: 0.8rem;
-    font-weight: 600;
-    letter-spacing: 0.08em;
-    margin: 16px 0;
+  .d-box.light {
+    background: #111922;
+    border: 1px solid #24313b;
+    color: #f2efe6;
   }
-  .d-arrow-v .v { font-size: 1.2rem; line-height: 1; }
+  .d-box.dark {
+    background: rgba(156, 255, 110, 0.08);
+    border: 1px solid rgba(156, 255, 110, 0.45);
+    color: #9cff6e;
+    font-weight: 600;
+    font-size: 1.1rem;
+  }
+  .d-box.white {
+    background: #0d1318;
+    border: 1px solid #38505b;
+    color: #f2efe6;
+  }
+  .d-box.small {
+    padding: 14px 20px;
+    font-size: 0.9rem;
+  }
   .branch-wrap {
     display: flex;
     align-items: center;
@@ -157,20 +221,20 @@ This document outlines the end-to-end process of shipping software, from product
     flex-shrink: 0;
   }
   .branch-top {
-    border-left: 2px solid #999;
-    border-top: 2px solid #999;
+    border-left: 2px solid #38505b;
+    border-top: 2px solid #38505b;
     border-top-left-radius: 12px;
     height: 24px;
     width: 28px;
   }
   .branch-mid {
-    border-left: 2px solid #999;
+    border-left: 2px solid #38505b;
     height: 24px;
     width: 28px;
   }
   .branch-end {
-    border-left: 2px solid #999;
-    border-bottom: 2px solid #999;
+    border-left: 2px solid #38505b;
+    border-bottom: 2px solid #38505b;
     border-bottom-left-radius: 12px;
     height: 24px;
     width: 28px;
@@ -179,47 +243,26 @@ This document outlines the end-to-end process of shipping software, from product
     height: 24px;
     width: 28px;
   }
-
-  .build-container {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    background: #f0efe9;
-    padding: 40px 30px;
-    border-radius: 12px;
-    margin: 20px 0;
-    overflow-x: auto;
-  }
-  .build-title {
-    font-size: 2rem;
-    font-weight: 600;
-    color: #1a1a1a;
-    margin-bottom: 8px;
-    letter-spacing: -0.02em;
-  }
-  .build-subtitle {
-    font-size: 1.1rem;
-    color: #888;
-    margin-bottom: 50px;
-  }
-  .build-flow {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0;
-    min-width: 800px;
+  .build-hand {
+    font-size: 2.8rem;
+    margin-right: 16px;
+    line-height: 1;
   }
   .build-box {
-    border-radius: 16px;
+    border-radius: 12px;
     padding: 22px 28px;
     text-align: center;
     min-width: 140px;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+    background: #111922;
+    border: 1px solid #24313b;
   }
   .build-box.light {
-    background: #d6d9d0;
+    background: #111922;
+    border: 1px solid #24313b;
   }
   .build-box.white {
-    background: #f7f7f5;
-    border: 1px solid #ccc;
+    background: #0d1318;
+    border: 1px solid #38505b;
   }
   .build-box .b-icon {
     font-size: 1.6rem;
@@ -229,61 +272,24 @@ This document outlines the end-to-end process of shipping software, from product
   .build-box .b-label {
     font-size: 0.95rem;
     font-weight: 600;
-    color: #1a1a1a;
+    color: #f2efe6;
     line-height: 1.3;
   }
   .build-box .b-sublabel {
     font-size: 0.85rem;
     font-weight: 400;
-    color: #333;
+    color: #c9c1ac;
     margin-top: 2px;
   }
-  .build-hand {
-    font-size: 2.8rem;
-    margin-right: 16px;
-    line-height: 1;
-  }
-  .build-arrow {
-    font-size: 1.6rem;
-    color: #777;
-    padding: 0 18px;
-  }
-
-  .orch-container {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    background: #f0efe9;
-    padding: 40px 30px;
-    border-radius: 12px;
-    margin: 20px 0;
-    overflow-x: auto;
-  }
-  .orch-title {
-    font-size: 2rem;
-    font-weight: 600;
-    color: #1a1a1a;
-    margin-bottom: 8px;
-    letter-spacing: -0.02em;
-  }
-  .orch-subtitle {
-    font-size: 1.1rem;
-    color: #888;
-    margin-bottom: 50px;
-  }
-  .orch-wrap {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    min-width: 700px;
-  }
   .orch-box-dark {
-    background: #1a1a1a;
-    color: #fff;
-    border-radius: 16px;
+    background: rgba(156, 255, 110, 0.08);
+    border: 1px solid rgba(156, 255, 110, 0.45);
+    color: #9cff6e;
+    border-radius: 12px;
     padding: 24px 36px;
     text-align: center;
     font-weight: 600;
     font-size: 1.1rem;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
   }
   .orch-branches {
     display: flex;
@@ -297,52 +303,47 @@ This document outlines the end-to-end process of shipping software, from product
     align-items: center;
   }
   .orch-branch-line {
-    border-left: 2px solid #999;
-    border-top: 2px solid #999;
+    border-left: 2px solid #38505b;
+    border-top: 2px solid #38505b;
     border-top-left-radius: 12px;
     height: 32px;
     width: 80px;
     margin-bottom: -1px;
   }
   .orch-branch-center {
-    border-left: 2px solid #999;
+    border-left: 2px solid #38505b;
     height: 32px;
     width: 0;
   }
   .orch-branch-right {
-    border-right: 2px solid #999;
-    border-top: 2px solid #999;
+    border-right: 2px solid #38505b;
+    border-top: 2px solid #38505b;
     border-top-right-radius: 12px;
     height: 32px;
     width: 80px;
     margin-bottom: -1px;
   }
   .orch-subagent {
-    background: #d6d9d0;
-    border-radius: 16px;
+    background: #111922;
+    border: 1px solid #24313b;
+    border-radius: 12px;
     padding: 20px 28px;
     text-align: center;
     min-width: 150px;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.04);
   }
   .orch-subagent .o-label {
     font-size: 0.95rem;
     font-weight: 600;
-    color: #1a1a1a;
+    color: #f2efe6;
   }
   .orch-subagent .o-sublabel {
     font-size: 0.85rem;
-    color: #333;
+    color: #c9c1ac;
     margin-top: 4px;
   }
-  .orch-arrow-down {
-    font-size: 1.4rem;
-    color: #777;
-    margin: 10px 0;
-  }
   .orch-target {
-    border: 2px dashed #b88;
-    color: #855;
+    border: 1px dashed #38505b;
+    color: #9aa7a6;
     border-radius: 12px;
     padding: 12px 24px;
     text-align: center;
@@ -350,46 +351,20 @@ This document outlines the end-to-end process of shipping software, from product
     font-weight: 500;
     background: transparent;
   }
-
-  .sec-container {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    background: #f0efe9;
-    padding: 40px 30px;
-    border-radius: 12px;
-    margin: 20px 0;
-    overflow-x: auto;
-  }
-  .sec-title {
-    font-size: 2rem;
-    font-weight: 600;
-    color: #1a1a1a;
-    margin-bottom: 8px;
-    letter-spacing: -0.02em;
-  }
-  .sec-subtitle {
-    font-size: 1.1rem;
-    color: #888;
-    margin-bottom: 50px;
-  }
-  .sec-flow {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0;
-    min-width: 900px;
-  }
   .sec-box-dark {
-    background: #1a1a1a;
-    color: #fff;
+    background: #0d1318;
+    border: 1px solid #38505b;
+    color: #f2efe6;
     border-radius: 12px;
     padding: 16px 20px;
-    font-family: monospace;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
     font-size: 0.9rem;
   }
   .sec-box-alert {
-    background: #c97;
-    color: #1a1a1a;
-    border-radius: 16px;
+    background: rgba(255, 214, 102, 0.08);
+    border: 1px solid rgba(255, 214, 102, 0.45);
+    color: #ffd666;
+    border-radius: 12px;
     padding: 20px;
     text-align: center;
     min-width: 140px;
@@ -404,9 +379,9 @@ This document outlines the end-to-end process of shipping software, from product
     line-height: 1.3;
   }
   .sec-box-white {
-    background: #f7f7f5;
-    border: 1px solid #ccc;
-    border-radius: 16px;
+    background: #111922;
+    border: 1px solid #24313b;
+    border-radius: 12px;
     padding: 20px 22px;
     text-align: center;
     min-width: 130px;
@@ -414,127 +389,76 @@ This document outlines the end-to-end process of shipping software, from product
   .sec-box-white .w-label {
     font-size: 0.95rem;
     font-weight: 600;
-    color: #1a1a1a;
+    color: #f2efe6;
   }
   .sec-box-white .w-sublabel {
     font-size: 0.8rem;
-    color: #555;
+    color: #9aa7a6;
     margin-top: 4px;
   }
   .sec-box-end {
-    background: #d6d9d0;
-    border-radius: 16px;
+    background: #111922;
+    border: 1px solid #9cff6e;
+    border-radius: 12px;
     width: 90px;
     height: 90px;
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 2.2rem;
-  }
-  .sec-arrow {
-    font-size: 1.6rem;
-    color: #777;
-    padding: 0 14px;
-  }
-  .sec-arrow-down {
-    font-size: 1.4rem;
-    color: #777;
-    margin: 8px 0;
+    color: #9cff6e;
   }
   .sec-col {
     display: flex;
     flex-direction: column;
     align-items: center;
   }
-
-  .support-container {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    background: #f0efe9;
-    padding: 40px 30px;
-    border-radius: 12px;
-    margin: 20px 0;
-    overflow-x: auto;
-  }
-  .support-title {
-    font-size: 2rem;
-    font-weight: 600;
-    color: #1a1a1a;
-    margin-bottom: 8px;
-    letter-spacing: -0.02em;
-  }
-  .support-subtitle {
-    font-size: 1.1rem;
-    color: #888;
-    margin-bottom: 50px;
-  }
-  .support-flow {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0;
-    min-width: 800px;
-  }
   .support-box {
-    border-radius: 16px;
+    border-radius: 12px;
     padding: 22px 28px;
     text-align: center;
     min-width: 150px;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+    background: #111922;
+    border: 1px solid #24313b;
   }
-  .support-box.light { background: #d6d9d0; }
-  .support-box.white { background: #f7f7f5; border: 1px solid #ccc; }
-  .support-box .s-icon { font-size: 1.8rem; margin-bottom: 10px; }
-  .support-box .s-label { font-size: 0.95rem; font-weight: 600; color: #1a1a1a; }
-  .support-box .s-sublabel { font-size: 0.85rem; color: #333; margin-top: 4px; }
-  .support-arrow { font-size: 1.6rem; color: #777; padding: 0 18px; }
-
-  .sum-container {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    background: #f0efe9;
-    padding: 40px 30px;
-    border-radius: 12px;
-    margin: 20px 0;
-    overflow-x: auto;
+  .support-box.light {
+    background: #111922;
+    border: 1px solid #24313b;
   }
-  .sum-title {
-    font-size: 2rem;
+  .support-box.white {
+    background: #0d1318;
+    border: 1px solid #38505b;
+  }
+  .support-box .s-icon {
+    font-size: 1.8rem;
+    margin-bottom: 10px;
+  }
+  .support-box .s-label {
+    font-size: 0.95rem;
     font-weight: 600;
-    color: #1a1a1a;
-    margin-bottom: 8px;
-    letter-spacing: -0.02em;
+    color: #f2efe6;
   }
-  .sum-subtitle {
-    font-size: 1.1rem;
-    color: #888;
-    margin-bottom: 50px;
-  }
-  .sum-flow {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0;
-    min-width: 900px;
+  .support-box .s-sublabel {
+    font-size: 0.85rem;
+    color: #c9c1ac;
+    margin-top: 4px;
   }
   .sum-box {
     width: 140px;
     height: 100px;
-    border-radius: 16px;
+    border-radius: 12px;
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 1.1rem;
     font-weight: 600;
-    color: #1a1a1a;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
-  }
-  .sum-arrow {
-    font-size: 1.6rem;
-    color: #777;
-    padding: 0 18px;
+    color: #f2efe6;
+    background: #111922;
+    border: 1px solid #24313b;
   }
   .sum-divider {
     height: 1px;
-    background: #ccc;
+    background: #24313b;
     margin: 40px 0;
     min-width: 900px;
   }
@@ -545,9 +469,9 @@ This document outlines the end-to-end process of shipping software, from product
     min-width: 900px;
   }
   .sum-card {
-    background: #f7f7f5;
-    border: 1px solid #ddd;
-    border-radius: 16px;
+    background: #111922;
+    border: 1px solid #24313b;
+    border-radius: 12px;
     padding: 28px 20px;
     flex: 1;
     text-align: center;
@@ -556,12 +480,12 @@ This document outlines the end-to-end process of shipping software, from product
   .sum-card .card-title {
     font-size: 1.1rem;
     font-weight: 600;
-    color: #1a1a1a;
+    color: #f2efe6;
     margin-bottom: 4px;
   }
   .sum-card .card-eq {
     font-size: 1.4rem;
-    color: #888;
+    color: #9aa7a6;
     margin: 8px 0;
   }
   .sum-pills {
@@ -572,20 +496,21 @@ This document outlines the end-to-end process of shipping software, from product
     margin-top: 12px;
   }
   .sum-pill {
-    background: #d6d9d0;
+    background: rgba(69, 230, 199, 0.1);
+    border: 1px solid rgba(69, 230, 199, 0.35);
     border-radius: 8px;
     padding: 6px 12px;
     font-size: 0.8rem;
     font-weight: 500;
-    color: #1a1a1a;
+    color: #45e6c7;
   }
   .sum-card .card-body {
     font-size: 0.85rem;
-    color: #555;
+    color: #c9c1ac;
     line-height: 1.4;
     margin-top: 12px;
     padding: 12px;
-    background: #e8e8e2;
+    background: #0d1318;
     border-radius: 10px;
   }
   .sum-icon-big {
@@ -669,7 +594,7 @@ This document outlines the end-to-end process of shipping software, from product
       </div>
       <div class="d-box white">
         <div style="font-weight:600; margin-bottom:4px;">Figma Board</div>
-        <div style="font-size:0.8rem; color:#777;">mcp.figma.com</div>
+        <div style="font-size:0.8rem; color:#9aa7a6;">mcp.figma.com</div>
       </div>
     </div>
     <div class="design-col right">
