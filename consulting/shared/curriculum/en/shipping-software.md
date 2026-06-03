@@ -6,557 +6,46 @@ This document outlines the end-to-end process of shipping software, from product
 
 ## Diagram 1: The Full Team Handoff Flow
 
-<style>
-  .ss-container, .design-container, .build-container, .orch-container, .sec-container, .support-container, .sum-container {
-    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-    background: #080b0f;
-    border: 1px solid #24313b;
-    padding: 40px 30px;
-    margin: 20px 0;
-    overflow-x: auto;
-  }
-  .ss-title {
-    font-family: Georgia, serif;
-    font-size: 2.2rem;
-    font-weight: 400;
-    color: #f2efe6;
-    margin-bottom: 60px;
-    letter-spacing: -0.02em;
-  }
-  .design-title, .build-title, .orch-title, .sec-title, .support-title, .sum-title {
-    font-family: Georgia, serif;
-    font-size: 2rem;
-    font-weight: 400;
-    color: #f2efe6;
-    margin-bottom: 8px;
-    letter-spacing: -0.02em;
-  }
-  .design-subtitle, .build-subtitle, .orch-subtitle, .sec-subtitle, .support-subtitle, .sum-subtitle {
-    font-size: 1.1rem;
-    color: #9aa7a6;
-    margin-bottom: 50px;
-  }
-  .ss-flow {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0;
-    min-width: 900px;
-  }
-  .design-wrap {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0;
-    min-width: 800px;
-  }
-  .build-flow {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0;
-    min-width: 800px;
-  }
-  .orch-wrap {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    min-width: 700px;
-  }
-  .sec-flow {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0;
-    min-width: 900px;
-  }
-  .support-flow {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0;
-    min-width: 800px;
-  }
-  .sum-flow {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0;
-    min-width: 900px;
-  }
-  .ss-box {
-    width: 160px;
-    height: 200px;
-    border-radius: 16px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
-    text-align: center;
-    background: #111922;
-    border: 1px solid #24313b;
-  }
-  .ss-box .icon {
-    font-size: 2.2rem;
-    margin-bottom: 16px;
-  }
-  .ss-box .label {
-    font-size: 1.05rem;
-    font-weight: 600;
-    color: #f2efe6;
-    line-height: 1.3;
-  }
-  .bg-sage  { background: #111922; border: 1px solid #c9c1ac; }
-  .bg-grey  { background: #111922; border: 1px solid #9aa7a6; }
-  .bg-peach { background: #111922; border: 1px solid #b66d3d; }
-  .bg-teal  { background: #111922; border: 1px solid #45e6c7; }
-  .bg-lav   { background: #111922; border: 1px solid #c8c8d8; }
-  .ss-arrow {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin: 0 10px;
-    color: #9aa7a6;
-    font-size: 0.75rem;
-    font-weight: 500;
-    letter-spacing: 0.05em;
-  }
-  .ss-arrow .arr {
-    font-size: 1.4rem;
-    margin-top: 4px;
-    color: #38505b;
-  }
-  .build-arrow, .support-arrow, .sum-arrow, .sec-arrow {
-    font-size: 1.6rem;
-    color: #38505b;
-    padding: 0 18px;
-  }
-  .d-arrow-h {
-    font-size: 1.6rem;
-    color: #38505b;
-    padding: 0 12px;
-  }
-  .d-arrow-v {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    color: #9aa7a6;
-    font-size: 0.8rem;
-    font-weight: 600;
-    letter-spacing: 0.08em;
-    margin: 16px 0;
-  }
-  .d-arrow-v .v {
-    font-size: 1.2rem;
-    line-height: 1;
-    color: #38505b;
-  }
-  .orch-arrow-down, .sec-arrow-down {
-    font-size: 1.4rem;
-    color: #38505b;
-    margin: 10px 0;
-  }
-  .design-col {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  .design-col.left {
-    align-items: flex-end;
-    padding-right: 20px;
-  }
-  .design-col.center {
-    align-items: center;
-    padding: 0 20px;
-  }
-  .design-col.right {
-    align-items: flex-start;
-    padding-left: 40px;
-    gap: 12px;
-  }
-  .d-box {
-    border-radius: 12px;
-    padding: 18px 24px;
-    text-align: center;
-    font-size: 0.95rem;
-    font-weight: 500;
-    background: #111922;
-    border: 1px solid #24313b;
-    color: #f2efe6;
-    white-space: nowrap;
-  }
-  .d-box.light {
-    background: #111922;
-    border: 1px solid #24313b;
-    color: #f2efe6;
-  }
-  .d-box.dark {
-    background: rgba(156, 255, 110, 0.08);
-    border: 1px solid rgba(156, 255, 110, 0.45);
-    color: #9cff6e;
-    font-weight: 600;
-    font-size: 1.1rem;
-  }
-  .d-box.white {
-    background: #0d1318;
-    border: 1px solid #38505b;
-    color: #f2efe6;
-  }
-  .d-box.small {
-    padding: 14px 20px;
-    font-size: 0.9rem;
-  }
-  .branch-wrap {
-    display: flex;
-    align-items: center;
-    width: 100%;
-  }
-  .branch-vert {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    width: 30px;
-    flex-shrink: 0;
-  }
-  .branch-top {
-    border-left: 2px solid #38505b;
-    border-top: 2px solid #38505b;
-    border-top-left-radius: 12px;
-    height: 24px;
-    width: 28px;
-  }
-  .branch-mid {
-    border-left: 2px solid #38505b;
-    height: 24px;
-    width: 28px;
-  }
-  .branch-end {
-    border-left: 2px solid #38505b;
-    border-bottom: 2px solid #38505b;
-    border-bottom-left-radius: 12px;
-    height: 24px;
-    width: 28px;
-  }
-  .branch-spacer {
-    height: 24px;
-    width: 28px;
-  }
-  .build-hand {
-    font-size: 2.8rem;
-    margin-right: 16px;
-    line-height: 1;
-  }
-  .build-box {
-    border-radius: 12px;
-    padding: 22px 28px;
-    text-align: center;
-    min-width: 140px;
-    background: #111922;
-    border: 1px solid #24313b;
-  }
-  .build-box.light {
-    background: #111922;
-    border: 1px solid #24313b;
-  }
-  .build-box.white {
-    background: #0d1318;
-    border: 1px solid #38505b;
-  }
-  .build-box .b-icon {
-    font-size: 1.6rem;
-    margin-bottom: 10px;
-    line-height: 1;
-  }
-  .build-box .b-label {
-    font-size: 0.95rem;
-    font-weight: 600;
-    color: #f2efe6;
-    line-height: 1.3;
-  }
-  .build-box .b-sublabel {
-    font-size: 0.85rem;
-    font-weight: 400;
-    color: #c9c1ac;
-    margin-top: 2px;
-  }
-  .orch-box-dark {
-    background: rgba(156, 255, 110, 0.08);
-    border: 1px solid rgba(156, 255, 110, 0.45);
-    color: #9cff6e;
-    border-radius: 12px;
-    padding: 24px 36px;
-    text-align: center;
-    font-weight: 600;
-    font-size: 1.1rem;
-  }
-  .orch-branches {
-    display: flex;
-    justify-content: center;
-    gap: 140px;
-    margin-top: 4px;
-  }
-  .orch-branch {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  .orch-branch-line {
-    border-left: 2px solid #38505b;
-    border-top: 2px solid #38505b;
-    border-top-left-radius: 12px;
-    height: 32px;
-    width: 80px;
-    margin-bottom: -1px;
-  }
-  .orch-branch-center {
-    border-left: 2px solid #38505b;
-    height: 32px;
-    width: 0;
-  }
-  .orch-branch-right {
-    border-right: 2px solid #38505b;
-    border-top: 2px solid #38505b;
-    border-top-right-radius: 12px;
-    height: 32px;
-    width: 80px;
-    margin-bottom: -1px;
-  }
-  .orch-subagent {
-    background: #111922;
-    border: 1px solid #24313b;
-    border-radius: 12px;
-    padding: 20px 28px;
-    text-align: center;
-    min-width: 150px;
-  }
-  .orch-subagent .o-label {
-    font-size: 0.95rem;
-    font-weight: 600;
-    color: #f2efe6;
-  }
-  .orch-subagent .o-sublabel {
-    font-size: 0.85rem;
-    color: #c9c1ac;
-    margin-top: 4px;
-  }
-  .orch-target {
-    border: 1px dashed #38505b;
-    color: #9aa7a6;
-    border-radius: 12px;
-    padding: 12px 24px;
-    text-align: center;
-    font-size: 0.9rem;
-    font-weight: 500;
-    background: transparent;
-  }
-  .sec-box-dark {
-    background: #0d1318;
-    border: 1px solid #38505b;
-    color: #f2efe6;
-    border-radius: 12px;
-    padding: 16px 20px;
-    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-    font-size: 0.9rem;
-  }
-  .sec-box-alert {
-    background: rgba(255, 214, 102, 0.08);
-    border: 1px solid rgba(255, 214, 102, 0.45);
-    color: #ffd666;
-    border-radius: 12px;
-    padding: 20px;
-    text-align: center;
-    min-width: 140px;
-  }
-  .sec-box-alert .alert-icon {
-    font-size: 2.2rem;
-    margin-bottom: 10px;
-  }
-  .sec-box-alert .alert-label {
-    font-size: 0.95rem;
-    font-weight: 600;
-    line-height: 1.3;
-  }
-  .sec-box-white {
-    background: #111922;
-    border: 1px solid #24313b;
-    border-radius: 12px;
-    padding: 20px 22px;
-    text-align: center;
-    min-width: 130px;
-  }
-  .sec-box-white .w-label {
-    font-size: 0.95rem;
-    font-weight: 600;
-    color: #f2efe6;
-  }
-  .sec-box-white .w-sublabel {
-    font-size: 0.8rem;
-    color: #9aa7a6;
-    margin-top: 4px;
-  }
-  .sec-box-end {
-    background: #111922;
-    border: 1px solid #9cff6e;
-    border-radius: 12px;
-    width: 90px;
-    height: 90px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 2.2rem;
-    color: #9cff6e;
-  }
-  .sec-col {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  .support-box {
-    border-radius: 12px;
-    padding: 22px 28px;
-    text-align: center;
-    min-width: 150px;
-    background: #111922;
-    border: 1px solid #24313b;
-  }
-  .support-box.light {
-    background: #111922;
-    border: 1px solid #24313b;
-  }
-  .support-box.white {
-    background: #0d1318;
-    border: 1px solid #38505b;
-  }
-  .support-box .s-icon {
-    font-size: 1.8rem;
-    margin-bottom: 10px;
-  }
-  .support-box .s-label {
-    font-size: 0.95rem;
-    font-weight: 600;
-    color: #f2efe6;
-  }
-  .support-box .s-sublabel {
-    font-size: 0.85rem;
-    color: #c9c1ac;
-    margin-top: 4px;
-  }
-  .sum-box {
-    width: 140px;
-    height: 100px;
-    border-radius: 12px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.1rem;
-    font-weight: 600;
-    color: #f2efe6;
-    background: #111922;
-    border: 1px solid #24313b;
-  }
-  .sum-divider {
-    height: 1px;
-    background: #24313b;
-    margin: 40px 0;
-    min-width: 900px;
-  }
-  .sum-grid {
-    display: flex;
-    gap: 20px;
-    justify-content: center;
-    min-width: 900px;
-  }
-  .sum-card {
-    background: #111922;
-    border: 1px solid #24313b;
-    border-radius: 12px;
-    padding: 28px 20px;
-    flex: 1;
-    text-align: center;
-    max-width: 280px;
-  }
-  .sum-card .card-title {
-    font-size: 1.1rem;
-    font-weight: 600;
-    color: #f2efe6;
-    margin-bottom: 4px;
-  }
-  .sum-card .card-eq {
-    font-size: 1.4rem;
-    color: #9aa7a6;
-    margin: 8px 0;
-  }
-  .sum-pills {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-    justify-content: center;
-    margin-top: 12px;
-  }
-  .sum-pill {
-    background: rgba(69, 230, 199, 0.1);
-    border: 1px solid rgba(69, 230, 199, 0.35);
-    border-radius: 8px;
-    padding: 6px 12px;
-    font-size: 0.8rem;
-    font-weight: 500;
-    color: #45e6c7;
-  }
-  .sum-card .card-body {
-    font-size: 0.85rem;
-    color: #c9c1ac;
-    line-height: 1.4;
-    margin-top: 12px;
-    padding: 12px;
-    background: #0d1318;
-    border-radius: 10px;
-  }
-  .sum-icon-big {
-    font-size: 2.5rem;
-    margin-top: 8px;
-  }
-</style>
 
-<div class="ss-container">
-  <div class="ss-title">Shipping software still takes a full team</div>
-  <div class="ss-flow">
-    <div class="ss-box bg-sage">
-      <div class="icon">🎯</div>
-      <div class="label">Product<br>Manager</div>
+
+<div style="font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; background: #080b0f; border: 1px solid #24313b; padding: 40px 30px; margin: 20px 0; overflow-x: auto">
+  <div style="font-family: Georgia, serif; font-size: 2.2rem; font-weight: 400; color: #f2efe6; margin-bottom: 60px; letter-spacing: -0.02em">Shipping software still takes a full team</div>
+  <div style="display: flex; align-items: center; justify-content: center; gap: 0; min-width: 900px">
+    <div style="width: 160px; height: 200px; border-radius: 16px; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 20px; text-align: center; background: #111922; border: 1px solid #c9c1ac">
+      <div style="font-size: 2.2rem; margin-bottom: 16px">🎯</div>
+      <div style="font-size: 1.05rem; font-weight: 600; color: #f2efe6; line-height: 1.3">Product<br>Manager</div>
     </div>
-    <div class="ss-arrow">
+    <div style="display: flex; flex-direction: column; align-items: center; margin: 0 10px; color: #9aa7a6; font-size: 0.75rem; font-weight: 500; letter-spacing: 0.05em">
       <span>Handoff</span>
-      <span class="arr">→</span>
+      <span style="font-size: 1.4rem; margin-top: 4px; color: #38505b">→</span>
     </div>
-    <div class="ss-box bg-grey">
-      <div class="icon">🧩</div>
-      <div class="label">UI/UX<br>Developer</div>
+    <div style="width: 160px; height: 200px; border-radius: 16px; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 20px; text-align: center; background: #111922; border: 1px solid #9aa7a6">
+      <div style="font-size: 2.2rem; margin-bottom: 16px">🧩</div>
+      <div style="font-size: 1.05rem; font-weight: 600; color: #f2efe6; line-height: 1.3">UI/UX<br>Developer</div>
     </div>
-    <div class="ss-arrow">
+    <div style="display: flex; flex-direction: column; align-items: center; margin: 0 10px; color: #9aa7a6; font-size: 0.75rem; font-weight: 500; letter-spacing: 0.05em">
       <span>Handoff</span>
-      <span class="arr">→</span>
+      <span style="font-size: 1.4rem; margin-top: 4px; color: #38505b">→</span>
     </div>
-    <div class="ss-box bg-peach">
-      <div class="icon">💻</div>
-      <div class="label">Software<br>Engineer</div>
+    <div style="width: 160px; height: 200px; border-radius: 16px; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 20px; text-align: center; background: #111922; border: 1px solid #b66d3d">
+      <div style="font-size: 2.2rem; margin-bottom: 16px">💻</div>
+      <div style="font-size: 1.05rem; font-weight: 600; color: #f2efe6; line-height: 1.3">Software<br>Engineer</div>
     </div>
-    <div class="ss-arrow">
+    <div style="display: flex; flex-direction: column; align-items: center; margin: 0 10px; color: #9aa7a6; font-size: 0.75rem; font-weight: 500; letter-spacing: 0.05em">
       <span>Handoff</span>
-      <span class="arr">→</span>
+      <span style="font-size: 1.4rem; margin-top: 4px; color: #38505b">→</span>
     </div>
-    <div class="ss-box bg-teal">
-      <div class="icon">🛡️</div>
-      <div class="label">Security<br>Engineer</div>
+    <div style="width: 160px; height: 200px; border-radius: 16px; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 20px; text-align: center; background: #111922; border: 1px solid #45e6c7">
+      <div style="font-size: 2.2rem; margin-bottom: 16px">🛡️</div>
+      <div style="font-size: 1.05rem; font-weight: 600; color: #f2efe6; line-height: 1.3">Security<br>Engineer</div>
     </div>
-    <div class="ss-arrow">
+    <div style="display: flex; flex-direction: column; align-items: center; margin: 0 10px; color: #9aa7a6; font-size: 0.75rem; font-weight: 500; letter-spacing: 0.05em">
       <span>Handoff</span>
-      <span class="arr">→</span>
+      <span style="font-size: 1.4rem; margin-top: 4px; color: #38505b">→</span>
     </div>
-    <div class="ss-box bg-lav">
-      <div class="icon">📈</div>
-      <div class="label">Growth<br>Marketer</div>
+    <div style="width: 160px; height: 200px; border-radius: 16px; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 20px; text-align: center; background: #111922; border: 1px solid #c8c8d8">
+      <div style="font-size: 2.2rem; margin-bottom: 16px">📈</div>
+      <div style="font-size: 1.05rem; font-weight: 600; color: #f2efe6; line-height: 1.3">Growth<br>Marketer</div>
     </div>
   </div>
 </div>
@@ -577,56 +66,56 @@ This document outlines the end-to-end process of shipping software, from product
 
 ## Diagram 2: The Design Phase — AI-Accelerated UI/UX Development
 
-<div class="design-container">
-  <div class="design-title">Design: UI/UX Developer</div>
-  <div class="design-subtitle">"I take the wireframe and define the architecture."</div>
-  <div class="design-wrap">
-    <div class="design-col left">
-      <div class="d-box light" style="padding: 28px 20px;">01/wireframe.html</div>
+<div style="font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; background: #080b0f; border: 1px solid #24313b; padding: 40px 30px; margin: 20px 0; overflow-x: auto">
+  <div style="font-family: Georgia, serif; font-size: 2rem; font-weight: 400; color: #f2efe6; margin-bottom: 8px; letter-spacing: -0.02em">Design: UI/UX Developer</div>
+  <div style="font-size: 1.1rem; color: #9aa7a6; margin-bottom: 50px">"I take the wireframe and define the architecture."</div>
+  <div style="display: flex; align-items: center; justify-content: center; gap: 0; min-width: 800px">
+    <div style="display: flex; flex-direction: column; align-items: flex-end; padding-right: 20px">
+      <div style="padding: 18px 24px; border-radius: 12px; text-align: center; font-size: 0.95rem; font-weight: 500; background: #111922; border: 1px solid #24313b; color: #f2efe6; white-space: nowrap">01/wireframe.html</div>
     </div>
-    <div class="design-col center">
-      <div class="d-arrow-h">→</div>
-      <div class="d-box dark" style="padding: 32px 20px;">Claude Code</div>
-      <div class="d-arrow-v">
-        <span class="v">↑</span>
+    <div style="display: flex; flex-direction: column; align-items: center; padding: 0 20px">
+      <div style="font-size: 1.6rem; color: #38505b; padding: 0 12px">→</div>
+      <div style="padding: 18px 24px; border-radius: 12px; text-align: center; font-size: 1.1rem; font-weight: 600; background: rgba(156, 255, 110, 0.08); border: 1px solid rgba(156, 255, 110, 0.45); color: #9cff6e; white-space: nowrap">Claude Code</div>
+      <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; color: #9aa7a6; font-size: 0.8rem; font-weight: 600; letter-spacing: 0.08em; margin: 16px 0">
+        <span style="font-size: 1.2rem; line-height: 1; color: #38505b">↑</span>
         <span>MCP</span>
-        <span class="v">↓</span>
+        <span style="font-size: 1.2rem; line-height: 1; color: #38505b">↓</span>
       </div>
-      <div class="d-box white">
+      <div style="border-radius: 12px; padding: 18px 24px; text-align: center; font-size: 0.95rem; font-weight: 500; background: #0d1318; border: 1px solid #38505b; color: #f2efe6; white-space: nowrap">
         <div style="font-weight:600; margin-bottom:4px;">Figma Board</div>
         <div style="font-size:0.8rem; color:#9aa7a6;">mcp.figma.com</div>
       </div>
     </div>
-    <div class="design-col right">
-      <div class="branch-wrap">
-        <div class="branch-vert">
-          <div class="branch-top"></div>
+    <div style="display: flex; flex-direction: column; align-items: flex-start; padding-left: 40px; gap: 12px">
+      <div style="display: flex; align-items: center; width: 100%">
+        <div style="display: flex; flex-direction: column; align-items: flex-start; width: 30px; flex-shrink: 0">
+          <div style="border-left: 2px solid #38505b; border-top: 2px solid #38505b; border-top-left-radius: 12px; height: 24px; width: 28px"></div>
         </div>
-        <div class="d-box light small">landing.html</div>
+        <div style="border-radius: 12px; padding: 14px 20px; text-align: center; font-size: 0.9rem; font-weight: 500; background: #111922; border: 1px solid #24313b; color: #f2efe6; white-space: nowrap">landing.html</div>
       </div>
-      <div class="branch-wrap">
-        <div class="branch-vert">
-          <div class="branch-mid"></div>
+      <div style="display: flex; align-items: center; width: 100%">
+        <div style="display: flex; flex-direction: column; align-items: flex-start; width: 30px; flex-shrink: 0">
+          <div style="border-left: 2px solid #38505b; height: 24px; width: 28px"></div>
         </div>
-        <div class="d-box light small">form.html</div>
+        <div style="border-radius: 12px; padding: 14px 20px; text-align: center; font-size: 0.9rem; font-weight: 500; background: #111922; border: 1px solid #24313b; color: #f2efe6; white-space: nowrap">form.html</div>
       </div>
-      <div class="branch-wrap">
-        <div class="branch-vert">
-          <div class="branch-mid"></div>
+      <div style="display: flex; align-items: center; width: 100%">
+        <div style="display: flex; flex-direction: column; align-items: flex-start; width: 30px; flex-shrink: 0">
+          <div style="border-left: 2px solid #38505b; height: 24px; width: 28px"></div>
         </div>
-        <div class="d-box light small">thanks.html</div>
+        <div style="border-radius: 12px; padding: 14px 20px; text-align: center; font-size: 0.9rem; font-weight: 500; background: #111922; border: 1px solid #24313b; color: #f2efe6; white-space: nowrap">thanks.html</div>
       </div>
-      <div class="branch-wrap">
-        <div class="branch-vert">
-          <div class="branch-mid"></div>
+      <div style="display: flex; align-items: center; width: 100%">
+        <div style="display: flex; flex-direction: column; align-items: flex-start; width: 30px; flex-shrink: 0">
+          <div style="border-left: 2px solid #38505b; height: 24px; width: 28px"></div>
         </div>
-        <div class="d-box light small">dashboard.html</div>
+        <div style="border-radius: 12px; padding: 14px 20px; text-align: center; font-size: 0.9rem; font-weight: 500; background: #111922; border: 1px solid #24313b; color: #f2efe6; white-space: nowrap">dashboard.html</div>
       </div>
-      <div class="branch-wrap">
-        <div class="branch-vert">
-          <div class="branch-end"></div>
+      <div style="display: flex; align-items: center; width: 100%">
+        <div style="display: flex; flex-direction: column; align-items: flex-start; width: 30px; flex-shrink: 0">
+          <div style="border-left: 2px solid #38505b; border-bottom: 2px solid #38505b; border-bottom-left-radius: 12px; height: 24px; width: 28px"></div>
         </div>
-        <div class="d-box light small">styles.css</div>
+        <div style="border-radius: 12px; padding: 14px 20px; text-align: center; font-size: 0.9rem; font-weight: 500; background: #111922; border: 1px solid #24313b; color: #f2efe6; white-space: nowrap">styles.css</div>
       </div>
     </div>
   </div>
@@ -661,32 +150,32 @@ This diagram illustrates a modern, AI-accelerated design workflow where **Claude
 
 ## Diagram 3: Build — Software Engineer (Cloud Architecture)
 
-<div class="build-container">
-  <div class="build-title">Build: SWE</div>
-  <div class="build-subtitle">"I design the cloud architecture, then build all three services in parallel."</div>
-  <div class="build-flow">
-    <div class="build-hand">👌</div>
-    <div class="build-arrow">→</div>
-    <div class="build-box light">
-      <div class="b-label">API Service</div>
-      <div class="b-sublabel">Feedback API</div>
+<div style="font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; background: #080b0f; border: 1px solid #24313b; padding: 40px 30px; margin: 20px 0; overflow-x: auto">
+  <div style="font-family: Georgia, serif; font-size: 2rem; font-weight: 400; color: #f2efe6; margin-bottom: 8px; letter-spacing: -0.02em">Build: SWE</div>
+  <div style="font-size: 1.1rem; color: #9aa7a6; margin-bottom: 50px">"I design the cloud architecture, then build all three services in parallel."</div>
+  <div style="display: flex; align-items: center; justify-content: center; gap: 0; min-width: 800px">
+    <div style="font-size: 2.8rem; margin-right: 16px; line-height: 1">👌</div>
+    <div style="font-size: 1.6rem; color: #38505b; padding: 0 18px">→</div>
+    <div style="border-radius: 12px; padding: 22px 28px; text-align: center; min-width: 140px; background: #111922; border: 1px solid #24313b">
+      <div style="font-size: 0.95rem; font-weight: 600; color: #f2efe6; line-height: 1.3">API Service</div>
+      <div style="font-size: 0.85rem; font-weight: 400; color: #c9c1ac; margin-top: 2px">Feedback API</div>
     </div>
-    <div class="build-arrow">→</div>
-    <div class="build-box white">
-      <div class="b-icon">🗄️</div>
-      <div class="b-label">Database</div>
-      <div class="b-sublabel">Responses Store</div>
+    <div style="font-size: 1.6rem; color: #38505b; padding: 0 18px">→</div>
+    <div style="border-radius: 12px; padding: 22px 28px; text-align: center; min-width: 140px; background: #0d1318; border: 1px solid #38505b">
+      <div style="font-size: 1.6rem; margin-bottom: 10px; line-height: 1">🗄️</div>
+      <div style="font-size: 0.95rem; font-weight: 600; color: #f2efe6; line-height: 1.3">Database</div>
+      <div style="font-size: 0.85rem; font-weight: 400; color: #c9c1ac; margin-top: 2px">Responses Store</div>
     </div>
-    <div class="build-arrow">→</div>
-    <div class="build-box white">
-      <div class="b-icon">📊</div>
-      <div class="b-label">Data Processing</div>
-      <div class="b-sublabel">Analytics Engine</div>
+    <div style="font-size: 1.6rem; color: #38505b; padding: 0 18px">→</div>
+    <div style="border-radius: 12px; padding: 22px 28px; text-align: center; min-width: 140px; background: #0d1318; border: 1px solid #38505b">
+      <div style="font-size: 1.6rem; margin-bottom: 10px; line-height: 1">📊</div>
+      <div style="font-size: 0.95rem; font-weight: 600; color: #f2efe6; line-height: 1.3">Data Processing</div>
+      <div style="font-size: 0.85rem; font-weight: 400; color: #c9c1ac; margin-top: 2px">Analytics Engine</div>
     </div>
-    <div class="build-arrow">→</div>
-    <div class="build-box light">
-      <div class="b-label">Dashboard</div>
-      <div class="b-sublabel">Visualization</div>
+    <div style="font-size: 1.6rem; color: #38505b; padding: 0 18px">→</div>
+    <div style="border-radius: 12px; padding: 22px 28px; text-align: center; min-width: 140px; background: #111922; border: 1px solid #24313b">
+      <div style="font-size: 0.95rem; font-weight: 600; color: #f2efe6; line-height: 1.3">Dashboard</div>
+      <div style="font-size: 0.85rem; font-weight: 400; color: #c9c1ac; margin-top: 2px">Visualization</div>
     </div>
   </div>
 </div>
@@ -738,45 +227,45 @@ The flow **API → Database → Processing → Dashboard** is the backbone of al
 
 ## Diagram 3A: Build — Parallel Subagent Orchestration
 
-<div class="orch-container">
-  <div class="orch-title">Build: SWE</div>
-  <div class="orch-subtitle">"I build the API, the pipeline, and the dashboard. In parallel."</div>
-  <div class="orch-wrap">
-    <div class="orch-box-dark">LLM Orchestrator</div>
-    <div class="orch-branches">
-      <div class="orch-branch">
-        <div class="orch-branch-line"></div>
+<div style="font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; background: #080b0f; border: 1px solid #24313b; padding: 40px 30px; margin: 20px 0; overflow-x: auto">
+  <div style="font-family: Georgia, serif; font-size: 2rem; font-weight: 400; color: #f2efe6; margin-bottom: 8px; letter-spacing: -0.02em">Build: SWE</div>
+  <div style="font-size: 1.1rem; color: #9aa7a6; margin-bottom: 50px">"I build the API, the pipeline, and the dashboard. In parallel."</div>
+  <div style="display: flex; flex-direction: column; align-items: center; min-width: 700px">
+    <div style="background: rgba(156, 255, 110, 0.08); border: 1px solid rgba(156, 255, 110, 0.45); color: #9cff6e; border-radius: 12px; padding: 24px 36px; text-align: center; font-weight: 600; font-size: 1.1rem">LLM Orchestrator</div>
+    <div style="display: flex; justify-content: center; gap: 140px; margin-top: 4px">
+      <div style="display: flex; flex-direction: column; align-items: center">
+        <div style="border-left: 2px solid #38505b; border-top: 2px solid #38505b; border-top-left-radius: 12px; height: 32px; width: 80px; margin-bottom: -1px"></div>
       </div>
-      <div class="orch-branch">
-        <div class="orch-branch-center"></div>
+      <div style="display: flex; flex-direction: column; align-items: center">
+        <div style="border-left: 2px solid #38505b; height: 32px; width: 0"></div>
       </div>
-      <div class="orch-branch">
-        <div class="orch-branch-right"></div>
+      <div style="display: flex; flex-direction: column; align-items: center">
+        <div style="border-right: 2px solid #38505b; border-top: 2px solid #38505b; border-top-right-radius: 12px; height: 32px; width: 80px; margin-bottom: -1px"></div>
       </div>
     </div>
     <div style="display: flex; gap: 30px; justify-content: center;">
-      <div class="orch-subagent">
-        <div class="o-label">Subagent A</div>
-        <div class="o-sublabel">backend-api</div>
+      <div style="background: #111922; border: 1px solid #24313b; border-radius: 12px; padding: 20px 28px; text-align: center; min-width: 150px">
+        <div style="font-size: 0.95rem; font-weight: 600; color: #f2efe6">Subagent A</div>
+        <div style="font-size: 0.85rem; color: #c9c1ac; margin-top: 4px">backend-api</div>
       </div>
-      <div class="orch-subagent">
-        <div class="o-label">Subagent B</div>
-        <div class="o-sublabel">data-pipeline</div>
+      <div style="background: #111922; border: 1px solid #24313b; border-radius: 12px; padding: 20px 28px; text-align: center; min-width: 150px">
+        <div style="font-size: 0.95rem; font-weight: 600; color: #f2efe6">Subagent B</div>
+        <div style="font-size: 0.85rem; color: #c9c1ac; margin-top: 4px">data-pipeline</div>
       </div>
-      <div class="orch-subagent">
-        <div class="o-label">Subagent C</div>
-        <div class="o-sublabel">Dashboard</div>
+      <div style="background: #111922; border: 1px solid #24313b; border-radius: 12px; padding: 20px 28px; text-align: center; min-width: 150px">
+        <div style="font-size: 0.95rem; font-weight: 600; color: #f2efe6">Subagent C</div>
+        <div style="font-size: 0.85rem; color: #c9c1ac; margin-top: 4px">Dashboard</div>
       </div>
     </div>
     <div style="display: flex; gap: 30px; justify-content: center; margin-top: 10px;">
-      <div class="orch-arrow-down">↓</div>
-      <div class="orch-arrow-down">↓</div>
-      <div class="orch-arrow-down">↓</div>
+      <div style="font-size: 1.4rem; color: #38505b; margin: 10px 0">↓</div>
+      <div style="font-size: 1.4rem; color: #38505b; margin: 10px 0">↓</div>
+      <div style="font-size: 1.4rem; color: #38505b; margin: 10px 0">↓</div>
     </div>
     <div style="display: flex; gap: 30px; justify-content: center;">
-      <div class="orch-target">Container / Serverless</div>
-      <div class="orch-target">Data Warehouse</div>
-      <div class="orch-target">HTML / JS / React</div>
+      <div style="border: 1px dashed #38505b; color: #9aa7a6; border-radius: 12px; padding: 12px 24px; text-align: center; font-size: 0.9rem; font-weight: 500; background: transparent">Container / Serverless</div>
+      <div style="border: 1px dashed #38505b; color: #9aa7a6; border-radius: 12px; padding: 12px 24px; text-align: center; font-size: 0.9rem; font-weight: 500; background: transparent">Data Warehouse</div>
+      <div style="border: 1px dashed #38505b; color: #9aa7a6; border-radius: 12px; padding: 12px 24px; text-align: center; font-size: 0.9rem; font-weight: 500; background: transparent">HTML / JS / React</div>
     </div>
   </div>
 </div>
@@ -797,34 +286,34 @@ This pattern collapses what used to be three separate sprints into a single para
 
 ## Diagram 4: Deploy — Security Engineer
 
-<div class="sec-container">
-  <div class="sec-title">Deploy: Security Engineer</div>
-  <div class="sec-subtitle">"Nothing ships without my review."</div>
-  <div class="sec-flow">
-    <div class="sec-box-dark">/security-review</div>
-    <div class="sec-arrow">→</div>
-    <div class="sec-col">
-      <div class="sec-box-alert">
-        <div class="alert-icon">👌</div>
-        <div class="alert-label">Found missing<br>input validation</div>
+<div style="font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; background: #080b0f; border: 1px solid #24313b; padding: 40px 30px; margin: 20px 0; overflow-x: auto">
+  <div style="font-family: Georgia, serif; font-size: 2rem; font-weight: 400; color: #f2efe6; margin-bottom: 8px; letter-spacing: -0.02em">Deploy: Security Engineer</div>
+  <div style="font-size: 1.1rem; color: #9aa7a6; margin-bottom: 50px">"Nothing ships without my review."</div>
+  <div style="display: flex; align-items: center; justify-content: center; gap: 0; min-width: 900px">
+    <div style="background: #0d1318; border: 1px solid #38505b; color: #f2efe6; border-radius: 12px; padding: 16px 20px; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 0.9rem">/security-review</div>
+    <div style="font-size: 1.6rem; color: #38505b; padding: 0 18px">→</div>
+    <div style="display: flex; flex-direction: column; align-items: center">
+      <div style="background: rgba(255, 214, 102, 0.08); border: 1px solid rgba(255, 214, 102, 0.45); color: #ffd666; border-radius: 12px; padding: 20px; text-align: center; min-width: 140px">
+        <div style="font-size: 2.2rem; margin-bottom: 10px">👌</div>
+        <div style="font-size: 0.95rem; font-weight: 600; line-height: 1.3">Found missing<br>input validation</div>
       </div>
-      <div class="sec-arrow-down">↓</div>
-      <div class="sec-box-white">
-        <div class="w-label">Edit Code</div>
-        <div class="w-sublabel">Add schema check</div>
+      <div style="font-size: 1.4rem; color: #38505b; margin: 10px 0">↓</div>
+      <div style="background: #111922; border: 1px solid #24313b; border-radius: 12px; padding: 20px 22px; text-align: center; min-width: 130px">
+        <div style="font-size: 0.95rem; font-weight: 600; color: #f2efe6">Edit Code</div>
+        <div style="font-size: 0.8rem; color: #9aa7a6; margin-top: 4px">Add schema check</div>
       </div>
     </div>
-    <div class="sec-arrow">→</div>
-    <div class="sec-box-white">
-      <div class="w-label">Set Permissions</div>
-      <div class="w-sublabel">Least-privilege<br>service account</div>
+    <div style="font-size: 1.6rem; color: #38505b; padding: 0 18px">→</div>
+    <div style="background: #111922; border: 1px solid #24313b; border-radius: 12px; padding: 20px 22px; text-align: center; min-width: 130px">
+      <div style="font-size: 0.95rem; font-weight: 600; color: #f2efe6">Set Permissions</div>
+      <div style="font-size: 0.8rem; color: #9aa7a6; margin-top: 4px">Least-privilege<br>service account</div>
     </div>
-    <div class="sec-arrow">→</div>
-    <div class="sec-box-white">
-      <div class="w-label">Build & Deploy</div>
+    <div style="font-size: 1.6rem; color: #38505b; padding: 0 18px">→</div>
+    <div style="background: #111922; border: 1px solid #24313b; border-radius: 12px; padding: 20px 22px; text-align: center; min-width: 130px">
+      <div style="font-size: 0.95rem; font-weight: 600; color: #f2efe6">Build & Deploy</div>
     </div>
-    <div class="sec-arrow">→</div>
-    <div class="sec-box-end">💻</div>
+    <div style="font-size: 1.6rem; color: #38505b; padding: 0 18px">→</div>
+    <div style="background: #111922; border: 1px solid #9cff6e; border-radius: 12px; width: 90px; height: 90px; display: flex; align-items: center; justify-content: center; font-size: 2.2rem; color: #9cff6e">💻</div>
   </div>
 </div>
 
@@ -850,32 +339,32 @@ Before any code reaches production, a Security Engineer (or an AI security agent
 
 ## Diagram 5: Support — Post-Launch Feedback Loop
 
-<div class="support-container">
-  <div class="support-title">Support: Post-Launch</div>
-  <div class="support-subtitle">"We ship, we listen, we improve."</div>
-  <div class="support-flow">
-    <div class="support-box light">
-      <div class="s-icon">📊</div>
-      <div class="s-label">Dashboard</div>
-      <div class="s-sublabel">Live Metrics</div>
+<div style="font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; background: #080b0f; border: 1px solid #24313b; padding: 40px 30px; margin: 20px 0; overflow-x: auto">
+  <div style="font-family: Georgia, serif; font-size: 2rem; font-weight: 400; color: #f2efe6; margin-bottom: 8px; letter-spacing: -0.02em">Support: Post-Launch</div>
+  <div style="font-size: 1.1rem; color: #9aa7a6; margin-bottom: 50px">"We ship, we listen, we improve."</div>
+  <div style="display: flex; align-items: center; justify-content: center; gap: 0; min-width: 800px">
+    <div style="border-radius: 12px; padding: 22px 28px; text-align: center; min-width: 150px; background: #111922; border: 1px solid #24313b">
+      <div style="font-size: 1.8rem; margin-bottom: 10px">📊</div>
+      <div style="font-size: 0.95rem; font-weight: 600; color: #f2efe6">Dashboard</div>
+      <div style="font-size: 0.85rem; color: #c9c1ac; margin-top: 4px">Live Metrics</div>
     </div>
-    <div class="support-arrow">→</div>
-    <div class="support-box white">
-      <div class="s-icon">🔍</div>
-      <div class="s-label">Analyze Feedback</div>
-      <div class="s-sublabel">Trends & Anomalies</div>
+    <div style="font-size: 1.6rem; color: #38505b; padding: 0 18px">→</div>
+    <div style="border-radius: 12px; padding: 22px 28px; text-align: center; min-width: 150px; background: #0d1318; border: 1px solid #38505b">
+      <div style="font-size: 1.8rem; margin-bottom: 10px">🔍</div>
+      <div style="font-size: 0.95rem; font-weight: 600; color: #f2efe6">Analyze Feedback</div>
+      <div style="font-size: 0.85rem; color: #c9c1ac; margin-top: 4px">Trends & Anomalies</div>
     </div>
-    <div class="support-arrow">→</div>
-    <div class="support-box white">
-      <div class="s-icon">⚡</div>
-      <div class="s-label">Take Action</div>
-      <div class="s-sublabel">Patch or Iterate</div>
+    <div style="font-size: 1.6rem; color: #38505b; padding: 0 18px">→</div>
+    <div style="border-radius: 12px; padding: 22px 28px; text-align: center; min-width: 150px; background: #0d1318; border: 1px solid #38505b">
+      <div style="font-size: 1.8rem; margin-bottom: 10px">⚡</div>
+      <div style="font-size: 0.95rem; font-weight: 600; color: #f2efe6">Take Action</div>
+      <div style="font-size: 0.85rem; color: #c9c1ac; margin-top: 4px">Patch or Iterate</div>
     </div>
-    <div class="support-arrow">→</div>
-    <div class="support-box light">
-      <div class="s-icon">🚀</div>
-      <div class="s-label">Ship Update</div>
-      <div class="s-sublabel">New Release</div>
+    <div style="font-size: 1.6rem; color: #38505b; padding: 0 18px">→</div>
+    <div style="border-radius: 12px; padding: 22px 28px; text-align: center; min-width: 150px; background: #111922; border: 1px solid #24313b">
+      <div style="font-size: 1.8rem; margin-bottom: 10px">🚀</div>
+      <div style="font-size: 0.95rem; font-weight: 600; color: #f2efe6">Ship Update</div>
+      <div style="font-size: 0.85rem; color: #c9c1ac; margin-top: 4px">New Release</div>
     </div>
   </div>
 </div>
@@ -895,42 +384,42 @@ Shipping is not the finish line — it is the starting line for learning. The Su
 
 ## Summary: The AI-Assisted Software Lifecycle
 
-<div class="sum-container">
-  <div class="sum-title">From Prototype to Support</div>
-  <div class="sum-subtitle">How AI agents and cloud infrastructure combine to ship software end-to-end.</div>
-  <div class="sum-flow">
-    <div class="sum-box bg-sage">Prototype</div>
-    <div class="sum-arrow">→</div>
-    <div class="sum-box bg-grey">Design</div>
-    <div class="sum-arrow">→</div>
-    <div class="sum-box bg-peach">Build</div>
-    <div class="sum-arrow">→</div>
-    <div class="sum-box bg-teal">Deploy</div>
-    <div class="sum-arrow">→</div>
-    <div class="sum-box bg-lav">Support</div>
+<div style="font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; background: #080b0f; border: 1px solid #24313b; padding: 40px 30px; margin: 20px 0; overflow-x: auto">
+  <div style="font-family: Georgia, serif; font-size: 2rem; font-weight: 400; color: #f2efe6; margin-bottom: 8px; letter-spacing: -0.02em">From Prototype to Support</div>
+  <div style="font-size: 1.1rem; color: #9aa7a6; margin-bottom: 50px">How AI agents and cloud infrastructure combine to ship software end-to-end.</div>
+  <div style="display: flex; align-items: center; justify-content: center; gap: 0; min-width: 900px">
+    <div style="width: 140px; height: 100px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; font-weight: 600; color: #f2efe6; background: #111922; border: 1px solid #c9c1ac">Prototype</div>
+    <div style="font-size: 1.6rem; color: #38505b; padding: 0 18px">→</div>
+    <div style="width: 140px; height: 100px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; font-weight: 600; color: #f2efe6; background: #111922; border: 1px solid #9aa7a6">Design</div>
+    <div style="font-size: 1.6rem; color: #38505b; padding: 0 18px">→</div>
+    <div style="width: 140px; height: 100px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; font-weight: 600; color: #f2efe6; background: #111922; border: 1px solid #b66d3d">Build</div>
+    <div style="font-size: 1.6rem; color: #38505b; padding: 0 18px">→</div>
+    <div style="width: 140px; height: 100px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; font-weight: 600; color: #f2efe6; background: #111922; border: 1px solid #45e6c7">Deploy</div>
+    <div style="font-size: 1.6rem; color: #38505b; padding: 0 18px">→</div>
+    <div style="width: 140px; height: 100px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; font-weight: 600; color: #f2efe6; background: #111922; border: 1px solid #c8c8d8">Support</div>
   </div>
-  <div class="sum-divider"></div>
-  <div class="sum-grid">
-    <div class="sum-card">
-      <div class="card-title">AI Agent Platform</div>
-      <div class="card-eq">=</div>
-      <div class="sum-pills">
-        <span class="sum-pill">Memory</span>
-        <span class="sum-pill">Tools</span>
-        <span class="sum-pill">Subagents</span>
-        <span class="sum-pill">Skills</span>
-        <span class="sum-pill">MCP</span>
+  <div style="height: 1px; background: #24313b; margin: 40px 0; min-width: 900px"></div>
+  <div style="display: flex; gap: 20px; justify-content: center; min-width: 900px">
+    <div style="background: #111922; border: 1px solid #24313b; border-radius: 12px; padding: 28px 20px; flex: 1; text-align: center; max-width: 280px">
+      <div style="font-size: 1.1rem; font-weight: 600; color: #f2efe6; margin-bottom: 4px">AI Agent Platform</div>
+      <div style="font-size: 1.4rem; color: #9aa7a6; margin: 8px 0">=</div>
+      <div style="display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-top: 12px">
+        <span style="background: rgba(69, 230, 199, 0.1); border: 1px solid rgba(69, 230, 199, 0.35); border-radius: 8px; padding: 6px 12px; font-size: 0.8rem; font-weight: 500; color: #45e6c7">Memory</span>
+        <span style="background: rgba(69, 230, 199, 0.1); border: 1px solid rgba(69, 230, 199, 0.35); border-radius: 8px; padding: 6px 12px; font-size: 0.8rem; font-weight: 500; color: #45e6c7">Tools</span>
+        <span style="background: rgba(69, 230, 199, 0.1); border: 1px solid rgba(69, 230, 199, 0.35); border-radius: 8px; padding: 6px 12px; font-size: 0.8rem; font-weight: 500; color: #45e6c7">Subagents</span>
+        <span style="background: rgba(69, 230, 199, 0.1); border: 1px solid rgba(69, 230, 199, 0.35); border-radius: 8px; padding: 6px 12px; font-size: 0.8rem; font-weight: 500; color: #45e6c7">Skills</span>
+        <span style="background: rgba(69, 230, 199, 0.1); border: 1px solid rgba(69, 230, 199, 0.35); border-radius: 8px; padding: 6px 12px; font-size: 0.8rem; font-weight: 500; color: #45e6c7">MCP</span>
       </div>
     </div>
-    <div class="sum-card">
-      <div class="card-title">Cloud Provider</div>
-      <div class="card-eq">=</div>
-      <div class="card-body">AI inside your cloud project<br>(IAM, region, billing,<br>compute, storage)</div>
+    <div style="background: #111922; border: 1px solid #24313b; border-radius: 12px; padding: 28px 20px; flex: 1; text-align: center; max-width: 280px">
+      <div style="font-size: 1.1rem; font-weight: 600; color: #f2efe6; margin-bottom: 4px">Cloud Provider</div>
+      <div style="font-size: 1.4rem; color: #9aa7a6; margin: 8px 0">=</div>
+      <div style="font-size: 0.85rem; color: #c9c1ac; line-height: 1.4; margin-top: 12px; padding: 12px; background: #0d1318; border-radius: 10px">AI inside your cloud project<br>(IAM, region, billing,<br>compute, storage)</div>
     </div>
-    <div class="sum-card">
-      <div class="card-title">AI + Cloud</div>
-      <div class="card-eq">=</div>
-      <div class="sum-icon-big">🎉</div>
+    <div style="background: #111922; border: 1px solid #24313b; border-radius: 12px; padding: 28px 20px; flex: 1; text-align: center; max-width: 280px">
+      <div style="font-size: 1.1rem; font-weight: 600; color: #f2efe6; margin-bottom: 4px">AI + Cloud</div>
+      <div style="font-size: 1.4rem; color: #9aa7a6; margin: 8px 0">=</div>
+      <div style="font-size: 2.5rem; margin-top: 8px">🎉</div>
     </div>
   </div>
 </div>
