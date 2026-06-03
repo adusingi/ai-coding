@@ -6,181 +6,30 @@ This document explains the difference between a **Site** (static files) and an *
 
 ## Diagram 1: Site vs. App
 
-<style>
-  @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap');
-
-  .sa-container {
-    font-family: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-    background: #080b0f;
-    border: 1px solid #24313b;
-    padding: 40px 30px;
-    margin: 20px 0;
-    overflow-x: auto;
-  }
-  .sa-title {
-    font-family: "Instrument Serif", Georgia, serif;
-    font-size: clamp(28px, 5vw, 40px);
-    font-weight: 400;
-    color: #f2efe6;
-    margin-bottom: 8px;
-    line-height: 0.95;
-  }
-  .sa-subtitle {
-    font-size: 1rem;
-    color: #9aa7a6;
-    margin-bottom: 50px;
-  }
-  .sa-compare {
-    display: flex;
-    justify-content: center;
-    gap: 60px;
-    min-width: 600px;
-  }
-  .sa-column {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 16px;
-  }
-  .sa-heading {
-    font-family: "Instrument Serif", Georgia, serif;
-    font-size: 1.4rem;
-    font-weight: 400;
-    color: #f2efe6;
-    margin-bottom: 8px;
-  }
-  .sa-box {
-    padding: 18px 28px;
-    text-align: center;
-    min-width: 180px;
-  }
-  .sa-box.files {
-    background: #111922;
-    border: 1px solid #24313b;
-    font-weight: 600;
-    color: #f2efe6;
-  }
-  .sa-box.component {
-    background: #0d1318;
-    border: 1px solid #24313b;
-    font-weight: 500;
-    color: #f2efe6;
-  }
-  .sa-box.component.highlight {
-    background: rgba(156, 255, 110, 0.08);
-    border: 1px solid rgba(156, 255, 110, 0.45);
-    color: #9cff6e;
-    font-weight: 600;
-  }
-  .sa-plus {
-    font-size: 1.4rem;
-    color: #9aa7a6;
-    font-weight: 600;
-  }
-  .sa-arrow {
-    font-size: 2rem;
-    color: #9aa7a6;
-    align-self: center;
-  }
-
-  .comp-container {
-    font-family: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-    background: #080b0f;
-    border: 1px solid #24313b;
-    padding: 40px 30px;
-    margin: 20px 0;
-    overflow-x: auto;
-  }
-  .comp-title {
-    font-family: "Instrument Serif", Georgia, serif;
-    font-size: clamp(28px, 5vw, 40px);
-    font-weight: 400;
-    color: #f2efe6;
-    margin-bottom: 8px;
-    line-height: 0.95;
-  }
-  .comp-subtitle {
-    font-size: 1rem;
-    color: #9aa7a6;
-    margin-bottom: 50px;
-  }
-  .comp-table-wrap {
-    overflow-x: auto;
-  }
-  .comp-table {
-    width: 100%;
-    border-collapse: collapse;
-    min-width: 900px;
-  }
-  .comp-table thead th {
-    text-align: left;
-    padding: 14px 18px;
-    font-size: 0.8rem;
-    font-weight: 600;
-    color: #9aa7a6;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    border-bottom: 2px solid #38505b;
-  }
-  .comp-table tbody tr {
-    border-bottom: 1px solid #24313b;
-  }
-  .comp-table tbody tr:last-child {
-    border-bottom: none;
-  }
-  .comp-table tbody td {
-    padding: 18px;
-    vertical-align: top;
-    font-size: 0.9rem;
-    line-height: 1.6;
-    color: #c9c1ac;
-  }
-  .comp-table tbody td:first-child {
-    color: #f2efe6;
-    font-weight: 600;
-    white-space: nowrap;
-    width: 120px;
-  }
-  .comp-pills {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 6px;
-  }
-  .comp-pill {
-    display: inline-flex;
-    align-items: center;
-    border: 1px solid rgba(69, 230, 199, 0.35);
-    background: rgba(13, 19, 24, 0.75);
-    padding: 3px 10px;
-    font-size: 0.78rem;
-    font-weight: 500;
-    color: #45e6c7;
-    white-space: nowrap;
-  }
-</style>
-
-<div class="sa-container">
-  <div class="sa-title">What turns a Site into an App?</div>
-  <div class="sa-subtitle">A Site is just files. An App adds five backend powers.</div>
-  <div class="sa-compare">
-    <div class="sa-column">
-      <div class="sa-heading">Site</div>
-      <div class="sa-box files">Files</div>
-      <div class="sa-box files" style="opacity: 0.6;">HTML / CSS / JS</div>
-      <div class="sa-box files" style="opacity: 0.4;">Images / Fonts</div>
-    </div>
-    <div class="sa-arrow">→</div>
-    <div class="sa-column">
-      <div class="sa-heading">App</div>
-      <div class="sa-box files">Files</div>
-      <div class="sa-plus">+</div>
-      <div class="sa-box component highlight">Auth</div>
-      <div class="sa-box component highlight">Database</div>
-      <div class="sa-box component highlight">Storage</div>
-      <div class="sa-box component highlight">Cron Jobs</div>
-      <div class="sa-box component highlight">APIs</div>
-    </div>
-  </div>
+<div style="font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; background: #080b0f; border: 1px solid #24313b; padding: 40px 30px; margin: 20px 0;">
+  <div style="font-family: Georgia, serif; font-size: 28px; font-weight: 400; color: #f2efe6; margin-bottom: 8px; line-height: 0.95;">What turns a Site into an App?</div>
+  <div style="font-size: 1rem; color: #9aa7a6; margin-bottom: 50px;">A Site is just files. An App adds five backend powers.</div>
+  <table style="margin: 0 auto; border-collapse: collapse;">
+    <tr>
+      <td style="vertical-align: top; padding: 0 30px; text-align: center;">
+        <div style="font-family: Georgia, serif; font-size: 1.4rem; font-weight: 400; color: #f2efe6; margin-bottom: 16px;">Site</div>
+        <div style="background: #111922; border: 1px solid #24313b; padding: 18px 28px; text-align: center; min-width: 180px; margin-bottom: 12px; font-weight: 600; color: #f2efe6;">Files</div>
+        <div style="background: #111922; border: 1px solid #24313b; padding: 18px 28px; text-align: center; min-width: 180px; margin-bottom: 12px; font-weight: 600; color: #f2efe6;">HTML / CSS / JS</div>
+        <div style="background: #111922; border: 1px solid #24313b; padding: 18px 28px; text-align: center; min-width: 180px; margin-bottom: 12px; font-weight: 600; color: #f2efe6;">Images / Fonts</div>
+      </td>
+      <td style="vertical-align: middle; padding: 0 20px; color: #9aa7a6; font-size: 2rem; text-align: center;">→</td>
+      <td style="vertical-align: top; padding: 0 30px; text-align: center;">
+        <div style="font-family: Georgia, serif; font-size: 1.4rem; font-weight: 400; color: #f2efe6; margin-bottom: 16px;">App</div>
+        <div style="background: #111922; border: 1px solid #24313b; padding: 18px 28px; text-align: center; min-width: 180px; margin-bottom: 12px; font-weight: 600; color: #f2efe6;">Files</div>
+        <div style="font-size: 1.4rem; color: #9aa7a6; font-weight: 600; text-align: center; margin-bottom: 12px;">+</div>
+        <div style="background: rgba(156, 255, 110, 0.08); border: 1px solid rgba(156, 255, 110, 0.45); padding: 18px 28px; text-align: center; min-width: 180px; margin-bottom: 12px; font-weight: 600; color: #9cff6e;">Auth</div>
+        <div style="background: rgba(156, 255, 110, 0.08); border: 1px solid rgba(156, 255, 110, 0.45); padding: 18px 28px; text-align: center; min-width: 180px; margin-bottom: 12px; font-weight: 600; color: #9cff6e;">Database</div>
+        <div style="background: rgba(156, 255, 110, 0.08); border: 1px solid rgba(156, 255, 110, 0.45); padding: 18px 28px; text-align: center; min-width: 180px; margin-bottom: 12px; font-weight: 600; color: #9cff6e;">Storage</div>
+        <div style="background: rgba(156, 255, 110, 0.08); border: 1px solid rgba(156, 255, 110, 0.45); padding: 18px 28px; text-align: center; min-width: 180px; margin-bottom: 12px; font-weight: 600; color: #9cff6e;">Cron Jobs</div>
+        <div style="background: rgba(156, 255, 110, 0.08); border: 1px solid rgba(156, 255, 110, 0.45); padding: 18px 28px; text-align: center; min-width: 180px; margin-bottom: 12px; font-weight: 600; color: #9cff6e;">APIs</div>
+      </td>
+    </tr>
+  </table>
 </div>
 
 ### The Key Difference
@@ -200,108 +49,96 @@ This document explains the difference between a **Site** (static files) and an *
 
 ## Diagram 2: The 5 Components
 
-<div class="comp-container">
-  <div class="comp-title">The 5 Components Every App Needs</div>
-  <div class="comp-subtitle">What they do, when you need them, and the tools to build them.</div>
-  <div class="comp-table-wrap">
-    <table class="comp-table">
-      <thead>
-        <tr>
-          <th>Component</th>
-          <th>Simple Explanation</th>
-          <th>When You Need This</th>
-          <th>Common Methods / Types</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>Auth<br><span style="font-size:0.8rem; font-weight:400; color:#666;">(Sign in)</span></td>
-          <td>Verifying who someone is before letting them access your app.</td>
-          <td>Any app with user accounts, login pages, or personal data (social media, banking, e-commerce).</td>
-          <td>
-            <div class="comp-pills">
-              <span class="comp-pill">OAuth 2.0</span>
-              <span class="comp-pill">JWT</span>
-              <span class="comp-pill">Session Cookies</span>
-              <span class="comp-pill">SSO / SAML</span>
-              <span class="comp-pill">MFA / 2FA</span>
-              <span class="comp-pill">Magic Links</span>
-              <span class="comp-pill">LDAP</span>
-              <span class="comp-pill">API Keys</span>
-            </div>
-          </td>
-        </tr>
-        <tr>
-          <td>Database</td>
-          <td>An organized place to save and retrieve information that persists even when your app restarts.</td>
-          <td>Apps that need to remember things: user profiles, posts, orders, messages, game scores.</td>
-          <td>
-            <div class="comp-pills">
-              <span class="comp-pill">PostgreSQL</span>
-              <span class="comp-pill">MySQL</span>
-              <span class="comp-pill">SQLite</span>
-              <span class="comp-pill">MongoDB</span>
-              <span class="comp-pill">Redis</span>
-              <span class="comp-pill">DynamoDB</span>
-              <span class="comp-pill">Neo4j</span>
-              <span class="comp-pill">InfluxDB</span>
-              <span class="comp-pill">Elasticsearch</span>
-            </div>
-          </td>
-        </tr>
-        <tr>
-          <td>Storage</td>
-          <td>Where you keep files like images, videos, PDFs, and other uploads from users.</td>
-          <td>Apps with profile pictures, file sharing, photo galleries, document uploads, media platforms.</td>
-          <td>
-            <div class="comp-pills">
-              <span class="comp-pill">AWS S3</span>
-              <span class="comp-pill">GCS</span>
-              <span class="comp-pill">Azure Blob</span>
-              <span class="comp-pill">CDN</span>
-              <span class="comp-pill">Block Storage</span>
-              <span class="comp-pill">NAS</span>
-              <span class="comp-pill">Local Filesystem</span>
-            </div>
-          </td>
-        </tr>
-        <tr>
-          <td>Cron Jobs</td>
-          <td>Automatic tasks that run on a schedule without you clicking anything.</td>
-          <td>Sending daily emails, clearing old data, generating reports, backing up databases, checking for updates.</td>
-          <td>
-            <div class="comp-pills">
-              <span class="comp-pill">Cron Expressions</span>
-              <span class="comp-pill">AWS Lambda</span>
-              <span class="comp-pill">Celery</span>
-              <span class="comp-pill">Bull</span>
-              <span class="comp-pill">Airflow</span>
-              <span class="comp-pill">Systemd Timers</span>
-              <span class="comp-pill">Scheduled Functions</span>
-            </div>
-          </td>
-        </tr>
-        <tr>
-          <td>APIs</td>
-          <td>A way for different apps or services to talk to each other and share data.</td>
-          <td>Connecting to payment processors, weather data, maps, social media, sending emails, AI services.</td>
-          <td>
-            <div class="comp-pills">
-              <span class="comp-pill">REST</span>
-              <span class="comp-pill">GraphQL</span>
-              <span class="comp-pill">gRPC</span>
-              <span class="comp-pill">WebSockets</span>
-              <span class="comp-pill">Webhooks</span>
-              <span class="comp-pill">tRPC</span>
-              <span class="comp-pill">SOAP</span>
-              <span class="comp-pill">JSON-RPC</span>
-              <span class="comp-pill">SSE</span>
-            </div>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
+<div style="font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; background: #080b0f; border: 1px solid #24313b; padding: 40px 30px; margin: 20px 0;">
+  <div style="font-family: Georgia, serif; font-size: 28px; font-weight: 400; color: #f2efe6; margin-bottom: 8px; line-height: 0.95;">The 5 Components Every App Needs</div>
+  <div style="font-size: 1rem; color: #9aa7a6; margin-bottom: 50px;">What they do, when you need them, and the tools to build them.</div>
+  <table style="width: 100%; border-collapse: collapse; min-width: 900px;">
+    <thead>
+      <tr>
+        <th style="text-align: left; padding: 14px 18px; font-size: 0.8rem; font-weight: 600; color: #9aa7a6; text-transform: uppercase; letter-spacing: 0.05em; border-bottom: 2px solid #38505b;">Component</th>
+        <th style="text-align: left; padding: 14px 18px; font-size: 0.8rem; font-weight: 600; color: #9aa7a6; text-transform: uppercase; letter-spacing: 0.05em; border-bottom: 2px solid #38505b;">Simple Explanation</th>
+        <th style="text-align: left; padding: 14px 18px; font-size: 0.8rem; font-weight: 600; color: #9aa7a6; text-transform: uppercase; letter-spacing: 0.05em; border-bottom: 2px solid #38505b;">When You Need This</th>
+        <th style="text-align: left; padding: 14px 18px; font-size: 0.8rem; font-weight: 600; color: #9aa7a6; text-transform: uppercase; letter-spacing: 0.05em; border-bottom: 2px solid #38505b;">Common Methods / Types</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr style="border-bottom: 1px solid #24313b;">
+        <td style="padding: 18px; vertical-align: top; font-size: 0.9rem; line-height: 1.6; color: #f2efe6; font-weight: 600; white-space: nowrap; width: 120px;">Auth<br><span style="font-size:0.8rem; font-weight:400; color:#9aa7a6;">(Sign in)</span></td>
+        <td style="padding: 18px; vertical-align: top; font-size: 0.9rem; line-height: 1.6; color: #c9c1ac;">Verifying who someone is before letting them access your app.</td>
+        <td style="padding: 18px; vertical-align: top; font-size: 0.9rem; line-height: 1.6; color: #c9c1ac;">Any app with user accounts, login pages, or personal data (social media, banking, e-commerce).</td>
+        <td style="padding: 18px; vertical-align: top; font-size: 0.9rem; line-height: 1.6; color: #c9c1ac;">
+          <span style="display: inline-block; border: 1px solid rgba(69, 230, 199, 0.35); background: rgba(13, 19, 24, 0.75); padding: 3px 10px; font-size: 0.78rem; font-weight: 500; color: #45e6c7; white-space: nowrap; margin: 0 6px 6px 0;">OAuth 2.0</span>
+          <span style="display: inline-block; border: 1px solid rgba(69, 230, 199, 0.35); background: rgba(13, 19, 24, 0.75); padding: 3px 10px; font-size: 0.78rem; font-weight: 500; color: #45e6c7; white-space: nowrap; margin: 0 6px 6px 0;">JWT</span>
+          <span style="display: inline-block; border: 1px solid rgba(69, 230, 199, 0.35); background: rgba(13, 19, 24, 0.75); padding: 3px 10px; font-size: 0.78rem; font-weight: 500; color: #45e6c7; white-space: nowrap; margin: 0 6px 6px 0;">Session Cookies</span>
+          <span style="display: inline-block; border: 1px solid rgba(69, 230, 199, 0.35); background: rgba(13, 19, 24, 0.75); padding: 3px 10px; font-size: 0.78rem; font-weight: 500; color: #45e6c7; white-space: nowrap; margin: 0 6px 6px 0;">SSO / SAML</span>
+          <span style="display: inline-block; border: 1px solid rgba(69, 230, 199, 0.35); background: rgba(13, 19, 24, 0.75); padding: 3px 10px; font-size: 0.78rem; font-weight: 500; color: #45e6c7; white-space: nowrap; margin: 0 6px 6px 0;">MFA / 2FA</span>
+          <span style="display: inline-block; border: 1px solid rgba(69, 230, 199, 0.35); background: rgba(13, 19, 24, 0.75); padding: 3px 10px; font-size: 0.78rem; font-weight: 500; color: #45e6c7; white-space: nowrap; margin: 0 6px 6px 0;">Magic Links</span>
+          <span style="display: inline-block; border: 1px solid rgba(69, 230, 199, 0.35); background: rgba(13, 19, 24, 0.75); padding: 3px 10px; font-size: 0.78rem; font-weight: 500; color: #45e6c7; white-space: nowrap; margin: 0 6px 6px 0;">LDAP</span>
+          <span style="display: inline-block; border: 1px solid rgba(69, 230, 199, 0.35); background: rgba(13, 19, 24, 0.75); padding: 3px 10px; font-size: 0.78rem; font-weight: 500; color: #45e6c7; white-space: nowrap; margin: 0 6px 6px 0;">API Keys</span>
+        </td>
+      </tr>
+      <tr style="border-bottom: 1px solid #24313b;">
+        <td style="padding: 18px; vertical-align: top; font-size: 0.9rem; line-height: 1.6; color: #f2efe6; font-weight: 600; white-space: nowrap; width: 120px;">Database</td>
+        <td style="padding: 18px; vertical-align: top; font-size: 0.9rem; line-height: 1.6; color: #c9c1ac;">An organized place to save and retrieve information that persists even when your app restarts.</td>
+        <td style="padding: 18px; vertical-align: top; font-size: 0.9rem; line-height: 1.6; color: #c9c1ac;">Apps that need to remember things: user profiles, posts, orders, messages, game scores.</td>
+        <td style="padding: 18px; vertical-align: top; font-size: 0.9rem; line-height: 1.6; color: #c9c1ac;">
+          <span style="display: inline-block; border: 1px solid rgba(69, 230, 199, 0.35); background: rgba(13, 19, 24, 0.75); padding: 3px 10px; font-size: 0.78rem; font-weight: 500; color: #45e6c7; white-space: nowrap; margin: 0 6px 6px 0;">PostgreSQL</span>
+          <span style="display: inline-block; border: 1px solid rgba(69, 230, 199, 0.35); background: rgba(13, 19, 24, 0.75); padding: 3px 10px; font-size: 0.78rem; font-weight: 500; color: #45e6c7; white-space: nowrap; margin: 0 6px 6px 0;">MySQL</span>
+          <span style="display: inline-block; border: 1px solid rgba(69, 230, 199, 0.35); background: rgba(13, 19, 24, 0.75); padding: 3px 10px; font-size: 0.78rem; font-weight: 500; color: #45e6c7; white-space: nowrap; margin: 0 6px 6px 0;">SQLite</span>
+          <span style="display: inline-block; border: 1px solid rgba(69, 230, 199, 0.35); background: rgba(13, 19, 24, 0.75); padding: 3px 10px; font-size: 0.78rem; font-weight: 500; color: #45e6c7; white-space: nowrap; margin: 0 6px 6px 0;">MongoDB</span>
+          <span style="display: inline-block; border: 1px solid rgba(69, 230, 199, 0.35); background: rgba(13, 19, 24, 0.75); padding: 3px 10px; font-size: 0.78rem; font-weight: 500; color: #45e6c7; white-space: nowrap; margin: 0 6px 6px 0;">Redis</span>
+          <span style="display: inline-block; border: 1px solid rgba(69, 230, 199, 0.35); background: rgba(13, 19, 24, 0.75); padding: 3px 10px; font-size: 0.78rem; font-weight: 500; color: #45e6c7; white-space: nowrap; margin: 0 6px 6px 0;">DynamoDB</span>
+          <span style="display: inline-block; border: 1px solid rgba(69, 230, 199, 0.35); background: rgba(13, 19, 24, 0.75); padding: 3px 10px; font-size: 0.78rem; font-weight: 500; color: #45e6c7; white-space: nowrap; margin: 0 6px 6px 0;">Neo4j</span>
+          <span style="display: inline-block; border: 1px solid rgba(69, 230, 199, 0.35); background: rgba(13, 19, 24, 0.75); padding: 3px 10px; font-size: 0.78rem; font-weight: 500; color: #45e6c7; white-space: nowrap; margin: 0 6px 6px 0;">InfluxDB</span>
+          <span style="display: inline-block; border: 1px solid rgba(69, 230, 199, 0.35); background: rgba(13, 19, 24, 0.75); padding: 3px 10px; font-size: 0.78rem; font-weight: 500; color: #45e6c7; white-space: nowrap; margin: 0 6px 6px 0;">Elasticsearch</span>
+        </td>
+      </tr>
+      <tr style="border-bottom: 1px solid #24313b;">
+        <td style="padding: 18px; vertical-align: top; font-size: 0.9rem; line-height: 1.6; color: #f2efe6; font-weight: 600; white-space: nowrap; width: 120px;">Storage</td>
+        <td style="padding: 18px; vertical-align: top; font-size: 0.9rem; line-height: 1.6; color: #c9c1ac;">Where you keep files like images, videos, PDFs, and other uploads from users.</td>
+        <td style="padding: 18px; vertical-align: top; font-size: 0.9rem; line-height: 1.6; color: #c9c1ac;">Apps with profile pictures, file sharing, photo galleries, document uploads, media platforms.</td>
+        <td style="padding: 18px; vertical-align: top; font-size: 0.9rem; line-height: 1.6; color: #c9c1ac;">
+          <span style="display: inline-block; border: 1px solid rgba(69, 230, 199, 0.35); background: rgba(13, 19, 24, 0.75); padding: 3px 10px; font-size: 0.78rem; font-weight: 500; color: #45e6c7; white-space: nowrap; margin: 0 6px 6px 0;">AWS S3</span>
+          <span style="display: inline-block; border: 1px solid rgba(69, 230, 199, 0.35); background: rgba(13, 19, 24, 0.75); padding: 3px 10px; font-size: 0.78rem; font-weight: 500; color: #45e6c7; white-space: nowrap; margin: 0 6px 6px 0;">GCS</span>
+          <span style="display: inline-block; border: 1px solid rgba(69, 230, 199, 0.35); background: rgba(13, 19, 24, 0.75); padding: 3px 10px; font-size: 0.78rem; font-weight: 500; color: #45e6c7; white-space: nowrap; margin: 0 6px 6px 0;">Azure Blob</span>
+          <span style="display: inline-block; border: 1px solid rgba(69, 230, 199, 0.35); background: rgba(13, 19, 24, 0.75); padding: 3px 10px; font-size: 0.78rem; font-weight: 500; color: #45e6c7; white-space: nowrap; margin: 0 6px 6px 0;">CDN</span>
+          <span style="display: inline-block; border: 1px solid rgba(69, 230, 199, 0.35); background: rgba(13, 19, 24, 0.75); padding: 3px 10px; font-size: 0.78rem; font-weight: 500; color: #45e6c7; white-space: nowrap; margin: 0 6px 6px 0;">Block Storage</span>
+          <span style="display: inline-block; border: 1px solid rgba(69, 230, 199, 0.35); background: rgba(13, 19, 24, 0.75); padding: 3px 10px; font-size: 0.78rem; font-weight: 500; color: #45e6c7; white-space: nowrap; margin: 0 6px 6px 0;">NAS</span>
+          <span style="display: inline-block; border: 1px solid rgba(69, 230, 199, 0.35); background: rgba(13, 19, 24, 0.75); padding: 3px 10px; font-size: 0.78rem; font-weight: 500; color: #45e6c7; white-space: nowrap; margin: 0 6px 6px 0;">Local Filesystem</span>
+        </td>
+      </tr>
+      <tr style="border-bottom: 1px solid #24313b;">
+        <td style="padding: 18px; vertical-align: top; font-size: 0.9rem; line-height: 1.6; color: #f2efe6; font-weight: 600; white-space: nowrap; width: 120px;">Cron Jobs</td>
+        <td style="padding: 18px; vertical-align: top; font-size: 0.9rem; line-height: 1.6; color: #c9c1ac;">Automatic tasks that run on a schedule without you clicking anything.</td>
+        <td style="padding: 18px; vertical-align: top; font-size: 0.9rem; line-height: 1.6; color: #c9c1ac;">Sending daily emails, clearing old data, generating reports, backing up databases, checking for updates.</td>
+        <td style="padding: 18px; vertical-align: top; font-size: 0.9rem; line-height: 1.6; color: #c9c1ac;">
+          <span style="display: inline-block; border: 1px solid rgba(69, 230, 199, 0.35); background: rgba(13, 19, 24, 0.75); padding: 3px 10px; font-size: 0.78rem; font-weight: 500; color: #45e6c7; white-space: nowrap; margin: 0 6px 6px 0;">Cron Expressions</span>
+          <span style="display: inline-block; border: 1px solid rgba(69, 230, 199, 0.35); background: rgba(13, 19, 24, 0.75); padding: 3px 10px; font-size: 0.78rem; font-weight: 500; color: #45e6c7; white-space: nowrap; margin: 0 6px 6px 0;">AWS Lambda</span>
+          <span style="display: inline-block; border: 1px solid rgba(69, 230, 199, 0.35); background: rgba(13, 19, 24, 0.75); padding: 3px 10px; font-size: 0.78rem; font-weight: 500; color: #45e6c7; white-space: nowrap; margin: 0 6px 6px 0;">Celery</span>
+          <span style="display: inline-block; border: 1px solid rgba(69, 230, 199, 0.35); background: rgba(13, 19, 24, 0.75); padding: 3px 10px; font-size: 0.78rem; font-weight: 500; color: #45e6c7; white-space: nowrap; margin: 0 6px 6px 0;">Bull</span>
+          <span style="display: inline-block; border: 1px solid rgba(69, 230, 199, 0.35); background: rgba(13, 19, 24, 0.75); padding: 3px 10px; font-size: 0.78rem; font-weight: 500; color: #45e6c7; white-space: nowrap; margin: 0 6px 6px 0;">Airflow</span>
+          <span style="display: inline-block; border: 1px solid rgba(69, 230, 199, 0.35); background: rgba(13, 19, 24, 0.75); padding: 3px 10px; font-size: 0.78rem; font-weight: 500; color: #45e6c7; white-space: nowrap; margin: 0 6px 6px 0;">Systemd Timers</span>
+          <span style="display: inline-block; border: 1px solid rgba(69, 230, 199, 0.35); background: rgba(13, 19, 24, 0.75); padding: 3px 10px; font-size: 0.78rem; font-weight: 500; color: #45e6c7; white-space: nowrap; margin: 0 6px 6px 0;">Scheduled Functions</span>
+        </td>
+      </tr>
+      <tr>
+        <td style="padding: 18px; vertical-align: top; font-size: 0.9rem; line-height: 1.6; color: #f2efe6; font-weight: 600; white-space: nowrap; width: 120px;">APIs</td>
+        <td style="padding: 18px; vertical-align: top; font-size: 0.9rem; line-height: 1.6; color: #c9c1ac;">A way for different apps or services to talk to each other and share data.</td>
+        <td style="padding: 18px; vertical-align: top; font-size: 0.9rem; line-height: 1.6; color: #c9c1ac;">Connecting to payment processors, weather data, maps, social media, sending emails, AI services.</td>
+        <td style="padding: 18px; vertical-align: top; font-size: 0.9rem; line-height: 1.6; color: #c9c1ac;">
+          <span style="display: inline-block; border: 1px solid rgba(69, 230, 199, 0.35); background: rgba(13, 19, 24, 0.75); padding: 3px 10px; font-size: 0.78rem; font-weight: 500; color: #45e6c7; white-space: nowrap; margin: 0 6px 6px 0;">REST</span>
+          <span style="display: inline-block; border: 1px solid rgba(69, 230, 199, 0.35); background: rgba(13, 19, 24, 0.75); padding: 3px 10px; font-size: 0.78rem; font-weight: 500; color: #45e6c7; white-space: nowrap; margin: 0 6px 6px 0;">GraphQL</span>
+          <span style="display: inline-block; border: 1px solid rgba(69, 230, 199, 0.35); background: rgba(13, 19, 24, 0.75); padding: 3px 10px; font-size: 0.78rem; font-weight: 500; color: #45e6c7; white-space: nowrap; margin: 0 6px 6px 0;">gRPC</span>
+          <span style="display: inline-block; border: 1px solid rgba(69, 230, 199, 0.35); background: rgba(13, 19, 24, 0.75); padding: 3px 10px; font-size: 0.78rem; font-weight: 500; color: #45e6c7; white-space: nowrap; margin: 0 6px 6px 0;">WebSockets</span>
+          <span style="display: inline-block; border: 1px solid rgba(69, 230, 199, 0.35); background: rgba(13, 19, 24, 0.75); padding: 3px 10px; font-size: 0.78rem; font-weight: 500; color: #45e6c7; white-space: nowrap; margin: 0 6px 6px 0;">Webhooks</span>
+          <span style="display: inline-block; border: 1px solid rgba(69, 230, 199, 0.35); background: rgba(13, 19, 24, 0.75); padding: 3px 10px; font-size: 0.78rem; font-weight: 500; color: #45e6c7; white-space: nowrap; margin: 0 6px 6px 0;">tRPC</span>
+          <span style="display: inline-block; border: 1px solid rgba(69, 230, 199, 0.35); background: rgba(13, 19, 24, 0.75); padding: 3px 10px; font-size: 0.78rem; font-weight: 500; color: #45e6c7; white-space: nowrap; margin: 0 6px 6px 0;">SOAP</span>
+          <span style="display: inline-block; border: 1px solid rgba(69, 230, 199, 0.35); background: rgba(13, 19, 24, 0.75); padding: 3px 10px; font-size: 0.78rem; font-weight: 500; color: #45e6c7; white-space: nowrap; margin: 0 6px 6px 0;">JSON-RPC</span>
+          <span style="display: inline-block; border: 1px solid rgba(69, 230, 199, 0.35); background: rgba(13, 19, 24, 0.75); padding: 3px 10px; font-size: 0.78rem; font-weight: 500; color: #45e6c7; white-space: nowrap; margin: 0 6px 6px 0;">SSE</span>
+        </td>
+      </tr>
+    </tbody>
+  </table>
 </div>
 
 ---
