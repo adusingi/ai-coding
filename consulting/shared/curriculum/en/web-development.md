@@ -216,6 +216,145 @@ Tools that bridge engineering, design, and product.
 
 ---
 
+## 9. 2026 State of Web Dev AI — Survey Data
+
+> Data sourced from the [State of Web Dev AI 2026](https://2026.stateofai.dev/en-US) survey — **7,258 respondents**, April–May 2026. This section provides real-world signals on what tools developers are actually using, paying for, and concerned about.
+
+### 9.1 Survey Overview
+
+| Metric | Value |
+|--------|-------|
+| **Respondents** | 7,258 |
+| **Period** | April 8 – May 8, 2026 |
+| **YoY Growth** | +73% participation vs. 2025 |
+| **AI Code Generated (avg)** | 54% (up from 28% in 2025) |
+| **AI as Integral Workflow** | 72% of respondents |
+| **AI Quality Improved YoY** | 72% agree |
+| **Believe We're in an AI Bubble** | 60% agree |
+| **AGI Within 10 Years** | 27% believe |
+
+### 9.2 AI Models — Usage & Payment
+
+Models ranked by **usage** (% of respondents who have used it).
+
+| Rank | Model | Usage | Payment Rank | Paying Users |
+|------|-------|-------|--------------|-------------|
+| 1 | ChatGPT | 88.4% | 1 | 4,592 |
+| 2 | Claude | 82.1% (+26% YoY) | 2 | 3,261 |
+| 3 | Google Gemini | 72.6% | 3 | 2,129 |
+| 4 | Llama | 31.0% | — | — |
+| 5 | Perplexity | 30.9% | — | — |
+| 6 | Mistral | — | — | — |
+| 7 | DeepSeek | — | — | — |
+| 8 | Grok | — | — | — |
+| 9 | Qwen | — | — | — |
+
+> **Key insight**: Despite ChatGPT having the most users, **Claude** is the model developers actually **pay for** the most (after ChatGPT). Claude also saw the largest year-over-year usage gain (+26%).
+
+### 9.3 Coding Agents & Assistants
+
+| Rank | Tool | Usage | Notable |
+|------|------|-------|---------|
+| 1 | **Claude Code** | 67.9% | 58% of users pay for it |
+| 2 | **GitHub Copilot** | High | Deep IDE integration |
+| 3 | **OpenAI Codex** | High | OpenAI's agentic coding tool |
+| 4 | **Devin** | Mid | Autonomous AI software engineer |
+| 5 | **Tabnine** | Mid | AI code completion |
+| 6 | **JetBrains AI** | Mid | Built into JetBrains IDEs |
+| 7 | **Supermaven** | Lower | Fast code completion |
+| 8 | **Replit Agent & Assistant** | Lower | Cloud-native coding |
+
+### 9.4 Text Editors — What Developers Actually Use
+
+Editors ranked by respondents who regularly use them.
+
+| Rank | Editor | Users |
+|------|--------|-------|
+| 1 | VS Code | 4,667 |
+| 2 | **Cursor** | 1,770 |
+| 3 | JetBrains (IntelliJ, WebStorm, etc.) | 1,196 |
+| 4 | Vim / Neovim | 964 |
+| 5 | **Zed** | 812 |
+| 6 | **Windsurf** | 611 |
+| 7 | Sublime Text | 468 |
+| 8 | Xcode | 193 |
+
+> **Key insight**: AI-native editors (Cursor, Zed, Windsurf) now collectively rival JetBrains in adoption among survey respondents.
+
+### 9.5 Languages Used with AI Tools
+
+| Rank | Language | Users |
+|------|----------|-------|
+| 1 | JavaScript | 5,360 |
+| 2 | Python | 4,831 |
+| 3 | TypeScript | 2,597 |
+| 4 | HTML / CSS | 1,483 |
+| 5 | Java | 1,134 |
+| 6 | C# | 919 |
+| 7 | PHP | 765 |
+| 8 | Rust | 731 |
+| 9 | Go | 681 |
+| 10 | C++ | 406 |
+
+### 9.6 AI Pain Points
+
+What frustrates developers most when using AI tools.
+
+| Rank | Pain Point | Respondents |
+|------|------------|-------------|
+| 1 | **Hallucinations & Inaccuracies** | 3,899 |
+| 2 | **Code Quality** | 3,249 |
+| 3 | **Lack of Context** | 2,321 |
+| 4 | **Financial Costs** | 1,923 |
+| 5 | **Privacy Concerns** | 1,903 |
+| 6 | Prompt Comprehension | 1,496 |
+| 7 | Copyright Concerns | 784 |
+| 8 | Integration Difficulties | 784 |
+
+### 9.7 Capabilities Developers Want from AI
+
+| Rank | Missing Capability | Respondents |
+|------|-------------------|-------------|
+| 1 | **Truthfulness** | 2,801 |
+| 2 | **Long-Term Memory** | 2,592 |
+| 3 | **Up-to-Date Knowledge** | 2,032 |
+| 4 | **Accountability** | 1,977 |
+| 5 | Awareness of Runtime Behavior | 1,345 |
+| 6 | High-Level Planning | 1,320 |
+| 7 | Larger Context Window | 1,151 |
+| 8 | Good UI/UX | 1,018 |
+| 9 | Larger Codebase Support | 1,007 |
+| 10 | Better Tool Integration | 628 |
+
+### 9.8 AI Risk Concerns
+
+| Rank | Risk | Respondents |
+|------|------|-------------|
+| 1 | **Job Displacement** | 3,003 |
+| 2 | **Military Use of AI** | 2,804 |
+| 3 | **Environmental Impact** | 2,490 |
+| 4 | **AI Slop Takeover** | 2,107 |
+| 5 | Negative Cognitive Impacts | 1,850 |
+| 6 | Security Issues | 1,821 |
+| 7 | AI Overuse | 1,106 |
+| 8 | Rising AI Costs | 1,031 |
+| 9 | Copyright & Ethics | 730 |
+| 10 | Open-Source Disruption | 597 |
+
+### 9.9 Developer Opinions on AI
+
+| Statement | Agree | Disagree |
+|-----------|-------|----------|
+| AI is an integral part of my workflow | 72% | — |
+| AI has made me a lot more productive | Majority agree | — |
+| Relying on AI will result in less skilled developers | 57% | — |
+| AI tools are a threat to my job security | 52% | — |
+| AI poses an existential risk to humanity | ~42% | — |
+| We are currently in an "AI bubble" | 60% | — |
+| AI tool quality improved significantly YoY | 72% | — |
+
+---
+
 ---
 
 # 2017 Historical Stack (Legacy Reference)
