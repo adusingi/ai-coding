@@ -1,12 +1,228 @@
 # Web Development Roadmap
 
-A structured breakdown of the modern web development landscape. This document covers the foundational skills, front-end and back-end paths, and operational knowledge required to build and ship web applications.
+A structured breakdown of the web development landscape. This document preserves the historical 2017 view alongside a modern 2025 update, so you can see how the stack has evolved.
 
 ---
 
+# 2025 Modern Stack (Current)
+
 ## 1. Universal Foundations
 
-No matter which route you take, these are the baseline skills every web developer needs.
+No matter which route you take, these are the baseline skills every web developer needs today.
+
+| # | Skill | Notes |
+|---|-------|-------|
+| 1 | Git & GitHub / GitLab | Version control, branching, PRs, Actions, CI basics |
+| 2 | Terminal & Shell Scripting | zsh, bash, PowerShell, command-line fluency |
+| 3 | SSH & Key Management | Secure remote access, GitHub SSH, agent forwarding |
+| 4 | HTTP/2, HTTP/3, REST, GraphQL | How clients and servers exchange data |
+| 5 | WebSockets & Server-Sent Events | Real-time bidirectional and unidirectional communication |
+| 6 | Docker Basics | Containers, images, Docker Compose for local dev |
+| 7 | CI/CD Concepts | Automated testing, building, and deployment pipelines |
+
+---
+
+## 2. Modern Front End
+
+Building user interfaces in 2025.
+
+| Category | Technology | Details |
+|----------|------------|---------|
+| **AI-Powered IDEs** | Cursor | AI-native code editor built on VS Code |
+| | Windsurf | Agentic IDE with autonomous coding capabilities |
+| | GitHub Copilot | AI pair programmer inside VS Code / JetBrains |
+| | Zed | Rust-based editor with built-in AI collaboration |
+| | Claude Code | Terminal-based AI coding agent |
+| **Modern Browsers** | Chrome / Edge / Safari / Firefox | Core rendering engines and DevTools |
+| | Arc Browser | New Chromium-based browser with modern UX |
+| **Languages** | HTML5 & Semantic Web | Accessibility-first document structure |
+| | CSS3 & Modern Features | Container queries, :has(), layers, nesting |
+| | TypeScript | Typed superset of JavaScript — industry standard |
+| | ES2024+ | Modern JS: temporal, pipeline operator, pattern matching |
+| **Build Tools** | Vite | Ultra-fast dev server and bundler |
+| | esbuild / swc / Turbopack | Next-gen transpilers and bundlers |
+| | Bun | All-in-one JS runtime, bundler, test runner |
+| | pnpm | Disk-space efficient package manager |
+| **CSS Ecosystem** | Tailwind CSS | Utility-first CSS framework — dominant in 2025 |
+| | PostCSS / Lightning CSS | Modern CSS processing and minification |
+| | CSS Modules / StyleX | Scoped, component-level styling |
+| | Design Systems | Radix, shadcn/ui, Chakra UI v3 |
+| **Frameworks** | React 19 | Server Components, Actions, improved hydration |
+| | Vue 3 (Composition API) | Reactive, performant progressive framework |
+| | Svelte 5 (Runes) | Compile-time reactivity, no virtual DOM |
+| | Solid | Fine-grained reactivity, extreme performance |
+| **Meta-Frameworks** | Next.js 15 | App Router, React Server Components, Turbo |
+| | Nuxt 3 | Vue's full-stack framework |
+| | SvelteKit | Svelte's official full-stack framework |
+| | Remix | Web standards-focused React framework |
+| **State Management** | Zustand | Minimal, unopinionated state for React |
+| | Jotai / Recoil | Atomic state management |
+| | TanStack Query | Server-state caching and synchronization |
+| | Redux Toolkit | Predictable state for complex apps |
+| **Testing** | Vitest | Vite-native test runner, Jest-compatible |
+| | Playwright | Cross-browser end-to-end testing |
+| | Testing Library | User-centric component testing |
+| **Documentation** | Storybook | Component-driven UI development |
+| | VitePress / Nuxt Content | Static site generators for docs |
+
+---
+
+## 3. Modern Back End
+
+Server-side development in 2025.
+
+| Language Family | Language / Runtime | Frameworks / Tools |
+|-----------------|-------------------|-------------------|
+| **JavaScript Runtimes** | Node.js 20+ | Express, Fastify, NestJS, Hono |
+| | Deno 2 | Secure by default, native TypeScript |
+| | Bun | Fast JS runtime with built-in bundler & test runner |
+| **Python** | Python 3.12+ | FastAPI, Django, Flask |
+| **Go** | Go 1.23+ | Gin, Echo, Fiber, standard library |
+| **Rust** | Rust | Axum, Actix, Rocket, Leptos (full-stack) |
+| **API Paradigms** | — | tRPC, GraphQL (Apollo, Pothos), gRPC, REST |
+| **Serverless & Edge** | — | Vercel Functions, Netlify, AWS Lambda, Cloudflare Workers, Deno Deploy |
+| **Real-Time** | — | WebSockets, Server-Sent Events (SSE), Socket.io |
+
+---
+
+## 4. Data & Databases
+
+Storage and retrieval in the modern stack.
+
+| Category | Technology | Notes |
+|----------|------------|-------|
+| **Relational** | PostgreSQL | The default choice for modern apps |
+| | MySQL / MariaDB | Widely used, especially in LAMP stacks |
+| | SQLite | Embedded, serverless, perfect for edge |
+| | PlanetScale | Vitess-based MySQL platform with branching |
+| | Neon | Serverless PostgreSQL with autoscaling |
+| | Turso | SQLite at the edge, globally distributed |
+| **Vector Databases** | pgvector | PostgreSQL extension for vector search |
+| | Pinecone | Managed vector DB for AI/ML |
+| | Weaviate | Open-source vector search engine |
+| | Qdrant | Rust-based vector DB |
+| | Chroma | AI-native embedding database |
+| | Milvus | Cloud-native vector DB for massive scale |
+| **Document** | MongoDB Atlas | Managed NoSQL with vector search |
+| **Key-Value & Cache** | Redis / Valkey | In-memory cache and message broker |
+| **Analytics** | DuckDB | In-process OLAP for embedded analytics |
+| | ClickHouse | Columnar DB for real-time analytics |
+| **Edge / Serverless Data** | Supabase | Open-source Firebase alternative (Postgres) |
+| | Firebase | Google's backend-as-a-service |
+| **ORMs & Query Builders** | Prisma | Type-safe ORM with declarative schema |
+| | Drizzle | Lightweight, SQL-like TypeScript ORM |
+| | TypeORM | Decorator-based ORM for TS/JS |
+| | SQLx | Compile-time checked queries for Rust |
+
+---
+
+## 5. AI & LLM Integration
+
+The newest layer of the modern web stack.
+
+| Category | Technology | Notes |
+|----------|------------|-------|
+| **LLM APIs** | OpenAI GPT-4o / o1 | General-purpose reasoning models |
+| | Anthropic Claude 3.5 | Strong coding and reasoning capabilities |
+| | Google Gemini 1.5 | Long context, multimodal |
+| | Mistral / Cohere / Groq | Alternative LLM providers |
+| **Local LLMs** | Ollama | Run LLMs locally (Llama, Mistral, Gemma) |
+| | llama.cpp | Optimized C++ inference for local models |
+| | LM Studio | Desktop app for running local LLMs |
+| **AI Frameworks** | LangChain | Orchestration for LLM applications |
+| | LangGraph | Multi-agent workflows and state machines |
+| | LlamaIndex | Retrieval-Augmented Generation (RAG) |
+| **AI SDKs** | Vercel AI SDK | React/JS SDK for streaming LLM responses |
+| | OpenAI SDK | Official client for OpenAI API |
+| | Anthropic SDK | Official client for Claude API |
+| **Vector Search & RAG** | — | Embedding models (OpenAI, Cohere, local), similarity search, chunking strategies |
+| **AI Agents** | — | Autonomous agents with memory, tools, and planning |
+| | MCP (Model Context Protocol) | Standard for connecting AI assistants to data sources |
+
+---
+
+## 6. DevOps & Infrastructure
+
+Shipping, scaling, and maintaining applications in 2025.
+
+| Category | Technology | Notes |
+|----------|------------|-------|
+| **Containers** | Docker | Still the standard for containerization |
+| | Docker Compose | Multi-container local development |
+| | Podman | Daemonless alternative to Docker |
+| **Orchestration** | Kubernetes (k3s, kind, EKS, GKE) | Container orchestration at scale |
+| | Docker Swarm | Lightweight alternative to K8s |
+| | Nomad | HashiCorp's workload orchestrator |
+| **IaC** | Terraform | Infrastructure as code (multi-cloud) |
+| | Pulumi | TypeScript/Python/Go-based IaC |
+| **CI/CD** | GitHub Actions | Most popular CI/CD platform |
+| | GitLab CI | Integrated DevOps platform |
+| | CircleCI / TravisCI | Cloud CI alternatives |
+| **Cloud Platforms** | AWS | EC2, Lambda, S3, RDS, EKS — market leader |
+| | Google Cloud Platform (GCP) | BigQuery, Cloud Run, Firebase |
+| | Microsoft Azure | Enterprise-focused cloud platform |
+| **Modern PaaS** | Fly.io | Globally distributed apps close to users |
+| | Railway | Developer-friendly deployment platform |
+| | Render | Simple cloud for full-stack apps |
+| | Coolify | Self-hosted Heroku alternative |
+| **Reverse Proxy & Edge** | Nginx | High-performance web server and proxy |
+| | Caddy | Automatic HTTPS, config simplicity |
+| | Traefik | Cloud-native edge router |
+| | Cloudflare | CDN, DDoS protection, Workers, R2 |
+| **Monitoring** | Sentry | Error tracking and performance monitoring |
+| | Datadog | Full-stack observability |
+| | Grafana + Prometheus | Open-source metrics and dashboards |
+| | Vercel Analytics / Plausible | Web analytics |
+
+---
+
+## 7. Security
+
+Essential security knowledge for modern web development.
+
+| Category | Technology / Concept | Notes |
+|----------|---------------------|-------|
+| **Authentication** | OAuth 2.0 / OpenID Connect | Industry-standard delegated auth |
+| | Passkeys / WebAuthn | Passwordless authentication |
+| | Magic Links / OTP | Email and SMS-based auth |
+| **Authorization** | JWT (JSON Web Tokens) | Stateless token-based auth |
+| | Session Cookies | Stateful server-side sessions |
+| | RBAC / ABAC | Role-based and attribute-based access control |
+| **Security Headers** | CSP (Content Security Policy) | Mitigate XSS and injection attacks |
+| | CORS | Controlled cross-origin resource sharing |
+| | HSTS | Enforce HTTPS connections |
+| **Secrets Management** | 1Password / Bitwarden | Team password and secret management |
+| | Doppler | Universal secrets manager for dev teams |
+| | HashiCorp Vault | Enterprise secret management |
+
+---
+
+## 8. Design & Collaboration
+
+Tools that bridge engineering, design, and product.
+
+| Category | Tool | Notes |
+|----------|------|-------|
+| **Design** | Figma | Collaborative interface design — industry standard |
+| | Framer | Interactive prototyping and site building |
+| **API Development** | Postman | API testing and documentation |
+| | Insomnia | Open-source API client |
+| | Hoppscotch | Lightweight web-based API client |
+| **Project Management** | Linear | Modern issue tracking for software teams |
+| | GitHub Projects | Integrated project management |
+| | Jira | Enterprise project tracking |
+| **Communication** | Slack | Team messaging and integrations |
+| | Discord | Community and developer collaboration |
+
+---
+
+---
+
+# 2017 Historical Stack (Legacy Reference)
+
+> Preserved for historical context. Many of these technologies are still in use, but the ecosystem has shifted significantly.
+
+## 1. Universal Foundations (2017)
 
 | # | Skill | Notes |
 |---|-------|-------|
@@ -19,9 +235,7 @@ No matter which route you take, these are the baseline skills every web develope
 
 ---
 
-## 2. Basic Front End
-
-The starting point for building user-facing interfaces.
+## 2. Basic Front End (2017)
 
 | Category | Topic | Details |
 |----------|-------|---------|
@@ -33,13 +247,11 @@ The starting point for building user-facing interfaces.
 | | JavaScript Fundamentals | Core language concepts and DOM manipulation |
 | **JavaScript Deep Dives** | JavaScript is Weird and Awesome | Understanding JS quirks and edge cases |
 | | Modular JS | ES modules, CommonJS, module bundling concepts |
-| | jQuery | Legacy DOM manipulation library (still widely encountered) |
+| | jQuery | Legacy DOM manipulation library |
 
 ---
 
-## 3. Back End
-
-Server-side development — choosing a language and understanding how to build APIs, manage data, and handle authentication.
+## 3. Back End (2017)
 
 ### 3.1 Back-End Languages
 
@@ -53,88 +265,82 @@ Server-side development — choosing a language and understanding how to build A
 | | Scala | Play Framework, Akka |
 | | Clojure | Ring, Compojure |
 | | Haskell | Yesod, Scotty |
-| **High-Performance / Compiled** | Go / GoLang | Standard library focus, goroutines |
-| | Rust | Actix, Rocket — memory-safe systems |
-| | Java | Spring Boot, Jakarta EE |
-| | C# | ASP.NET Core |
+| **High-Performance / Compiled** | Go / GoLang | Standard library focus |
+| | Rust | Actix, Rocket |
+| | Java | Spring Boot |
+| | C# | ASP.NET |
 
-### 3.2 Things Every Back-End Developer Must Learn
+### 3.2 Things Every Back-End Developer Must Learn (2017)
 
 | Area | Topic | Details |
 |------|-------|---------|
-| **Data** | Caching | Nginx, Apache, Redis, In-Memory stores |
+| **Data** | Caching | Nginx, Apache, Redis, In-Memory |
 | | Relational Databases | MySQL, PostgreSQL |
 | | Session / Cache Stores | Redis |
 | | Document Databases | MongoDB, Couchbase, RethinkDB |
 | | Search Engines | ElasticSearch, Solr |
-| **Testing** | Unit / Functional Testing | Framework-specific testing strategies |
+| **Testing** | Unit / Functional Testing | Framework-specific testing |
 | **APIs** | RESTful Services | Designing and consuming REST APIs |
-| **Security** | Authorization / Authentication | OAUTH2, JSON Web Tokens (JWT) |
-| **Architecture** | SOA / Microservices | Service decomposition and inter-service communication |
-| | WebSocket | Real-time bidirectional communication |
-| | ORM / Data Structure | Object-relational mapping and schema design |
-| **Deployment** | Deploying Your App | flightplan (Node.js), Fabric (Python), Capistrano (Ruby) |
+| **Security** | Authorization / Authentication | OAUTH2, JSON Web Tokens |
+| **Architecture** | SOA / Microservices | Service decomposition |
+| | WebSocket | Real-time communication |
+| | ORM / Data Structure | Schema design |
+| **Deployment** | Deploying Your App | flightplan, Fabric, Capistrano |
 | **Cloud Platforms** | Digital Ocean | VPS hosting |
-| | Amazon Web Services (AWS) | EC2, S3, RDS, Lambda |
-| | Azure | Microsoft's cloud platform |
-| | Rackspace | Managed cloud hosting |
-| | Heroku | Platform-as-a-Service (PaaS) |
+| | Amazon Web Services (AWS) | EC2, S3, RDS |
+| | Azure | Microsoft's cloud |
+| | Rackspace | Managed hosting |
+| | Heroku | PaaS |
 
 ---
 
-## 4. DevOps
-
-Operations knowledge for shipping, scaling, and maintaining applications.
+## 4. DevOps (2017)
 
 | Area | Tool / Topic | Details |
 |------|--------------|---------|
-| **Containerization** | Docker | Containerized applications and databases |
-| **Server Management (CM)** | Linux | Server OS fundamentals |
-| | Docker | Container runtime |
-| | Ansible | Agentless configuration management |
-| | Salt | Scalable config management |
+| **Containerization** | Docker | Containerized apps |
+| **Server Management** | Linux | Server OS |
+| | Ansible | Config management |
+| | Salt | Scalable CM |
 | | Chef | Infrastructure as code |
-| | Puppet | Declarative config management |
+| | Puppet | Declarative CM |
 | **Orchestration** | Big Scale | Kubernetes, Mesos |
-| | Small Scale | Docker Swarm, Docker 1.12 swarm mode |
-| | UI-Driven | Rancher, Docker Cloud, Docker Datacenter / Universal Control Plane |
-| **CI/CD** | Jenkins | Self-hosted continuous integration |
+| | Small Scale | Docker Swarm |
+| | UI-Driven | Rancher, Docker Cloud |
+| **CI/CD** | Jenkins | Self-hosted CI |
 | | SemaphoreCI | Hosted CI/CD |
-| | CircleCI | Cloud-based CI/CD |
-| | Codeship | Hosted continuous delivery |
-| **Local Environment** | Vagrant | Local development environment provisioning |
+| | CircleCI | Cloud CI |
+| | Codeship | Hosted CD |
+| **Local Environment** | Vagrant | Local dev environments |
 
 ---
 
-## 5. Front End Developer (Advanced)
-
-Modern front-end engineering beyond the basics — build tools, frameworks, and testing.
+## 5. Front End Developer — Advanced (2017)
 
 | Category | Topic | Details |
 |----------|-------|---------|
-| **JavaScript Modern** | ES6/ES2015 | Modern JS syntax (transpiled with Babel) |
+| **JavaScript Modern** | ES6/ES2015 | Modern JS syntax (Babel) |
 | **CSS Tools** | Precompilers | SASS / LESS / Stylus |
 | | CSS Frameworks | Bootstrap, Foundation |
-| | Responsive Design | Mobile-first and adaptive layouts |
-| **Task Runners** | Gulp | Stream-based build system |
+| | Responsive Design | Mobile-first layouts |
+| **Task Runners** | Gulp | Stream-based build |
 | | Grunt | Config-based task runner |
-| **Dependency Management** | Browserify | Node-style requires in the browser |
-| | Webpack | Module bundler and asset pipeline |
-| | Bower / Package Management | Legacy front-end package manager |
-| | Yeoman.io | Project scaffolding generator |
-| **Front End Build Tools** | — | Bundling, minification, transpilation pipelines |
-| **MV* JavaScript Frameworks** | React.js | Component-based UI library |
-| | | Mobx, Flux, Redux, Relay, GraphQL, create-react-app |
-| | Angular.js | Google's full-featured framework |
-| | Ember.js | Opinionated convention-over-configuration framework |
-| | Vue.js | Progressive, incrementally adoptable framework |
-| | ClojureScript | Clojure compiled to JavaScript |
-| | Elm | Functional language with no runtime errors |
-| **Unit Testing** | Mocha | Flexible test framework |
-| | Jasmine | Behavior-driven testing |
-| | Karma | Test runner for real browsers |
-| | enzyme | React component testing utilities |
+| **Dependency Management** | Browserify | Node-style requires in browser |
+| | Webpack | Module bundler |
+| | Bower | Front-end package manager |
+| | Yeoman.io | Project scaffolding |
+| **MV* Frameworks** | React.js | Component-based UI |
+| | | Mobx, Flux, Redux, Relay, GraphQL |
+| | Angular.js | Full-featured framework |
+| | Ember.js | Convention-over-configuration |
+| | Vue.js | Progressive framework |
+| | ClojureScript | Clojure to JS |
+| | Elm | Functional language |
+| **Unit Testing** | Mocha | Test framework |
+| | Jasmine | BDD testing |
+| | Karma | Browser test runner |
+| | enzyme | React testing utilities |
 
 ---
 
-> **Note on Diagrams**: The mind-map images referenced during the creation of this document are preserved for a future visual diagram update. The tabular format above is the canonical source of truth for curriculum content.
+> **Note on Diagrams**: The original 2017 mind-map images are preserved for reference. A visual diagram for the 2025 stack will be created in a future update.
