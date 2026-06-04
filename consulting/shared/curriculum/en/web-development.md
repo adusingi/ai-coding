@@ -1,10 +1,10 @@
 # Web Development Roadmap
 
-A structured breakdown of the web development landscape. This document preserves the historical 2017 view alongside a modern 2025 update, so you can see how the stack has evolved.
+A structured breakdown of the web development landscape. This document preserves the historical 2017 view alongside a modern 2026 update, so you can see how the stack has evolved.
 
 ---
 
-# 2025 Modern Stack (Current)
+# 2026 Modern Stack (Current)
 
 ## 1. Universal Foundations
 
@@ -24,7 +24,7 @@ No matter which route you take, these are the baseline skills every web develope
 
 ## 2. Modern Front End
 
-Building user interfaces in 2025.
+Building user interfaces in 2026.
 
 | Category | Technology | Details |
 |----------|------------|---------|
@@ -43,7 +43,7 @@ Building user interfaces in 2025.
 | | esbuild / swc / Turbopack | Next-gen transpilers and bundlers |
 | | Bun | All-in-one JS runtime, bundler, test runner |
 | | pnpm | Disk-space efficient package manager |
-| **CSS Ecosystem** | Tailwind CSS | Utility-first CSS framework — dominant in 2025 |
+| **CSS Ecosystem** | Tailwind CSS | Utility-first CSS framework — dominant in 2026 |
 | | PostCSS / Lightning CSS | Modern CSS processing and minification |
 | | CSS Modules / StyleX | Scoped, component-level styling |
 | | Design Systems | Radix, shadcn/ui, Chakra UI v3 |
@@ -69,7 +69,7 @@ Building user interfaces in 2025.
 
 ## 3. Modern Back End
 
-Server-side development in 2025.
+Server-side development in 2026.
 
 | Language Family | Language / Runtime | Frameworks / Tools |
 |-----------------|-------------------|-------------------|
@@ -143,7 +143,7 @@ The newest layer of the modern web stack.
 
 ## 6. DevOps & Infrastructure
 
-Shipping, scaling, and maintaining applications in 2025.
+Shipping, scaling, and maintaining applications in 2026.
 
 | Category | Technology | Notes |
 |----------|------------|-------|
@@ -343,4 +343,4 @@ Tools that bridge engineering, design, and product.
 
 ---
 
-> **Note on Diagrams**: The original 2017 mind-map images are preserved for reference. A visual diagram for the 2025 stack will be created in a future update.
+> **Note on Diagrams**: The original 2017 mind-map images are preserved for reference. A visual diagram for the 2026 stack will be created in a future update.
