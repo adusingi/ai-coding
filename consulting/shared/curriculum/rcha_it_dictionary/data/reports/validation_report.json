@@ -1,0 +1,47 @@
+{
+  "summary": {
+    "total_entries": 1356,
+    "missing_required_fields": {
+      "headword_kin": 0,
+      "english_terms": 0,
+      "domain": 0,
+      "definition_kin": 0,
+      "source_page": 0
+    },
+    "entries_with_empty_english_terms": 0,
+    "duplicate_headword_count": 28,
+    "short_definition_count_lt_25_chars": 15
+  },
+  "duplicates": {
+    "headword_kin": [
+      "Indanga",
+      "Igenzurabanga nyamubiri",
+      "Ururimi mbonera rwa mudasobwa",
+      "Ifaranga koranabuhanga",
+      "Igaruramakuru",
+      "Igenamiterere",
+      "Igikoresho koranabuhanga",
+      "Ishusho",
+      "G",
+      "Impuzamiyoboro",
+      "Ikoranabuhanga rya mudasobwa",
+      "Urwungano koranabuhanga",
+      "Imigaragarire",
+      "Impuzamakuru",
+      "Inyinjizamakuru",
+      "Inyoherezamajwi",
+      "Kwinjira",
+      "Isakazamakuru",
+      "Ishakishamakuru",
+      "Isomero koranabuhanga",
+      "Mwandikisho",
+      "Nyiri amakuru",
+      "Ububiko",
+      "Ubucuruzi bwo kuri murandasi",
+      "Urugero mbonera",
+      "Urwandikiro nyamibare",
+      "Urwungano rwa mugabuzi",
+      "Virusi yiyoberanya"
+    ]
+  }
+}
