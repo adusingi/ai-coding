@@ -10,27 +10,33 @@ Bonjour Saga,
 
 Suite à notre échange, voici ma proposition concrète pour les deux sessions avec toi et ton équipe.
 
+> **Note :** Cette proposition est basée sur ce que je sais de votre contexte à ce jour. Les exemples, les exercices pratiques et les recommandations finales seront affinés et personnalisés une fois que j'aurai les retours de ton équipe sur votre stack, vos outils et vos flux de travail actuels.
+
 ---
 
 **Ce que je vous propose**
 
-Deux sessions de 60 minutes chacune, en groupe (5 personnes), avec du travail pratique sur vos propres outils et votre codebase — pas une présentation, un atelier.
+Deux sessions de 60 minutes chacune, en groupe (5 personnes), avec du travail pratique directement sur votre codebase — pas une présentation, un atelier.
+
+> **Note sur les outils :** Les sessions sont conçues pour fonctionner avec n'importe quel outil IA — Claude Code, GitHub Copilot, Cursor, Codex ou autre. L'objectif est de vous transmettre une méthode de travail, pas de vous vendre un outil particulier.
 
 **Session 1 — Audit & Fondations**
 
-On commence par comprendre comment votre équipe travaille aujourd'hui. Je vous pose une série de questions ciblées, puis on identifie ensemble où l'IA peut vous faire gagner le plus de temps dès maintenant.
+On commence par comprendre comment votre équipe travaille aujourd'hui. Je vous pose une série de questions ciblées sur vos flux de travail, votre usage actuel de l'IA, et les points de friction les plus fréquents.
 
-On termine par un atelier pratique : on crée ensemble votre premier `CLAUDE.md` — un fichier qui donne à l'IA le contexte de votre projet, pour que chaque membre de l'équipe obtienne des réponses cohérentes. Et on teste un premier outil de structuration d'idées directement sur quelque chose que vous êtes en train de construire.
+On termine par deux ateliers pratiques sur un projet réel :
+- On construit ensemble votre `CLAUDE.md` — un fichier de contexte partagé qui donne à l'IA les informations dont elle a besoin pour répondre de façon cohérente à toute l'équipe
+- On prend une fonctionnalité que vous êtes en train de construire et on la passe par un outil de structuration d'idées avec l'IA, pour voir comment clarifier une idée avant de coder
 
 **Entre les deux sessions**
 
-Chaque membre de l'équipe choisit une tâche réelle sur laquelle il travaille cette semaine-là et l'utilise avec Claude. On repart de ces expériences concrètes en session 2.
+Chaque membre de l'équipe choisit une tâche réelle sur laquelle il travaille cette semaine-là et la traite avec l'IA. On repart de ces expériences concrètes en session 2.
 
-**Session 2 — Audit de l'architecture & Possibilités**
+**Session 2 — Architecture & Planification**
 
-On passe votre codebase en revue avec l'IA — on génère un document d'architecture complet, puis on demande à Claude ce qu'il détecte comme manques et optimisations potentielles. L'objectif : vous montrer ce que vous pourriez améliorer que vous n'auriez pas forcément vu seuls.
+On ouvre votre codebase avec l'IA : on génère un document d'architecture complet de votre projet, on extrait le vocabulaire technique partagé de votre équipe, puis on demande à l'IA ce qu'elle détecte comme manques et optimisations. L'objectif : voir votre propre codebase d'un œil neuf.
 
-On termine en ouvrant la porte aux possibilités : prototypage d'idées avec l'IA, génération de tickets d'engineering à partir d'une discussion, documentation automatique. Pas pour tout faire ce jour-là — pour que vous sachiez ce qui existe et comment y accéder quand vous en aurez besoin.
+On termine sur un cas concret de planification : on prend une fonctionnalité à venir, on la transforme en spécification, puis en tickets d'engineering prêts à traiter. Ce n'est pas une démo — c'est votre prochain sprint.
 
 ---
 
@@ -44,7 +50,7 @@ On termine en ouvrant la porte aux possibilités : prototypage d'idées avec l'I
 
 **Avant la première session**
 
-Je vous enverrai un guide de setup à faire en équipe — installation de Claude Code et un premier test. Ça prend environ 10 minutes et ça nous évite de perdre du temps en session.
+Je vous enverrai un guide de setup à faire en équipe — installation de l'outil IA et un premier test. Ça prend environ 10 minutes et ça nous évite de perdre du temps en session.
 
 ---
 

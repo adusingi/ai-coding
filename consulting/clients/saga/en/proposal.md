@@ -10,27 +10,33 @@ Hi Saga,
 
 Following our conversation, here is my concrete proposal for the two sessions with you and your team.
 
+> **Note:** This proposal is based on what I know about your context so far. The examples, hands-on exercises, and final recommendations will be refined and personalized once I have your team's feedback on your stack, tools, and current workflows.
+
 ---
 
 **What I'm offering**
 
-Two 60-minute sessions, in a group (5 people), with hands-on work on your own tools and codebase — not a presentation, a workshop.
+Two 60-minute sessions, in a group (5 people), with hands-on work directly on your codebase — not a presentation, a workshop.
+
+> **Note on tools:** The sessions are designed to work with any AI tool — Claude Code, GitHub Copilot, Cursor, Codex, or others. The goal is to give your team a working method, not to sell you a specific tool.
 
 **Session 1 — Audit & Foundations**
 
-We start by understanding how your team works today. I ask a series of targeted questions, then we identify together where AI can save you the most time right now.
+We start by understanding how your team works today. I ask a series of targeted questions about your workflows, your current AI usage, and the most frequent friction points.
 
-We close with a hands-on exercise: we build your first `CLAUDE.md` together — a file that gives AI the context of your project, so every team member gets consistent, relevant answers. Then we test a first idea-structuring tool directly on something you're currently building.
+We close with two hands-on exercises on a real project:
+- We build your `CLAUDE.md` together — a shared context file that gives the AI what it needs to respond consistently for every team member
+- We take a feature you're currently building and run it through an idea-structuring tool with AI, to see how to clarify an idea before writing code
 
 **Between the two sessions**
 
-Each team member picks one real task they're working on that week and uses Claude on it. We start session 2 from those concrete experiences.
+Each team member picks one real task they're working on that week and works on it with AI. Session 2 starts from those concrete experiences.
 
-**Session 2 — Architecture Audit & Possibilities**
+**Session 2 — Architecture & Planning**
 
-We review your codebase with AI — we generate a full architecture document, then ask Claude what it detects as gaps and potential optimizations. The goal: show you what you could improve that you might not have spotted on your own.
+We open your codebase with AI: we generate a complete architecture document of your project, extract your team's shared technical vocabulary, then ask the AI what it detects as gaps and potential optimizations. The goal: see your own codebase with fresh eyes.
 
-We close by opening the door to what's possible: prototyping ideas with AI, generating engineering tickets from a discussion, automatic documentation. Not to do everything that day — so you know what exists and how to access it when you need it.
+We close with a concrete planning exercise: we take an upcoming feature, turn it into a specification, then into engineering tickets ready to work on. This isn't a demo — it's your next sprint.
 
 ---
 
@@ -44,7 +50,7 @@ We close by opening the door to what's possible: prototyping ideas with AI, gene
 
 **Before session 1**
 
-I'll send you a setup guide for the team — installing Claude Code and a first test. It takes about 10 minutes and means we don't lose any session time on setup.
+I'll send you a setup guide for the team — installing the AI tool and a first test. It takes about 10 minutes and means we don't lose any session time on setup.
 
 ---
 
