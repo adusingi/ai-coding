@@ -277,7 +277,194 @@ The same Compose tool can use different files for different situations.
 
 ---
 
-## Diagram 6: How All Four Pieces Connect
+## Diagram 6: A Real Failure — "Build Passed, Production Still Broke"
+
+One of the easiest Docker mistakes to make is thinking:
+
+> "The image built successfully, so production is fine."
+
+That is false.
+
+A Docker build only proves that Docker could assemble the image. It does **not** prove that:
+- the container can actually start
+- the startup scripts can run
+- the health check works
+- the app can talk to its database
+
+<div style="font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; background: #080b0f; border: 1px solid #24313b; padding: 40px 30px; margin: 20px 0;">
+  <div style="font-family: Georgia, serif; font-size: 1.6rem; font-weight: 400; color: #f2efe6; margin-bottom: 8px;">A container can build fine and still fail at startup</div>
+  <div style="font-size: 0.9rem; color: #9aa7a6; margin-bottom: 32px;">This is what happened in a real Next.js + Postgres deployment.</div>
+
+  <table style="width: 100%; border-collapse: collapse;">
+    <tr>
+      <td style="width: 32%; background: #111922; border: 1px solid rgba(156, 255, 110, 0.35); padding: 22px; vertical-align: top;">
+        <div style="font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: #9aa7a6; margin-bottom: 8px;">What looked good</div>
+        <div style="font-size: 1rem; font-weight: 600; color: #9cff6e; margin-bottom: 12px;">docker build succeeded</div>
+        <div style="font-size: 0.84rem; color: #9aa7a6; line-height: 1.8;">
+          Next.js compiled.<br>
+          The image was created.<br>
+          Docker had no complaint.<br>
+          <span style="color: #f2efe6;">It looked ready to ship.</span>
+        </div>
+      </td>
+      <td style="width: 4%; text-align: center; color: #9aa7a6; font-size: 1.4rem; vertical-align: middle;">→</td>
+      <td style="width: 32%; background: #111922; border: 1px solid #e57373; padding: 22px; vertical-align: top;">
+        <div style="font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: #9aa7a6; margin-bottom: 8px;">What really happened</div>
+        <div style="font-size: 1rem; font-weight: 600; color: #e57373; margin-bottom: 12px;">container startup failed</div>
+        <div style="font-size: 0.84rem; color: #9aa7a6; line-height: 1.8;">
+          Entrypoint ran a TypeScript script.<br>
+          The script needed runtime packages.<br>
+          The final image did not include them.<br>
+          <span style="color: #f2efe6;">So the app never reached "ready".</span>
+        </div>
+      </td>
+      <td style="width: 4%; text-align: center; color: #9aa7a6; font-size: 1.4rem; vertical-align: middle;">→</td>
+      <td style="width: 28%; background: #111922; border: 1px solid rgba(156, 255, 110, 0.35); padding: 22px; vertical-align: top;">
+        <div style="font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: #9aa7a6; margin-bottom: 8px;">The real fix</div>
+        <div style="font-size: 1rem; font-weight: 600; color: #9cff6e; margin-bottom: 12px;">make the runner image truly runnable</div>
+        <div style="font-size: 0.84rem; color: #9aa7a6; line-height: 1.8;">
+          Install the runtime dependencies.<br>
+          Include the health-check tool.<br>
+          Fix the startup script itself.<br>
+          Fail fast on missing config.
+        </div>
+      </td>
+    </tr>
+  </table>
+
+  <div style="margin-top: 22px; padding: 16px 20px; border: 1px solid #24313b; background: #0d1117; font-size: 0.85rem; color: #9aa7a6; line-height: 1.8;">
+    <strong style="color: #f2efe6;">The key idea:</strong> a production container is not just the web server binary. It is <em>everything needed on the real startup path</em> — entrypoint scripts, runtime packages, health-check commands, and required environment values.
+  </div>
+</div>
+
+### What went wrong in plain English
+
+The deployment used a multi-stage Docker build:
+- one stage installed dependencies
+- one stage built the Next.js app
+- the final `runner` stage copied only the compiled output
+
+That is normally good practice. The problem was that the final image also ran startup scripts before launching the app:
+- `entrypoint.sh`
+- `check-and-seed.ts`
+- `seed.ts`
+
+Those scripts were part of production startup, but the final image did not fully support them.
+
+The important lesson is **not**:
+
+> "Never run scripts before the app starts."
+
+Running scripts before startup is often completely valid. Many real systems do this:
+- database migrations
+- seed checks
+- config generation
+- cache warming
+
+The real problem is different:
+
+> startup became responsible for too many things, and the final runtime image was not fully prepared to do all of them safely.
+
+Three separate things were wrong:
+
+1. **The startup scripts needed packages that were not present in the final image.**  
+   The app code was there, but the scripts needed packages like `postgres` and `drizzle-orm` at runtime.
+
+2. **The health check used `curl`, but `curl` was not installed in the final image.**  
+   That meant Docker could mark the service unhealthy even if the app itself had started.
+
+3. **One startup script used top-level `await` in a way that failed under the actual container execution mode.**  
+   So the script crashed before it could finish the database check.
+
+### The lesson from this failure
+
+<div style="font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; background: #080b0f; border: 1px solid #24313b; padding: 28px 24px; margin: 20px 0;">
+  <div style="font-family: Georgia, serif; font-size: 1.35rem; font-weight: 400; color: #f2efe6; margin-bottom: 22px;">A safe mental model</div>
+
+  <div style="display: grid; gap: 12px;">
+    <div style="background: #111922; border: 1px solid #24313b; padding: 14px 18px; color: #9aa7a6; font-size: 0.86rem; line-height: 1.7;">
+      <span style="color: #f2efe6; font-weight: 600;">Build success</span> means: Docker assembled the image.
+    </div>
+    <div style="background: #111922; border: 1px solid #24313b; padding: 14px 18px; color: #9aa7a6; font-size: 0.86rem; line-height: 1.7;">
+      <span style="color: #f2efe6; font-weight: 600;">Startup success</span> means: the container can execute its entrypoint and stay alive.
+    </div>
+    <div style="background: #111922; border: 1px solid #24313b; padding: 14px 18px; color: #9aa7a6; font-size: 0.86rem; line-height: 1.7;">
+      <span style="color: #f2efe6; font-weight: 600;">Health success</span> means: Docker can run the health-check command inside the shipped image.
+    </div>
+    <div style="background: #111922; border: 1px solid rgba(156, 255, 110, 0.35); padding: 14px 18px; color: #9aa7a6; font-size: 0.86rem; line-height: 1.7;">
+      <span style="color: #9cff6e; font-weight: 600;">Production success</span> means: all three are true at the same time.
+    </div>
+  </div>
+</div>
+
+### The deeper architectural lesson
+
+<div style="font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; background: #080b0f; border: 1px solid #24313b; padding: 28px 24px; margin: 20px 0;">
+  <div style="font-family: Georgia, serif; font-size: 1.35rem; font-weight: 400; color: #f2efe6; margin-bottom: 22px;">One startup path, many responsibilities</div>
+
+  <table style="width: 100%; border-collapse: collapse;">
+    <tr>
+      <td style="width: 48%; background: #111922; border: 1px solid #e57373; padding: 18px 20px; vertical-align: top;">
+        <div style="font-size: 0.7rem; letter-spacing: 0.18em; text-transform: uppercase; color: #9aa7a6; margin-bottom: 8px;">Fragile version</div>
+        <div style="color: #e57373; font-size: 0.95rem; font-weight: 600; margin-bottom: 10px;">One failure blocks everything</div>
+        <div style="color: #9aa7a6; font-size: 0.84rem; line-height: 1.8;">
+          container starts<br>
+          → run setup script<br>
+          → check database<br>
+          → maybe seed data<br>
+          → maybe run health tooling<br>
+          → finally start the app
+        </div>
+      </td>
+      <td style="width: 4%;"></td>
+      <td style="width: 48%; background: #111922; border: 1px solid rgba(156, 255, 110, 0.35); padding: 18px 20px; vertical-align: top;">
+        <div style="font-size: 0.7rem; letter-spacing: 0.18em; text-transform: uppercase; color: #9aa7a6; margin-bottom: 8px;">Stronger version</div>
+        <div style="color: #9cff6e; font-size: 0.95rem; font-weight: 600; margin-bottom: 10px;">Startup does the minimum</div>
+        <div style="color: #9aa7a6; font-size: 0.84rem; line-height: 1.8;">
+          container starts<br>
+          → launch the app<br>
+          → keep health check simple<br>
+          → run seeding/migrations separately<br>
+          → isolate setup failures from app availability
+        </div>
+      </td>
+    </tr>
+  </table>
+
+  <div style="margin-top: 18px; padding: 14px 18px; border-left: 3px solid #9aa7a6; color: #9aa7a6; font-size: 0.85rem; line-height: 1.8;">
+    The more responsibilities you attach to startup, the more fragile startup becomes. Your web app is then only as reliable as the weakest pre-start task.
+  </div>
+</div>
+
+### Should setup tasks always be separated?
+
+No. Small setup work during startup can be fine.
+
+Good candidates to keep in startup:
+- tiny, fast checks
+- deterministic config generation
+- logic that the app truly cannot run without
+
+Better candidates to separate into one-off jobs or deployment steps:
+- large seeding operations
+- anything that needs many extra dependencies
+- tasks that may fail for environmental reasons unrelated to serving traffic
+- tasks you may want to rerun manually without restarting the app
+
+### Rules worth remembering
+
+- In a multi-stage build, the final stage must contain **everything used at runtime**, not just the main app binary.
+- If a script runs from `CMD` or `ENTRYPOINT`, treat it as **production code**.
+- Do not overload startup with many unrelated responsibilities unless you are willing to make the runtime image support all of them.
+- Every health check command must exist inside the final image.
+- Required environment variables should fail fast with a clear error, not silently become blank.
+- Always test the container the way production runs it, not just with `docker build`.
+
+> For a deeper explanation of when setup work belongs in startup versus a separate job, see [Docker Startup vs. Bootstrap](./docker-startup-vs-bootstrap.md).
+
+---
+
+## Diagram 7: How All Four Pieces Connect
 
 <div style="font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; background: #080b0f; border: 1px solid #24313b; padding: 40px 30px; margin: 20px 0;">
   <div style="font-family: Georgia, serif; font-size: 1.6rem; font-weight: 400; color: #f2efe6; margin-bottom: 32px;">The full picture</div>
