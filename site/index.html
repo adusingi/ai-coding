@@ -87,6 +87,12 @@
       min-height: 56px;
       gap: 18px;
     }
+    .topbar-actions {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      flex: 0 0 auto;
+    }
     .brand {
       display: inline-flex;
       align-items: center;
@@ -119,6 +125,25 @@
     }
     .navlinks a { transition: color 140ms ease; }
     .navlinks a:hover { color: var(--text); }
+    .navlinks .nav-badge {
+      display: inline-flex;
+      align-items: center;
+      min-height: 22px;
+      padding: 0 10px;
+      border-radius: 3px;
+      background: var(--green-wash);
+      color: var(--green-strong);
+      font-family: "Inconsolata", monospace;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      white-space: nowrap;
+      transition: background 140ms ease, color 140ms ease;
+    }
+    .navlinks .nav-badge:hover {
+      background: rgba(34, 197, 94, 0.2);
+      color: #bbf7d0;
+    }
     .navcta {
       display: inline-flex;
       align-items: center;
@@ -789,8 +814,11 @@
         <a href="#program">program</a>
         <a href="#curriculum">curriculum</a>
         <a href="#apply">apply</a>
+        <a class="nav-badge" href="https://inkoranyamuga.mobayilo.com/" target="_blank" rel="noreferrer">Kinyarwanda IT Dictionary</a>
       </nav>
-      <a class="navcta" href="#apply">Apply for $500 Training</a>
+      <div class="topbar-actions">
+        <a class="navcta" href="#apply">Apply for $500 Training</a>
+      </div>
     </div>
   </header>
 
