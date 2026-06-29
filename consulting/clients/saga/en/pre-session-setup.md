@@ -78,6 +78,29 @@ So we don't spend session time on definitions, please read these once. **You sho
 
 ---
 
+## Optional — Level up your terminal (bonus)
+
+You'll be running Claude Code in the terminal, so a comfortable terminal setup pays off. **None of this is required for the session** — install it only if you want to.
+
+On macOS, all of these install with [Homebrew](https://brew.sh):
+
+```sh
+brew install --cask ghostty   # fast, modern, GPU-accelerated terminal
+brew install yazi             # terminal file manager with live previews
+brew install lazygit          # a simple terminal UI for git
+brew install zoxide           # a smarter `cd` that learns where you go
+```
+
+After installing zoxide, add this line to the end of `~/.zshrc` so it starts tracking directories:
+
+```sh
+eval "$(zoxide init zsh)"
+```
+
+> **Windows:** Ghostty is macOS/Linux only — use Windows Terminal instead. The other three install with `winget` or `scoop` (e.g. `scoop install yazi lazygit zoxide`).
+
+---
+
 ## If something goes wrong
 
 Reply to this email with a screenshot of the error — we'll sort it out before the session.
