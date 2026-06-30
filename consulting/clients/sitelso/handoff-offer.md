@@ -1,4 +1,4 @@
-# Handoff: AI Coaching Offer for Saga
+# Handoff: AI Coaching Offer — SiTelSo (CEO: Saga)
 
 **Date:** 2026-05-26
 **Next session goal:** Saga's reply to the LinkedIn intake + the tools email has arrived. Incorporate his answers into the proposal, finalize dates, and send `docs/proposal-saga.md`.
@@ -7,7 +7,7 @@
 
 ## Context
 
-Aimable Dusingi (adusingi) had a 50-min meeting with Saga, an entrepreneur with a 5-person engineering team. Saga sent a follow-up message requesting a coaching proposal:
+Aimable Dusingi (adusingi) had a 50-min meeting with Saga, the CEO of **SiTelSo** (sitelso.net), a company with a 5-person engineering team. Saga sent a follow-up message requesting a coaching proposal:
 
 > "Two sessions of 60 minutes each for my team and myself (5 people). Session 1: audit + initial recommendations. Session 2: detailed recommendations and their implementation."
 
@@ -28,10 +28,11 @@ The goal is to:
 
 ---
 
-## What We Know About Saga's Team
+## What We Know About the SiTelSo Team
 
 | Dimension | Status |
 |-----------|--------|
+| Company | **SiTelSo** (sitelso.net) — CEO: Saga |
 | Team size | 5 people (including Saga) |
 | AI maturity | Casual dabblers (ChatGPT/Copilot for snippets, no structured workflow) |
 | Product | On-premise Docker SaaS for enterprise clients — analytics platform for logs + Microsoft server management |

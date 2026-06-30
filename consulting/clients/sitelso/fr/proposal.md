@@ -1,4 +1,4 @@
-# Proposition Saga — 2 sessions IA pour l'équipe
+# Proposition SiTelSo — 2 sessions IA pour l'équipe
 
 **À envoyer par email à Saga une fois les dates calées.**
 
