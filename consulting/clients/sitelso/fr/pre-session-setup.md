@@ -1,16 +1,16 @@
 # Guide de setup — À faire avant la session 1
-**Durée estimée : ~15 minutes (10 min de setup + 5 min de lecture)**
+**Durée estimée : 15 minutes minimum**
 **Page réservée aux membres — accès accordé à l'équipe SiTelSo.**
 
 ---
 
 Bonjour à toute l'équipe,
 
-Avant notre première session, merci de faire ce setup rapide et cette courte lecture. Ça prend environ 15 minutes et ça nous permet de démarrer directement dans le vif du sujet le jour J — sans perdre de temps sur les installations ou les définitions.
+Avant notre première session, merci de faire ce setup et cette courte lecture. Comptez au minimum 15 minutes — ça nous permet de démarrer directement dans le vif du sujet le jour J, sans perdre de temps sur les installations ou les définitions.
 
 ---
 
-## Étape 1 — Passer à Claude Pro (3 min)
+## Étape 1 — Passer à Claude Pro
 
 1. Allez sur [claude.ai](https://claude.ai)
 2. Créez un compte (ou connectez-vous) avec votre email professionnel
@@ -22,7 +22,7 @@ Avant notre première session, merci de faire ce setup rapide et cette courte le
 
 ---
 
-## Étape 2 — Installer Claude Code (5 min)
+## Étape 2 — Installer Claude Code
 
 Claude Code est l'agent de code qu'on va utiliser en session. Vous pouvez l'utiliser de deux façons — choisissez celle que vous préférez :
 
@@ -47,7 +47,7 @@ Au premier lancement, une page de connexion s'ouvre dans votre navigateur — co
 
 ---
 
-## Étape 3 — Tester que tout fonctionne (2 min)
+## Étape 3 — Tester que tout fonctionne
 
 Dans n'importe quel dossier de projet, lancez Claude Code et posez cette question :
 
@@ -59,7 +59,7 @@ Si vous recevez une réponse cohérente, tout est prêt.
 
 ---
 
-## Étape 4 — Lire : 12 termes IA à connaître (5 min)
+## Étape 4 — Lire : 12 termes IA à connaître
 
 > 📖 **Version interactive et détaillée :** [academy.mobayilo.com/learn/ai-engineering](https://academy.mobayilo.com/learn/ai-engineering)
 

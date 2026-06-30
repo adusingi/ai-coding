@@ -1,16 +1,16 @@
 # Setup Guide — Complete Before Session 1
-**Estimated time: ~15 minutes (10 min setup + 5 min reading)**
+**Estimated time: 15 minutes minimum**
 **Members-only page — access granted to the SiTelSo team.**
 
 ---
 
 Hi team,
 
-Before our first session, please complete this quick setup and read-through. It takes about 15 minutes and lets us jump straight into the real work on day one — no time lost on installs or definitions.
+Before our first session, please complete this setup and read-through. Set aside at least 15 minutes — it lets us jump straight into the real work on day one, with no time lost on installs or definitions.
 
 ---
 
-## Step 1 — Get Claude Pro (3 min)
+## Step 1 — Get Claude Pro
 
 1. Go to [claude.ai](https://claude.ai)
 2. Create (or sign in to) an account with your work email
@@ -22,7 +22,7 @@ Before our first session, please complete this quick setup and read-through. It 
 
 ---
 
-## Step 2 — Install Claude Code (5 min)
+## Step 2 — Install Claude Code
 
 Claude Code is the coding agent we'll use in the sessions. You can run it two ways — pick whichever you prefer:
 
@@ -47,7 +47,7 @@ On first launch it opens a login page in your browser — sign in with the accou
 
 ---
 
-## Step 3 — Test that everything works (2 min)
+## Step 3 — Test that everything works
 
 In any project folder, start Claude Code and ask:
 
@@ -59,7 +59,7 @@ If you get a coherent answer, you're all set.
 
 ---
 
-## Step 4 — Read: 12 Must-Know AI Terms (5 min)
+## Step 4 — Read: 12 Must-Know AI Terms
 
 > 📖 **Interactive, detailed version:** [academy.mobayilo.com/learn/ai-engineering](https://academy.mobayilo.com/learn/ai-engineering)
 
