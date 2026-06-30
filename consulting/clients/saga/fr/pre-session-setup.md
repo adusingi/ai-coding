@@ -1,6 +1,6 @@
 # Guide de setup — À faire avant la session 1
 **Durée estimée : ~15 minutes (10 min de setup + 5 min de lecture)**
-**À envoyer à l'équipe de Saga avant la première session.**
+**Page réservée aux membres — accès accordé à l'équipe Saga.**
 
 ---
 
@@ -12,9 +12,11 @@ Avant notre première session, merci de faire ce setup rapide et cette courte le
 
 ## Étape 1 — Passer à Claude Pro (3 min)
 
-1. Va sur [claude.ai](https://claude.ai)
-2. Crée un compte (ou connecte-toi) avec ton email professionnel
-3. Passe au plan **Pro** (20 $/mois) — pris en charge de façon centralisée par Saga pour l'équipe
+1. Allez sur [claude.ai](https://claude.ai)
+2. Créez un compte (ou connectez-vous) avec votre email professionnel
+3. Passez au plan **Pro** (20 $/mois) — pris en charge de façon centralisée pour l'équipe.\*
+
+\* _Prise en charge réservée à l'équipe Saga._
 
 > **Pourquoi Pro et pas la version gratuite ?** Deux raisons. D'abord, la version gratuite sert à essayer — le travail professionnel se fait sur la version payante (limites plus hautes, les modèles les plus puissants, et Claude Code). Ensuite, évaluer si les offres payantes valent le coup pour votre équipe fait partie des objectifs de ces sessions — et on ne peut juger correctement qu'en travaillant sur la vraie version. On la comparera en direct à ce que donnent les outils gratuits.
 
@@ -22,55 +24,57 @@ Avant notre première session, merci de faire ce setup rapide et cette courte le
 
 ## Étape 2 — Installer Claude Code (5 min)
 
-Claude Code est l'agent de code qu'on va utiliser en session. Tu peux l'utiliser de deux façons — choisis celle que tu préfères :
+Claude Code est l'agent de code qu'on va utiliser en session. Vous pouvez l'utiliser de deux façons — choisissez celle que vous préférez :
 
 **Option A — Extension VS Code (recommandée, l'équipe utilise déjà VS Code)**
-Ouvre VS Code → Extensions → cherche **« Claude Code »** → Installer. Connecte-toi avec le compte de l'étape 1.
+Ouvrez VS Code → Extensions → cherchez **« Claude Code »** → Installer. Connectez-vous avec le compte de l'étape 1.
 
 **Option B — Ligne de commande**
 
-Prérequis : Node.js installé. Pour vérifier : `node --version` dans le terminal — si tu vois un numéro de version, c'est bon. Sinon : [nodejs.org](https://nodejs.org) → télécharge la version LTS.
+Prérequis : Node.js installé. Pour vérifier : `node --version` dans le terminal — si vous voyez un numéro de version, c'est bon. Sinon : [nodejs.org](https://nodejs.org) → téléchargez la version LTS.
 
 ```bash
 npm install -g @anthropic-ai/claude-code
 ```
 
-Puis lance-le et connecte-toi :
+Puis lancez-le et connectez-vous :
 
 ```bash
 claude
 ```
 
-Au premier lancement, une page de connexion s'ouvre dans ton navigateur — connecte-toi avec le compte de l'étape 1.
+Au premier lancement, une page de connexion s'ouvre dans votre navigateur — connectez-vous avec le compte de l'étape 1.
 
 ---
 
 ## Étape 3 — Tester que tout fonctionne (2 min)
 
-Dans n'importe quel dossier de projet, lance Claude Code et pose cette question :
+Dans n'importe quel dossier de projet, lancez Claude Code et posez cette question :
 
 ```
 Explique-moi en 3 phrases ce qu'est un fichier CLAUDE.md et à quoi ça sert.
 ```
 
-Si tu reçois une réponse cohérente, tout est prêt.
+Si vous recevez une réponse cohérente, tout est prêt.
 
 ---
 
 ## Étape 4 — Lire : 12 termes IA à connaître (5 min)
 
-Pour ne pas passer du temps sur les définitions en session, merci de lire ceci une fois. **Tu dois pouvoir expliquer chaque terme avec tes propres mots** — on ira vite et on s'appuiera dessus.
+> 📖 **Version interactive et détaillée :** [academy.mobayilo.com/learn/ai-engineering](https://academy.mobayilo.com/learn/ai-engineering)
+
+Pour ne pas passer du temps sur les définitions en session, merci de lire ceci une fois. **Vous devez pouvoir expliquer chaque terme avec vos propres mots** — on ira vite et on s'appuiera dessus.
 
 | # | Terme | En une ligne |
 |---|-------|--------------|
 | 1 | **LLM** (Large Language Model) | Le « cerveau » IA derrière ChatGPT, Claude, Gemini, Copilot — il prédit le prochain morceau de texte, à grande échelle. |
 | 2 | **Hallucination** | Quand l'IA invente quelque chose — avec assurance, et complètement faux. (On creusera ce point en direct.) |
-| 3 | **Token (jeton)** | L'unité de base du texte IA — un morceau de mot, et ce que tu paies réellement. |
-| 4 | **Entraînement vs Inférence** | Apprendre au modèle (lent, une fois) vs. le modèle qui te répond (rapide, à chaque fois). |
+| 3 | **Token (jeton)** | L'unité de base du texte IA — un morceau de mot, et ce que vous payez réellement. |
+| 4 | **Entraînement vs Inférence** | Apprendre au modèle (lent, une fois) vs. le modèle qui vous répond (rapide, à chaque fois). |
 | 5 | **Fine-tuning (affinage)** | Prendre un modèle généraliste et le spécialiser sur des données ciblées pour une tâche précise. |
 | 6 | **Apprentissage par renforcement** | Le modèle apprend par essais, récompense et répétition — c'est ainsi qu'on rend les assistants utiles. |
 | 7 | **Distillation** | Apprendre à un petit modèle à imiter un grand — plus rapide et moins cher, presque aussi bon. |
-| 8 | **RAG** (génération augmentée par récupération) | L'IA + tes propres documents : elle récupère les passages pertinents avant de répondre, ce qui réduit les hallucinations. |
+| 8 | **RAG** (génération augmentée par récupération) | L'IA + vos propres documents : elle récupère les passages pertinents avant de répondre, ce qui réduit les hallucinations. |
 | 9 | **Chaîne de pensée (Chain of Thought)** | Le modèle résout un problème étape par étape — plus lent, mais bien plus fiable. |
 | 10 | **Poids (Weights)** | Les milliards de nombres dans le modèle qui stockent ce qu'il « sait ». |
 | 11 | **Validation Loss (perte de validation)** | Un score qui mesure la qualité de l'entraînement — plus bas = mieux ; détecte la mémorisation au lieu de l'apprentissage. |
@@ -78,9 +82,9 @@ Pour ne pas passer du temps sur les définitions en session, merci de lire ceci 
 
 ---
 
-## Optionnel — Améliorer ton terminal (bonus)
+## Optionnel — Améliorer votre terminal (bonus)
 
-Tu vas utiliser Claude Code dans le terminal, donc un terminal confortable est un vrai plus. **Rien de tout ça n'est obligatoire pour la session** — installe-le seulement si tu veux.
+Vous allez utiliser Claude Code dans le terminal, donc un terminal confortable est un vrai plus. **Rien de tout ça n'est obligatoire pour la session** — installez-le seulement si vous le souhaitez.
 
 Sur macOS, tout s'installe avec [Homebrew](https://brew.sh) :
 
@@ -88,22 +92,22 @@ Sur macOS, tout s'installe avec [Homebrew](https://brew.sh) :
 brew install --cask ghostty   # terminal moderne, rapide, accéléré par le GPU
 brew install yazi             # gestionnaire de fichiers dans le terminal, avec aperçus
 brew install lazygit          # une interface terminal simple pour git
-brew install zoxide           # un `cd` plus malin qui retient où tu vas
+brew install zoxide           # un `cd` plus malin qui retient où vous allez
 ```
 
-Après avoir installé zoxide, ajoute cette ligne à la fin de `~/.zshrc` pour qu'il commence à mémoriser tes dossiers :
+Après avoir installé zoxide, ajoutez cette ligne à la fin de `~/.zshrc` pour qu'il commence à mémoriser vos dossiers :
 
 ```sh
 eval "$(zoxide init zsh)"
 ```
 
-> **Windows :** Ghostty est réservé à macOS/Linux — utilise Windows Terminal à la place. Les trois autres s'installent avec `winget` ou `scoop` (ex. `scoop install yazi lazygit zoxide`).
+> **Windows :** Ghostty est réservé à macOS/Linux — utilisez Windows Terminal à la place. Les trois autres s'installent avec `winget` ou `scoop` (ex. `scoop install yazi lazygit zoxide`).
 
 ---
 
 ## En cas de problème
 
-Réponds à cet email avec une capture d'écran de l'erreur — on règle ça avant la session.
+Envoyez une capture d'écran de l'erreur à Aimable — nous réglons ça avant la session.
 
 ---
 

@@ -1,6 +1,6 @@
 # Setup Guide — Complete Before Session 1
 **Estimated time: ~15 minutes (10 min setup + 5 min reading)**
-**Send to Saga's team after the proposal is accepted.**
+**Members-only page — access granted to the Saga team.**
 
 ---
 
@@ -14,7 +14,9 @@ Before our first session, please complete this quick setup and read-through. It 
 
 1. Go to [claude.ai](https://claude.ai)
 2. Create (or sign in to) an account with your work email
-3. Upgrade to the **Pro** plan ($20/month) — Saga covers this centrally for the team
+3. Upgrade to the **Pro** plan ($20/month) — covered centrally for the team.\*
+
+\* _Coverage applies to the Saga team only._
 
 > **Why Pro and not the free version?** Two reasons. First, the free tier is for trying things out — professional work runs on the paid tier (higher limits, the strongest models, and Claude Code). Second, evaluating whether paid plans are worth it for your team is one of the goals of these sessions — and you can only judge that fairly by working on the real thing. We'll compare it against what the free tools give you, live.
 
@@ -58,6 +60,8 @@ If you get a coherent answer, you're all set.
 ---
 
 ## Step 4 — Read: 12 Must-Know AI Terms (5 min)
+
+> 📖 **Interactive, detailed version:** [academy.mobayilo.com/learn/ai-engineering](https://academy.mobayilo.com/learn/ai-engineering)
 
 So we don't spend session time on definitions, please read these once. **You should be able to explain each in your own words** — we'll move fast and build on them.
 
@@ -103,7 +107,7 @@ eval "$(zoxide init zsh)"
 
 ## If something goes wrong
 
-Reply to this email with a screenshot of the error — we'll sort it out before the session.
+Send Aimable a screenshot of the error — we'll sort it out before the session.
 
 ---
 
