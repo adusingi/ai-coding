@@ -1,4 +1,4 @@
-# Proposal — 2 AI Sessions for Saga's Team
+# Proposal — 2 AI Sessions for the SiTelSo Team
 
 **Send by email once dates are confirmed.**
 

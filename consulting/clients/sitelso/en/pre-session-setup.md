@@ -1,6 +1,6 @@
 # Setup Guide — Complete Before Session 1
 **Estimated time: ~15 minutes (10 min setup + 5 min reading)**
-**Members-only page — access granted to the Saga team.**
+**Members-only page — access granted to the SiTelSo team.**
 
 ---
 
@@ -16,7 +16,7 @@ Before our first session, please complete this quick setup and read-through. It 
 2. Create (or sign in to) an account with your work email
 3. Upgrade to the **Pro** plan ($20/month) — covered centrally for the team.\*
 
-\* _Coverage applies to the Saga team only._
+\* _Coverage applies to the SiTelSo team only._
 
 > **Why Pro and not the free version?** Two reasons. First, the free tier is for trying things out — professional work runs on the paid tier (higher limits, the strongest models, and Claude Code). Second, evaluating whether paid plans are worth it for your team is one of the goals of these sessions — and you can only judge that fairly by working on the real thing. We'll compare it against what the free tools give you, live.
 

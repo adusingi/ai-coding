@@ -1,6 +1,6 @@
 # Guide de setup — À faire avant la session 1
 **Durée estimée : ~15 minutes (10 min de setup + 5 min de lecture)**
-**Page réservée aux membres — accès accordé à l'équipe Saga.**
+**Page réservée aux membres — accès accordé à l'équipe SiTelSo.**
 
 ---
 
@@ -16,7 +16,7 @@ Avant notre première session, merci de faire ce setup rapide et cette courte le
 2. Créez un compte (ou connectez-vous) avec votre email professionnel
 3. Passez au plan **Pro** (20 $/mois) — pris en charge de façon centralisée pour l'équipe.\*
 
-\* _Prise en charge réservée à l'équipe Saga._
+\* _Prise en charge réservée à l'équipe SiTelSo._
 
 > **Pourquoi Pro et pas la version gratuite ?** Deux raisons. D'abord, la version gratuite sert à essayer — le travail professionnel se fait sur la version payante (limites plus hautes, les modèles les plus puissants, et Claude Code). Ensuite, évaluer si les offres payantes valent le coup pour votre équipe fait partie des objectifs de ces sessions — et on ne peut juger correctement qu'en travaillant sur la vraie version. On la comparera en direct à ce que donnent les outils gratuits.
 
